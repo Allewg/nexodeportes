@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="es" x-data="{ scrolled: false, mobileOpen: false }" @scroll.window="scrolled = (window.pageYOffset > 100)">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Box Nexo Deportes - Entrena más fuerte, recupérate mejor</title>
+  <meta name="description" content="Box Nexo Deportes en San Bernardo. Clases de boxing, funcional y cross-training para todos los niveles. ¡Reserva tu clase ahora!">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Box Nexo Deportes - Entrena más fuerte" />
+  <meta property="og:description" content="Clases de boxing, funcional y cross-training para todos los niveles en San Bernardo" />
+  <meta property="og:image" content="assets/og-image.jpg" />
+  <meta property="og:type" content="website" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🥊</text></svg>" />
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'dark-bg': '#0b1020',
+            'accent': '#c59a2a',
+            'muted': '#e5e7eb',
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Flowbite CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css" rel="stylesheet" />
+
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+  <!-- AOS CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+
+  <!-- Animate.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+  <style>
+    :root {
+      --bg: #0b1020;
+      --accent: #c59a2a;
+      --text: #ffffff;
+      --muted: #e5e7eb;
+    }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    *:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    .hero-section {
+      min-height: calc(100vh - 80px);
+    }
+    .swiper-button-next,
+    .swiper-button-prev {
+      color: var(--accent) !important;
+    }
+    .swiper-pagination-bullet-active {
+      background-color: var(--accent) !important;
+    }
+    .floating-btn {
+      transition: transform 0.3s ease;
+    }
+    .floating-btn:hover {
+      transform: scale(1.1);
+    }
+    /* Estilos inspirados en HardwareMania para glass-nav */
+    .glass-nav {
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+  </style>
+</head>
+<body class="font-sans antialiased" >
+
+<!-- Header / Navbar -->
+<header class="fixed top-0 left-0 right-0 bg-dark-bg/95 backdrop-blur-sm z-50 border-b border-gray-800">
+  <nav class="container mx-auto px-4 py-4" role="navigation" aria-label="Navegación principal">
+    <div class="flex items-center justify-between">
+      <!-- Logo -->
+      <a href="#inicio" class="flex items-center gap-3 group">
+        <div class="w-12 h-12 rounded-full flex items-center justify-center transition-transform hover:scale-110 shadow-lg bg-white">
+          <img src="assets/images/logo.jpg" alt="Logo" class="w-10 h-10 object-contain rounded-full" />
+        </div>
+        <span class="text-xl font-bold ">Nexo Deportes</span>
+      </a>
+      
+      <!-- Desktop Nav (visible only on lg+) -->
+      <ul class="hidden lg:flex items-center gap-6 text-sm">
+        <li><a href="#inicio" class="flex items-center gap-2 hover:text-accent transition-colors"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Inicio</a></li>
+        <li><a href="#servicios" class="flex items-center gap-2 hover:text-accent transition-colors"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2v20M2 12h20"/></svg>Clases</a></li>
+        <li><a href="#horarios" class="flex items-center gap-2 hover:text-accent transition-colors"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Horarios</a></li>
+        <li><a href="#entrenadores" class="flex items-center gap-2 hover:text-accent transition-colors"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Entrenadores</a></li>
+        <li><a href="#testimonios" class="flex items-center gap-2 hover:text-accent transition-colors"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Testimonios</a></li>
+        <li><a href="#ubicacion" class="flex items-center gap-2 hover:text-accent transition-colors"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Dónde estamos</a></li>
+        <li><a href="#contacto" class="flex items-center gap-2 hover:text-accent transition-colors"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Contacto</a></li>
+      </ul>
+
+      <!-- CTA Button -->
+      <a href="https://wa.me/56991040157?text=Hola%20Box%20Nexo%20Deportes%2C%20quiero%20reservar%20una%20clase" target="_blank" rel="noopener noreferrer" class="hidden lg:inline-flex items-center gap-2 bg-accent text-dark-bg px-6 py-2.5 rounded-full font-semibold hover:bg-yellow-600 transition-colors animate__animated animate__pulse animate__infinite">
+        Reservar Clase
+      </a>
+
+      <!-- Botón de menú móvil -->
+      <button @click="mobileOpen = !mobileOpen" class="lg:hidden p-2 hover:bg-gray-800 rounded-lg transition-colors">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <line x1="4" y1="12" x2="20" y2="12"/>
+          <line x1="4" y1="6" x2="20" y2="6"/>
+          <line x1="4" y1="18" x2="20" y2="18"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Menú móvil con cierre -->
+    <div 
+      x-show="mobileOpen" 
+      x-transition:enter="transition ease-out duration-300" 
+      x-transition:enter-start="transform translate-x-full opacity-0" 
+      x-transition:enter-end="transform translate-x-0 opacity-100" 
+      x-transition:leave="transition ease-in duration-300" 
+      x-transition:leave-start="transform translate-x-0 opacity-100" 
+      x-transition:leave-end="transform translate-x-full opacity-0" 
+      @click.away="mobileOpen = false" 
+      class="lg:hidden fixed top-0 right-0 w-64 h-full bg-gray-900/90 backdrop-blur-lg z-50 p-4"
+    >
+      <!-- Botón de cerrar dentro del menú -->
+      <button @click="mobileOpen = false" class="mb-4">
+        <!-- Ícono de cerrar -->
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+      <!-- Links del menú -->
+      <ul class="flex flex-col space-y-4 text-white">
+        <li data-aos="fade-down" data-aos-delay="100">
+          <a href="#inicio" @click="mobileOpen = false" class="flex items-center gap-2 hover:text-accent transition-colors"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Inicio</a>
+        </li>
+        <li data-aos="fade-down" data-aos-delay="200">
+          <a href="#servicios" @click="mobileOpen = false" class="flex items-center gap-2 hover:text-accent transition-colors"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2v20M2 12h20"/></svg>Clases</a>
+        </li>
+        <li data-aos="fade-down" data-aos-delay="300">
+          <a href="#horarios" @click="mobileOpen = false" class="flex items-center gap-2 hover:text-accent transition-colors"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Horarios</a>
+        </li>
+        <li data-aos="fade-down" data-aos-delay="400">
+          <a href="#entrenadores" @click="mobileOpen = false" class="flex items-center gap-2 hover:text-accent transition-colors"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Entrenadores</a>
+        </li>
+        <li data-aos="fade-down" data-aos-delay="500">
+          <a href="#testimonios" @click="mobileOpen = false" class="flex items-center gap-2 hover:text-accent transition-colors"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Testimonios</a>
+        </li>
+        <li data-aos="fade-down" data-aos-delay="600">
+          <a href="#ubicacion" @click="mobileOpen = false" class="flex items-center gap-2 hover:text-accent transition-colors"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Dónde estamos</a>
+        </li>
+        <li data-aos="fade-down" data-aos-delay="700">
+          <a href="#contacto" @click="mobileOpen = false" class="flex items-center gap-2 hover:text-accent transition-colors"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Contacto</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<!-- Main Content -->
+<main class="mt-20">
+
+  <!-- Hero -->
+  <section id="inicio" class="hero-section relative flex items-center justify-center overflow-hidden">
+    <div class="swiper heroSwiper" style="height: calc(100vh - 80px);">
+      <div class="swiper-wrapper relative">
+        <div class="swiper-slide relative">
+          <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=1200" alt="Boxing Training" class="w-full h-full object-cover" />
+          <div class="absolute inset-0 bg-black/50 flex items-center justify-center">
+            <div class="text-center animate__animated animate__fadeInUp">
+              <h1 class="text-5xl md:text-7xl font-bold mb-4">Box Nexo Deportes</h1>
+              <p class="text-xl md:text-2xl text-muted mb-8">Entrena más fuerte, recupérate mejor</p>
+              <a href="#servicios" class="bg-accent text-dark-bg px-8 py-3 rounded-full font-bold hover:bg-yellow-600 transition-colors">Ver Servicios</a>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide relative">
+          <img src="https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=1200" alt="Fitness Training" class="w-full h-full object-cover" />
+          <div class="absolute inset-0 bg-black/50 flex items-center justify-center">
+            <div class="text-center animate__animated animate__fadeInUp">
+              <h1 class="text-5xl md:text-7xl font-bold mb-4">Box Nexo Deportes</h1>
+              <p class="text-xl md:text-2xl text-muted mb-8">Entrena más fuerte, recupérate mejor</p>
+              <a href="#servicios" class="bg-accent text-dark-bg px-8 py-3 rounded-full font-bold hover:bg-yellow-600 transition-colors">Ver Servicios</a>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide relative">
+          <img src="https://images.unsplash.com/photo-1520536194455-348162e0fe90?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170" alt="Group Training" class="w-full h-full object-cover" />
+          <div class="absolute inset-0 bg-black/50 flex items-center justify-center">
+            <div class="text-center animate__animated animate__fadeInUp">
+              <h1 class="text-5xl md:text-7xl font-bold mb-4">Box Nexo Deportes</h1>
+              <p class="text-xl md:text-2xl text-muted mb-8">Entrena más fuerte, recupérate mejor</p>
+              <a href="#servicios" class="bg-accent text-dark-bg px-8 py-3 rounded-full font-bold hover:bg-yellow-600 transition-colors">Ver Servicios</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </section>
+
+  <!-- Servicios -->
+  <section id="servicios" class="py-20 bg-gray-900/30">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16" data-aos="fade-up">
+        <div class="flex items-center justify-center gap-3 mb-4">
+          <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="12" /><line x1="12" y1="16" x2="12" y2="16" /></svg>
+          <h2 class="text-4xl md:text-5xl font-bold">Nuestros Servicios</h2>
+        </div>
+        <p class="text-muted text-lg">Ofrecemos diferentes opciones para que elijas la que más te conviene</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div class="bg-gray-900/50 border border-gray-800 rounded-2xl p-8 hover:border-accent transition-all duration-300 hover:scale-105" data-aos="fade-up">
+          <div class="flex flex-col items-center mb-4">
+            <div class="w-16 h-16 flex items-center justify-center mb-2 rounded-full bg-gradient-to-br from-accent to-yellow-600 text-white text-xl font-bold">🏋️‍♂️</div>
+            <h3 class="text-2xl font-bold mb-2 text-center">Open Box</h3>
+            <p class="text-muted text-center mb-4">Gimnasio abierto y sin restricciones</p>
+          </div>
+          <ul class="space-y-3 mb-6">
+            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polyline points="20 6 9 17 4 12" /></svg>Acceso libre</li>
+            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polyline points="20 6 9 17 4 12" /></svg>Ambiente abierto</li>
+            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polyline points="20 6 9 17 4 12" /></svg>Ideal para entrenar libremente</li>
+          </ul>
+          <a href="https://wa.me/56991040157?text=Hola%2C%20quiero%20más%20información%20sobre%20Open%20Box" target="_blank" rel="noopener noreferrer" class="block w-full text-center bg-accent text-dark-bg px-4 py-3 rounded-full font-bold hover:bg-yellow-600 transition-colors duration-300">Más info</a>
+        </div>
+        <div class="bg-gray-900/50 border border-gray-800 rounded-2xl p-8 hover:border-accent transition-all duration-300 hover:scale-105" data-aos="fade-up" data-aos-delay="100">
+          <div class="flex flex-col items-center mb-4">
+            <div class="w-16 h-16 flex items-center justify-center mb-2 rounded-full bg-gradient-to-br from-accent to-yellow-600 text-white text-xl font-bold">🥊</div>
+            <h3 class="text-2xl font-bold mb-2 text-center">Clases de Boxeo</h3>
+            <p class="text-muted text-center mb-4">Aprende y entrena con nosotros</p>
+          </div>
+          <ul class="space-y-3 mb-6">
+            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polyline points="20 6 9 17 4 12" /></svg>Clases grupales y particulares</li>
+            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polyline points="20 6 9 17 4 12" /></svg>Mejora técnica y resistencia</li>
+            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polyline points="20 6 9 17 4 12" /></svg>Horarios flexibles</li>
+          </ul>
+          <a href="https://wa.me/56991040157?text=Hola%2C%20quiero%20más%20información%20sobre%20clases%20de%20boxeo" target="_blank" rel="noopener noreferrer" class="block w-full text-center bg-accent text-dark-bg px-4 py-3 rounded-full font-bold hover:bg-yellow-600 transition-colors duration-300">Más info</a>
+        </div>
+        <div class="bg-gray-900/50 border border-gray-800 rounded-2xl p-8 hover:border-accent transition-all duration-300 hover:scale-105" data-aos="fade-up" data-aos-delay="200">
+          <div class="flex flex-col items-center mb-4">
+            <div class="w-16 h-16 flex items-center justify-center mb-2 rounded-full bg-gradient-to-br from-accent to-yellow-600 text-white text-xl font-bold">🛠️</div>
+            <h3 class="text-2xl font-bold mb-2 text-center">Personalizado</h3>
+            <p class="text-muted text-center mb-4">Entrenamiento a tu medida</p>
+          </div>
+          <ul class="space-y-3 mb-6">
+            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polyline points="20 6 9 17 4 12" /></svg>Planes totalmente a medida</li>
+            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polyline points="20 6 9 17 4 12" /></svg>Entrenamiento personal 1 a 1</li>
+            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polyline points="20 6 9 17 4 12" /></svg>Flexibilidad de horarios</li>
+          </ul>
+          <a href="https://wa.me/56991040157?text=Hola%2C%20quiero%20más%20información%20sobre%20entrenamiento%20personalizado" target="_blank" rel="noopener noreferrer" class="block w-full text-center bg-accent text-dark-bg px-4 py-3 rounded-full font-bold hover:bg-yellow-600 transition-colors duration-300">Más info</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Horarios -->
+  <section id="horarios" class="py-20 bg-gray-900/30">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16" data-aos="fade-up">
+        <div class="flex items-center justify-center gap-3 mb-4">
+          <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <h2 class="text-4xl md:text-5xl font-bold">Horarios</h2>
+        </div>
+        <p class="text-muted text-lg">Encuentra el horario perfecto para tu rutina</p>
+      </div>
+      <div class="max-w-4xl mx-auto bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-2xl overflow-hidden" data-aos="fade-up">
+        <div class="overflow-x-auto">
+          <table class="w-full">
+            <thead class="bg-accent text-dark-bg">
+              <tr>
+                <th class="px-6 py-4 text-left font-bold">Día</th>
+                <th class="px-6 py-4 text-left font-bold">Mañana</th>
+                <th class="px-6 py-4 text-left font-bold">Tarde</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-800">
+              <tr class="hover:bg-gray-800/50 transition-colors">
+                <td class="px-6 py-4 font-semibold">Lunes</td>
+                <td class="px-6 py-4 text-muted">09:00 - 14:00</td>
+                <td class="px-6 py-4 text-muted">16:00 - 20:30</td>
+              </tr>
+              <tr class="hover:bg-gray-800/50 transition-colors">
+                <td class="px-6 py-4 font-semibold">Martes</td>
+                <td class="px-6 py-4 text-muted">09:00 - 14:00</td>
+                <td class="px-6 py-4 text-muted">16:00 - 20:30</td>
+              </tr>
+              <tr class="hover:bg-gray-800/50 transition-colors">
+                <td class="px-6 py-4 font-semibold">Miércoles</td>
+                <td class="px-6 py-4 text-muted">09:00 - 14:00</td>
+                <td class="px-6 py-4 text-muted">16:00 - 20:30</td>
+              </tr>
+              <tr class="hover:bg-gray-800/50 transition-colors">
+                <td class="px-6 py-4 font-semibold">Jueves</td>
+                <td class="px-6 py-4 text-muted">09:00 - 14:00</td>
+                <td class="px-6 py-4 text-muted">16:00 - 20:30</td>
+              </tr>
+              <tr class="hover:bg-gray-800/50 transition-colors">
+                <td class="px-6 py-4 font-semibold">Viernes</td>
+                <td class="px-6 py-4 text-muted">09:00 - 14:00</td>
+                <td class="px-6 py-4 text-muted">16:00 - 20:30</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="text-center mt-8" data-aos="fade-up">
+        <a href="https://wa.me/56991040157?text=Hola%2C%20quiero%20información%20sobre%20horarios" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-accent hover:text-yellow-600 transition-colors font-semibold">¿Necesitas un horario personalizado? Contáctanos <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m9 18 6-6-6-6"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Entrenadores -->
+  <section id="entrenadores" class="py-20 bg-gray-900">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12" data-aos="fade-up">
+        <div class="flex items-center justify-center gap-3 mb-4 text-accent">
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <h2 class="text-4xl md:text-5xl font-bold text-white">Nuestros Entrenadores</h2>
+        </div>
+        <p class="text-lg text-gray-300">Profesionales certificados comprometidos con tu progreso</p>
+      </div>
+      <div class="flex justify-center">
+        <div class="swiper trainersSwiper max-w-[600px] w-full">
+          <div class="swiper-wrapper gap-6">
+            <div class="swiper-slide flex justify-center">
+              <div class="bg-white rounded-3xl shadow-lg overflow-hidden aspect-square max-w-[540px] w-full">
+                <img src="assets/images/profe3.webp" alt="Entrenador" class="w-full h-full object-contain" />
+              </div>
+            </div>
+            <div class="swiper-slide flex justify-center">
+              <div class="bg-white rounded-3xl shadow-lg overflow-hidden aspect-square max-w-[540px] w-full">
+                <img src="assets/images/profe2.webp" alt="Entrenadora" class="w-full h-full object-contain" />
+              </div>
+            </div>
+            <div class="swiper-slide flex justify-center">
+              <div class="bg-white rounded-3xl shadow-lg overflow-hidden aspect-square max-w-[540px] w-full">
+                <img src="assets/images/profe1.webp" alt="Entrenador" class="w-full h-full object-contain" />
+              </div>
+            </div>
+          </div>
+          <div class="swiper-pagination mt-6"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Video e Instalaciones -->
+  <section id="video-instalaciones" class="py-20 bg-gray-900" x-data="{ videoOpen: false }">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12" data-aos="fade-up">
+        <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Nuestras Instalaciones</h2>
+        <p class="text-lg text-gray-300">Descubre el ambiente único de Box Nexo Deportes</p>
+      </div>
+      <div class="flex flex-col lg:flex-row gap-8 justify-center items-start">
+        <div class="max-w-[540px] w-full bg-gray-900/50 border border-gray-800 rounded-3xl shadow-lg p-6" data-aos="fade-right">
+          <h3 class="text-2xl font-bold mb-4 text-white">Conoce nuestras instalaciones</h3>
+          <p class="mb-6 text-gray-300">Descubre el ambiente único de Box Nexo Deportes y visualiza tu próximo entrenamiento</p>
+          <div class="relative aspect-video bg-black rounded-xl overflow-hidden cursor-pointer group" @click="videoOpen = true">
+            <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800" alt="Video preview" class="w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-colors flex items-center justify-center">
+              <div class="w-20 h-20 bg-accent rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                <svg class="w-10 h-10 text-dark-bg ml-1" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8 5v14l11-7z"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Video Modal -->
+    <div x-show="videoOpen" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4" @click.self="videoOpen = false">
+      <div class="relative w-full max-w-4xl">
+        <button @click="videoOpen = false" class="absolute -top-12 right-0 text-white hover:text-accent transition-colors">
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>
+        </button>
+        <div class="aspect-video bg-black rounded-xl overflow-hidden">
+          <iframe src="https://www.instagram.com/reel/DQUOT1ckash/embed" class="w-full h-full" frameborder="0" allow="autoplay" title="Video de Instagram"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonios -->
+  <section id="testimonios" class="py-20 bg-dark-bg">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16" data-aos="fade-up">
+        <div class="flex items-center justify-center gap-3 mb-4">
+          <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          <h2 class="text-4xl md:text-5xl font-bold">Testimonios</h2>
+        </div>
+        <p class="text-muted text-lg">Lo que dicen nuestros alumnos</p>
+      </div>
+      <div class="swiper testimoniosSwiper max-w-6xl mx-auto">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <div class="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-2xl p-8">
+              <div class="flex items-center gap-4 mb-4">
+                <div class="w-16 h-16 rounded-full bg-gradient-to-br from-accent to-yellow-600 flex items-center justify-center text-2xl">👤</div>
+                <div>
+                  <h4 class="font-bold">Francisca Rojas</h4>
+                  <div class="flex gap-1 text-accent">★★★★★</div>
+                </div>
+              </div>
+              <p class="text-muted italic">"Llevo 6 meses entrenando y los resultados son increíbles. Los entrenadores son profesionales y el ambiente es muy motivador."</p>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-2xl p-8">
+              <div class="flex items-center gap-4 mb-4">
+                <div class="w-16 h-16 rounded-full bg-gradient-to-br from-accent to-yellow-600 flex items-center justify-center text-2xl">👤</div>
+                <div>
+                  <h4 class="font-bold">Miguel Ángel Torres</h4>
+                  <div class="flex gap-1 text-accent">★★★★★</div>
+                </div>
+              </div>
+              <p class="text-muted italic">"El mejor box de San Bernardo. Equipamiento de primera y entrenadores que realmente se preocupan por tu progreso."</p>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-2xl p-8">
+              <div class="flex items-center gap-4 mb-4">
+                <div class="w-16 h-16 rounded-full bg-gradient-to-br from-accent to-yellow-600 flex items-center justify-center text-2xl">👤</div>
+                <div>
+                  <h4 class="font-bold">Carolina Pérez</h4>
+                  <div class="flex gap-1 text-accent">★★★★★</div>
+                </div>
+              </div>
+              <p class="text-muted italic">"Empecé sin experiencia y ahora no puedo dejar de entrenar. El ambiente es súper acogedor y te sientes parte de una familia."</p>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-2xl p-8">
+              <div class="flex items-center gap-4 mb-4">
+                <div class="w-16 h-16 rounded-full bg-gradient-to-br from-accent to-yellow-600 flex items-center justify-center text-2xl">👤</div>
+                <div>
+                  <h4 class="font-bold">Juan Pérez</h4>
+                  <div class="flex gap-1 text-accent">★★★★★</div>
+                </div>
+              </div>
+              <p class="text-muted italic">"Excelente atención y resultados rápidos. Totalmente recomendado para quienes buscan un cambio real."</p>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-pagination mt-4"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quiénes Somos -->
+  <section id="nosotros" class="py-20 bg-gray-900/30">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-16" data-aos="fade-up">
+          <h2 class="text-4xl md:text-5xl font-bold mb-6">Quiénes Somos</h2>
+          <p class="text-muted text-lg leading-relaxed">En <span class="text-accent font-semibold">Box Nexo Deportes</span> creemos que el entrenamiento va más allá del ejercicio físico. Es un estilo de vida que transforma cuerpo y mente.</p>
+        </div>
+        <div class="grid md:grid-cols-3 gap-8 mb-12">
+          <div class="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-2xl p-6 text-center" data-aos="fade-up">
+            <div class="text-4xl mb-4">🎯</div>
+            <h3 class="text-xl font-bold mb-3">Nuestra Misión</h3>
+            <p class="text-muted text-sm">Proporcionar un espacio de entrenamiento profesional donde cada persona alcance su máximo potencial.</p>
+          </div>
+          <div class="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-2xl p-6 text-center" data-aos="fade-up" data-aos-delay="100">
+            <div class="text-4xl mb-4">💪</div>
+            <h3 class="text-xl font-bold mb-3">Nuestros Valores</h3>
+            <p class="text-muted text-sm">Disciplina, respeto, superación constante y trabajo en equipo son los pilares de nuestra comunidad.</p>
+          </div>
+          <div class="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-2xl p-6 text-center" data-aos="fade-up" data-aos-delay="200">
+            <div class="text-4xl mb-4">🌟</div>
+            <h3 class="text-xl font-bold mb-3">Nuestra Visión</h3>
+            <p class="text-muted text-sm">Ser el centro de entrenamiento líder en San Bernardo, reconocidos por resultados y comunidad.</p>
+          </div>
+        </div>
+        <div class="text-center" data-aos="fade-up">
+          <a href="#entrenadores" class="inline-flex items-center gap-2 text-accent hover:text-yellow-600 transition-colors font-semibold">Conoce a nuestros entrenadores <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m9 18 6-6-6-6"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ubicación -->
+  <section id="ubicacion" class="py-20 bg-dark-bg">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16" data-aos="fade-up">
+        <div class="flex items-center justify-center gap-3 mb-4">
+          <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          <h2 class="text-4xl md:text-5xl font-bold">Dónde Estamos</h2>
+        </div>
+        <p class="text-muted text-lg">Visítanos en el corazón de San Bernardo</p>
+      </div>
+      <div class="max-w-5xl mx-auto grid lg:grid-cols-2 gap-8">
+        <div class="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-2xl p-8" data-aos="fade-right">
+          <h3 class="text-2xl font-bold mb-6">Información de Contacto</h3>
+          <div class="space-y-6">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-full bg-accent/20 flex items-center justify-center">
+                <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div>
+                <h4 class="font-bold mb-1">Dirección</h4>
+                <p class="text-muted">Maipú 640, 8320000<br>San Bernardo, Región Metropolitana</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-full bg-accent/20 flex items-center justify-center">
+                <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+              <div>
+                <h4 class="font-bold mb-1">Horario de Atención</h4>
+                <p class="text-muted">Lunes a Viernes: 09:00 - 14:00 | 16:00 - 20:30</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-full bg-accent/20 flex items-center justify-center">
+                <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              </div>
+              <div>
+                <h4 class="font-bold mb-1">Teléfono</h4>
+                <a href="https://wa.me/56991040157" target="_blank" rel="noopener noreferrer" class="text-accent hover:text-yellow-600 transition-colors">+56 9 9104 0157</a>
+              </div>
+            </div>
+          </div>
+          <a href="https://www.google.com/maps/dir//Maipú+640,+San+Bernardo" target="_blank" rel="noopener noreferrer" class="mt-8 flex items-center justify-center gap-2 bg-accent text-dark-bg px-6 py-3 rounded-full font-bold hover:bg-yellow-600 transition-colors w-full">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Cómo llegar
+          </a>
+        </div>
+        <div class="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-2xl overflow-hidden" data-aos="fade-left">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3310.179!2d-70.6985!3d-33.5974!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzPCsDM1JzUwLjYiUyA3MMKwNDEnNTQuNiJX!5e0!3m2!1ses!2scl!4v1234567890" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" title="Mapa"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contacto -->
+  <section id="contacto" class="py-20 bg-gray-900/30">
+    <div class="container mx-auto px-4">
+      <div class="max-w-3xl mx-auto text-center" data-aos="fade-up">
+        <div class="flex items-center justify-center gap-3 mb-6">
+          <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <h2 class="text-4xl md:text-5xl font-bold">¿Listo para comenzar?</h2>
+        </div>
+        <p class="text-muted text-lg mb-8">Contáctanos hoy y da el primer paso hacia una mejor versión de ti mismo</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="https://wa.me/56991040157?text=Hola%20Box%20Nexo%20Deportes,%20quiero%20reservar" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 bg-accent text-dark-bg px-8 py-4 rounded-full font-bold text-lg hover:bg-yellow-600 transition-colors">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            Contáctanos por WhatsApp
+          </a>
+          <a href="#servicios" class="inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white/20 transition-colors border border-white/20">
+            Ver planes
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Footer -->
+<footer class="bg-dark-bg border-t border-gray-800 py-8">
+  <div class="container mx-auto px-4">
+    <div class="grid md:grid-cols-3 gap-8 mb-4">
+      <div>
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-lg">
+            <img src="assets/images/logo.jpg" alt="Logo" class="w-10 h-10 object-contain rounded-full" />
+          </div>
+          <span class="text-xl font-bold">Box Nexo Deportes</span>
+        </div>
+        <p class="text-muted text-sm">Tu centro de entrenamiento en San Bernardo. Transformando vidas a través del deporte.</p>
+      </div>
+      <div>
+        <h4 class="text-lg font-semibold mb-2">Síguenos</h4>
+        <div class="flex space-x-4">
+          <a href="https://www.instagram.com/box.nexodeport/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="text-accent hover:text-yellow-600 transition">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c-3.204 0-3.584.012-4.85.07-1.17.055-1.97.24-2.675.512a4.918 4.918 0 0 0-1.767 1.012 4.918 4.918 0 0 0-1.012 1.767c-.272.705-.457 1.505-.512 2.675-.058 1.266-.07 1.646-.07 4.85s.012 3.584.07 4.85c.055 1.17.24 1.97.512 2.675a4.918 4.918 0 0 0 1.012 1.767 4.918 4.918 0 0 0 1.767 1.012c.705.272 1.505.457 2.675.512 1.266.058 1.646.07 4.85.07s3.584-.012 4.85-.07c1.17-.055 1.97-.24 2.675-.512a4.918 4.918 0 0 0 1.767-1.012 4.918 4.918 0 0 0 1.012-1.767c.272-.705.457-1.505.512-2.675.058-1.266.07-1.646.07-4.85s-.012-3.584-.07-4.85c-.055-1.17-.24-1.97-.512-2.675a4.918 4.918 0 0 0-1.012-1.767 4.918 4.918 0 0 0-1.767-1.012c-.705-.272-1.505-.457-2.675-.512-1.266-.058-1.646-.07-4.85-.07zm0 4.838a7.162 7.162 0 1 1 0 14.324 7.162 7.162 0 0 1 0-14.324zm0 12.324a5.162 5.162 0 1 0 0-10.324 5.162 5.162 0 0 0 0 10.324zm6.406-13.218a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h4 class="text-lg font-semibold mb-2">Enlaces Rápidos</h4>
+        <ul class="space-y-2 text-sm text-muted">
+          <li><a href="#inicio" class="hover:text-accent transition-colors">Inicio</a></li>
+          <li><a href="#servicios" class="hover:text-accent transition-colors">Servicios</a></li>
+          <li><a href="#horarios" class="hover:text-accent transition-colors">Horarios</a></li>
+          <li><a href="#contacto" class="hover:text-accent transition-colors">Contacto</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="mt-4 text-center text-sm text-muted">
+      &copy; <span x-text="new Date().getFullYear()"></span> Box Nexo Deportes — Todos los derechos reservados.
+      <br>
+      <p>Desarrollado por Hardwaremania</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Floating Buttons -->
+<div x-show="scrolled" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0" class="fixed bottom-4 right-4 flex flex-col gap-3 z-50">
+  <!-- WhatsApp Button -->
+  <a href="https://wa.me/56991040157?text=Hola%20Box%20Nexo%20Deportes,%20quiero%20reservar" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg floating-btn">
+    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+  </a>
+
+  <!-- Scroll to Top Button -->
+  <button @click="window.scrollTo({ top: 0, behavior: 'smooth' })" aria-label="Volver arriba" class="bg-gray-700 hover:bg-gray-600 text-white p-3 rounded-full shadow-lg floating-btn">
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 15l-7-7-7 7"/></svg>
+  </button>
+</div>
+
+<!-- Scripts -->
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({ duration: 800, once: true, offset: 100 });
+  const heroSwiper = new Swiper('.heroSwiper', {
+    loop: true,
+    autoplay: { delay: 5000, disableOnInteraction: false },
+    navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+    pagination: { el: '.swiper-pagination', clickable: true },
+    effect: 'fade',
+    fadeEffect: { crossFade: true }
+  });
+  const trainersSwiper = new Swiper('.trainersSwiper', {
+    slidesPerView: 1,
+    spaceBetween: 20,
+    loop: true,
+    pagination: { el: '.trainersSwiper .swiper-pagination', clickable: true },
+    autoplay: { delay: 4000, disableOnInteraction: false },
+  });
+  const testimoniosSwiper = new Swiper('.testimoniosSwiper', {
+    slidesPerView: 1,
+    spaceBetween: 20,
+    loop: true,
+    pagination: { el: '.testimoniosSwiper .swiper-pagination', clickable: true },
+    navigation: { nextEl: '.testimoniosSwiper .swiper-button-next', prevEl: '.testimoniosSwiper .swiper-button-prev' },
+    autoplay: { delay: 5000, disableOnInteraction: false },
+    breakpoints: { 768: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } },
+  });
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+</script>
+</body>
+</html>
