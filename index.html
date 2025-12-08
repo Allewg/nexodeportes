@@ -52,9 +52,15 @@
       --text: #ffffff;
       --muted: #e5e7eb;
     }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
     body {
       background-color: var(--bg);
       color: var(--text);
+      overflow-x: hidden;
     }
     html {
       scroll-behavior: smooth;
@@ -74,57 +80,216 @@
       background-color: var(--accent) !important;
     }
     .floating-btn {
-      transition: transform 0.3s ease;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
     }
     .floating-btn:hover {
-      transform: scale(1.1);
+      transform: scale(1.1) translateY(-2px);
+      box-shadow: 0 15px 35px rgba(197, 154, 42, 0.4);
     }
-  .glass-menu {
-  background: rgba(15, 35, 70, 0.85);
-  backdrop-filter: blur(20px) saturate(180%);
-  border-left: 1px solid rgba(100, 150, 255, 0.2);
-  box-shadow: -10px 0 40px rgba(0, 40, 100, 0.5);
-}
-.mobile-menu-open {
-  transform: translateX(0);
-}
-.mobile-menu-closed {
-  transform: translateX(100%);
-}
+    .glass-menu {
+      background: rgba(15, 35, 70, 0.85);
+      backdrop-filter: blur(20px) saturate(180%);
+      border-left: 1px solid rgba(100, 150, 255, 0.2);
+      box-shadow: -10px 0 40px rgba(0, 40, 100, 0.5);
+    }
+    .mobile-menu-open {
+      transform: translateX(0);
+    }
+    .mobile-menu-closed {
+      transform: translateX(100%);
+    }
+    /* Efectos de scroll para header */
+    header {
+      transition: all 0.3s ease;
+    }
+    header.scrolled {
+      background-color: rgba(15, 23, 42, 0.98);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+    /* Mejoras en botones */
+    .btn-primary {
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+    .btn-primary:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+    /* Efectos en tarjetas */
+    .card-hover {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+    }
+    .card-hover::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: inherit;
+      padding: 2px;
+      background: linear-gradient(135deg, var(--accent), transparent);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask-composite: exclude;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .card-hover:hover::before {
+      opacity: 1;
+    }
+    .card-hover:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(197, 154, 42, 0.2);
+    }
+    /* Gradientes mejorados */
+    .gradient-text {
+      background: linear-gradient(135deg, var(--accent), #fbbf24);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    /* Animaciones de entrada */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .fade-in-up {
+      animation: fadeInUp 0.6s ease-out;
+    }
+    /* Efecto parallax sutil */
+    .parallax-bg {
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    /* Mejoras en iconos */
+    .icon-bounce:hover {
+      animation: bounce 0.6s ease;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    /* Efecto de brillo en hover */
+    .shine-effect {
+      position: relative;
+      overflow: hidden;
+    }
+    .shine-effect::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      transform: rotate(45deg);
+      transition: all 0.5s;
+      opacity: 0;
+    }
+    .shine-effect:hover::after {
+      animation: shine 0.6s ease;
+    }
+    @keyframes shine {
+      0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); opacity: 0; }
+      50% { opacity: 1; }
+      100% { transform: translateX(100%) translateY(100%) rotate(45deg); opacity: 0; }
+    }
+    /* Mejoras en tabla */
+    table tbody tr {
+      transition: all 0.2s ease;
+    }
+    table tbody tr:hover {
+      background-color: rgba(197, 154, 42, 0.1) !important;
+      transform: scale(1.02);
+    }
+    /* Efecto de pulso en botones CTA */
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(197, 154, 42, 0.7); }
+      50% { box-shadow: 0 0 0 10px rgba(197, 154, 42, 0); }
+    }
+    .pulse-effect {
+      animation: pulse 2s infinite;
+    }
+    /* Mejoras en imágenes */
+    img {
+      transition: transform 0.3s ease;
+    }
+    .img-zoom:hover img {
+      transform: scale(1.05);
+    }
+    /* Scrollbar personalizado */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--accent);
+      border-radius: 5px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #fbbf24;
+    }
   </style>
 </head>
 <body class="font-sans antialiased">
 
 <!-- Header / Navbar -->
-<header class="fixed top-0 left-0 right-0 bg-slate-900/95 backdrop-blur-sm z-50 border-b border-slate-800">
+<header id="mainHeader" class="fixed top-0 left-0 right-0 bg-slate-900/95 backdrop-blur-md z-50 border-b border-slate-800/50 transition-all duration-300">
   <nav class="container mx-auto px-4 py-4">
     <div class="flex items-center justify-between">
       <!-- Logo -->
-      <a href="#inicio" class="flex items-center gap-3">
-        <div class="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-lg">
+      <a href="#inicio" class="flex items-center gap-3 group">
+        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-accent to-yellow-600 flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:scale-110 transition-all duration-300">
           <img src="assets/images/logo.jpg" alt="Logo" class="w-10 h-10 object-contain rounded-full" />
         </div>
-        <span class="text-xl font-bold text-white">Nexo Deportes</span>
+        <span class="text-xl font-bold text-white group-hover:text-accent transition-colors">Nexo Deportes</span>
       </a>
       
       <!-- Desktop Nav -->
       <ul class="hidden lg:flex items-center gap-6 text-sm text-white">
-        <li><a href="#inicio" class="hover:text-yellow-500 transition-colors"><i class="fas fa-home mr-2"></i>Inicio</a></li>
-        <li><a href="#servicios" class="hover:text-yellow-500 transition-colors"><i class="fas fa-dumbbell mr-2"></i>Clases</a></li>
-        <li><a href="#horarios" class="hover:text-yellow-500 transition-colors"><i class="fas fa-clock mr-2"></i>Horarios</a></li>
-        <li><a href="#entrenadores" class="hover:text-yellow-500 transition-colors"><i class="fas fa-users mr-2"></i>Entrenadores</a></li>
-        <li><a href="#testimonios" class="hover:text-yellow-500 transition-colors"><i class="fas fa-comments mr-2"></i>Testimonios</a></li>
-        <li><a href="#ubicacion" class="hover:text-yellow-500 transition-colors"><i class="fas fa-map-marker-alt mr-2"></i>Ubicación</a></li>
-        <li><a href="#contacto" class="hover:text-yellow-500 transition-colors"><i class="fas fa-phone mr-2"></i>Contacto</a></li>
+        <li><a href="#inicio" class="hover:text-accent transition-all duration-300 relative group"><i class="fas fa-home mr-2 icon-bounce"></i>Inicio<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300"></span></a></li>
+        <li><a href="#servicios" class="hover:text-accent transition-all duration-300 relative group"><i class="fas fa-dumbbell mr-2 icon-bounce"></i>Clases<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300"></span></a></li>
+        <li><a href="#horarios" class="hover:text-accent transition-all duration-300 relative group"><i class="fas fa-clock mr-2 icon-bounce"></i>Horarios<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300"></span></a></li>
+        <li><a href="#entrenadores" class="hover:text-accent transition-all duration-300 relative group"><i class="fas fa-users mr-2 icon-bounce"></i>Entrenadores<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300"></span></a></li>
+        <li><a href="#testimonios" class="hover:text-accent transition-all duration-300 relative group"><i class="fas fa-comments mr-2 icon-bounce"></i>Testimonios<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300"></span></a></li>
+        <li><a href="#ubicacion" class="hover:text-accent transition-all duration-300 relative group"><i class="fas fa-map-marker-alt mr-2 icon-bounce"></i>Ubicación<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300"></span></a></li>
+        <li><a href="#contacto" class="hover:text-accent transition-all duration-300 relative group"><i class="fas fa-phone mr-2 icon-bounce"></i>Contacto<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300"></span></a></li>
       </ul>
 
       <!-- CTA Desktop -->
-      <a href="https://wa.me/56991040157?text=Hola%20Box%20Nexo%20Deportes%2C%20quiero%20reservar%20una%20clase" target="_blank" class="hidden lg:block bg-yellow-600 text-slate-900 px-6 py-2 rounded-full font-semibold hover:bg-yellow-500 transition-colors">
-        Reservar Clase
+      <a href="https://wa.me/56991040157?text=Hola%20Box%20Nexo%20Deportes%2C%20quiero%20reservar%20una%20clase" target="_blank" class="hidden lg:block bg-gradient-to-r from-accent to-yellow-600 text-slate-900 px-6 py-2.5 rounded-full font-semibold hover:from-yellow-600 hover:to-accent transition-all duration-300 shadow-lg hover:shadow-xl pulse-effect relative overflow-hidden btn-primary">
+        <span class="relative z-10">Reservar Clase</span>
       </a>
 
       <!-- Mobile Menu Button - SIEMPRE VISIBLE en móvil -->
-      <button id="mobileMenuBtn" class="lg:hidden text-white text-2xl p-2 hover:text-yellow-500 transition-colors relative z-50">
+      <button id="mobileMenuBtn" class="lg:hidden text-white text-2xl p-2 hover:text-accent transition-all duration-300 relative z-50 hover:scale-110">
         <i class="fas fa-bars"></i>
       </button>
     </div>
@@ -189,7 +354,7 @@
     </ul>
 
     <!-- CTA Mobile -->
-    <a href="https://wa.me/56991040157?text=Hola%20Box%20Nexo%20Deportes%2C%20quiero%20reservar%20una%20clase" target="_blank" class="block mt-8 bg-yellow-600 text-slate-900 text-center px-6 py-3 rounded-full font-semibold hover:bg-yellow-500 transition-colors">
+    <a href="https://wa.me/56991040157?text=Hola%20Box%20Nexo%20Deportes%2C%20quiero%20reservar%20una%20clase" target="_blank" class="block mt-8 bg-gradient-to-r from-green-500 to-green-600 text-white text-center px-6 py-3 rounded-full font-semibold hover:from-green-600 hover:to-green-500 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105">
       <i class="fab fa-whatsapp mr-2"></i>Reservar Clase
     </a>
   </div>
@@ -203,38 +368,48 @@
     <div class="swiper heroSwiper" style="height: calc(100vh - 80px);">
       <div class="swiper-wrapper relative">
         <div class="swiper-slide relative">
-          <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=1200" alt="Boxing Training" class="w-full h-full object-cover" />
-          <div class="absolute inset-0 bg-black/50 flex items-center justify-center">
-            <div class="text-center animate__animated animate__fadeInUp">
-              <h1 class="text-5xl md:text-7xl font-bold mb-4">Box Nexo Deportes</h1>
-              <p class="text-xl md:text-2xl text-muted mb-8">Entrena más fuerte, recupérate mejor</p>
-              <a href="#servicios" class="bg-accent text-dark-bg px-8 py-3 rounded-full font-bold hover:bg-yellow-600 transition-colors">Ver Servicios</a>
+          <div class="img-zoom w-full h-full">
+            <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=1200" alt="Boxing Training" class="w-full h-full object-cover" />
+          </div>
+          <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70 flex items-center justify-center">
+            <div class="text-center fade-in-up px-4">
+              <h1 class="text-5xl md:text-7xl font-bold mb-4 gradient-text drop-shadow-2xl">Box Nexo Deportes</h1>
+              <p class="text-xl md:text-2xl text-white mb-8 font-light drop-shadow-lg">Entrena más fuerte, recupérate mejor</p>
+              <a href="#servicios" class="inline-block bg-gradient-to-r from-accent to-yellow-600 text-dark-bg px-8 py-4 rounded-full font-bold hover:from-yellow-600 hover:to-accent transition-all duration-300 shadow-2xl hover:shadow-accent/50 hover:scale-110 btn-primary pulse-effect relative overflow-hidden">
+                <span class="relative z-10">Ver Servicios</span>
+              </a>
             </div>
           </div>
         </div>
         <div class="swiper-slide relative">
-          <img src="https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=1200" alt="Fitness Training" class="w-full h-full object-cover" />
-          <div class="absolute inset-0 bg-black/50 flex items-center justify-center">
-            <div class="text-center animate__animated animate__fadeInUp">
-              <h1 class="text-5xl md:text-7xl font-bold mb-4">Box Nexo Deportes</h1>
-              <p class="text-xl md:text-2xl text-muted mb-8">Entrena más fuerte, recupérate mejor</p>
-              <a href="#servicios" class="bg-accent text-dark-bg px-8 py-3 rounded-full font-bold hover:bg-yellow-600 transition-colors">Ver Servicios</a>
+          <div class="img-zoom w-full h-full">
+            <img src="https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=1200" alt="Fitness Training" class="w-full h-full object-cover" />
+          </div>
+          <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70 flex items-center justify-center">
+            <div class="text-center fade-in-up px-4">
+              <h1 class="text-5xl md:text-7xl font-bold mb-4 gradient-text drop-shadow-2xl">Box Nexo Deportes</h1>
+              <p class="text-xl md:text-2xl text-white mb-8 font-light drop-shadow-lg">Entrena más fuerte, recupérate mejor</p>
+              <a href="#servicios" class="inline-block bg-gradient-to-r from-accent to-yellow-600 text-dark-bg px-8 py-4 rounded-full font-bold hover:from-yellow-600 hover:to-accent transition-all duration-300 shadow-2xl hover:shadow-accent/50 hover:scale-110 btn-primary pulse-effect relative overflow-hidden">
+                <span class="relative z-10">Ver Servicios</span>
+              </a>
             </div>
           </div>
         </div>
         <div class="swiper-slide relative">
-          <img src="https://images.unsplash.com/photo-1520536194455-348162e0fe90?w=1200" alt="Group Training" class="w-full h-full object-cover" />
-          <div class="absolute inset-0 bg-black/50 flex items-center justify-center">
-            <div class="text-center animate__animated animate__fadeInUp">
-              <h1 class="text-5xl md:text-7xl font-bold mb-4">Box Nexo Deportes</h1>
-              <p class="text-xl md:text-2xl text-muted mb-8">Entrena más fuerte, recupérate mejor</p>
-              <a href="#servicios" class="bg-accent text-dark-bg px-8 py-3 rounded-full font-bold hover:bg-yellow-600 transition-colors">Ver Servicios</a>
+          <div class="img-zoom w-full h-full">
+            <img src="https://images.unsplash.com/photo-1520536194455-348162e0fe90?w=1200" alt="Group Training" class="w-full h-full object-cover" />
+          </div>
+          <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70 flex items-center justify-center">
+            <div class="text-center fade-in-up px-4">
+              <h1 class="text-5xl md:text-7xl font-bold mb-4 gradient-text drop-shadow-2xl">Box Nexo Deportes</h1>
+              <p class="text-xl md:text-2xl text-white mb-8 font-light drop-shadow-lg">Entrena más fuerte, recupérate mejor</p>
+              <a href="#servicios" class="inline-block bg-gradient-to-r from-accent to-yellow-600 text-dark-bg px-8 py-4 rounded-full font-bold hover:from-yellow-600 hover:to-accent transition-all duration-300 shadow-2xl hover:shadow-accent/50 hover:scale-110 btn-primary pulse-effect relative overflow-hidden">
+                <span class="relative z-10">Ver Servicios</span>
+              </a>
             </div>
           </div>
         </div>
       </div>
-      <div class="swiper-button-next"></div>
-      <div class="swiper-button-prev"></div>
       <div class="swiper-pagination"></div>
     </div>
   </section>
@@ -244,100 +419,100 @@
     <div class="container mx-auto px-4">
       <div class="text-center mb-16" data-aos="fade-up">
         <div class="flex items-center justify-center gap-3 mb-4">
-          <i class="fas fa-star text-accent text-3xl"></i>
-          <h2 class="text-4xl md:text-5xl font-bold">Nuestros Servicios</h2>
+          <i class="fas fa-star text-accent text-3xl icon-bounce"></i>
+          <h2 class="text-4xl md:text-5xl font-bold gradient-text">Nuestros Servicios</h2>
         </div>
-        <p class="text-muted text-lg">Ofrecemos diferentes opciones para que elijas la que más te conviene</p>
+        <p class="text-muted text-lg max-w-2xl mx-auto">Ofrecemos diferentes opciones para que elijas la que más te conviene</p>
       </div>
 
       <div class="swiper serviciosSwiper max-w-6xl mx-auto">
         <div class="swiper-wrapper">
           <!-- Open Box -->
           <div class="swiper-slide">
-            <div class="bg-gray-900/50 border border-gray-800 rounded-2xl p-8 hover:border-accent transition-all duration-300 hover:scale-105">
+            <div class="bg-gray-900/60 backdrop-blur-sm border border-gray-800 rounded-2xl p-8 card-hover shine-effect h-full flex flex-col">
               <div class="flex flex-col items-center mb-4">
-                <div class="w-16 h-16 flex items-center justify-center mb-2 rounded-full bg-gradient-to-br from-accent to-yellow-600 text-white text-2xl">
+                <div class="w-20 h-20 flex items-center justify-center mb-4 rounded-full bg-gradient-to-br from-accent to-yellow-600 text-white text-3xl shadow-lg hover:scale-110 transition-transform duration-300">
                   <i class="fas fa-door-open"></i>
                 </div>
-                <h3 class="text-2xl font-bold mb-2 text-center">Open Box</h3>
+                <h3 class="text-2xl font-bold mb-2 text-center text-white">Open Box</h3>
                 <p class="text-muted text-center mb-4">Gimnasio abierto y sin restricciones</p>
               </div>
-              <ul class="space-y-3 mb-6">
-                <li class="flex items-center gap-2">
-                  <i class="fas fa-check text-accent"></i>
-                  Acceso libre
+              <ul class="space-y-3 mb-6 flex-grow">
+                <li class="flex items-center gap-2 text-white/90">
+                  <i class="fas fa-check text-accent text-lg"></i>
+                  <span>Acceso libre</span>
                 </li>
-                <li class="flex items-center gap-2">
-                  <i class="fas fa-check text-accent"></i>
-                  Ambiente abierto
+                <li class="flex items-center gap-2 text-white/90">
+                  <i class="fas fa-check text-accent text-lg"></i>
+                  <span>Ambiente abierto</span>
                 </li>
-                <li class="flex items-center gap-2">
-                  <i class="fas fa-check text-accent"></i>
-                  Ideal para entrenar libremente
+                <li class="flex items-center gap-2 text-white/90">
+                  <i class="fas fa-check text-accent text-lg"></i>
+                  <span>Ideal para entrenar libremente</span>
                 </li>
               </ul>
-              <a href="https://wa.me/56991040157?text=Hola%2C%20quiero%20más%20información%20sobre%20Open%20Box" target="_blank" rel="noopener noreferrer" class="block w-full text-center bg-accent text-dark-bg px-4 py-3 rounded-full font-bold hover:bg-yellow-600 transition-colors duration-300">
-                Más info
+              <a href="https://wa.me/56991040157?text=Hola%2C%20quiero%20más%20información%20sobre%20Open%20Box" target="_blank" rel="noopener noreferrer" class="block w-full text-center bg-gradient-to-r from-accent to-yellow-600 text-dark-bg px-4 py-3 rounded-full font-bold hover:from-yellow-600 hover:to-accent transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 btn-primary relative overflow-hidden">
+                <span class="relative z-10">Más info</span>
               </a>
             </div>
           </div>
 
           <!-- Clases de Boxeo -->
           <div class="swiper-slide">
-            <div class="bg-gray-900/50 border border-gray-800 rounded-2xl p-8 hover:border-accent transition-all duration-300 hover:scale-105">
+            <div class="bg-gray-900/60 backdrop-blur-sm border border-gray-800 rounded-2xl p-8 card-hover shine-effect h-full flex flex-col">
               <div class="flex flex-col items-center mb-4">
-                <div class="w-16 h-16 flex items-center justify-center mb-2 rounded-full bg-gradient-to-br from-accent to-yellow-600 text-white text-2xl">
+                <div class="w-20 h-20 flex items-center justify-center mb-4 rounded-full bg-gradient-to-br from-accent to-yellow-600 text-white text-3xl shadow-lg hover:scale-110 transition-transform duration-300">
                   <i class="fas fa-hand-rock"></i>
                 </div>
-                <h3 class="text-2xl font-bold mb-2 text-center">Clases de Boxeo</h3>
+                <h3 class="text-2xl font-bold mb-2 text-center text-white">Clases de Boxeo</h3>
                 <p class="text-muted text-center mb-4">Aprende y entrena con nosotros</p>
               </div>
-              <ul class="space-y-3 mb-6">
-                <li class="flex items-center gap-2">
-                  <i class="fas fa-check text-accent"></i>
-                  Clases grupales y particulares
+              <ul class="space-y-3 mb-6 flex-grow">
+                <li class="flex items-center gap-2 text-white/90">
+                  <i class="fas fa-check text-accent text-lg"></i>
+                  <span>Clases grupales y particulares</span>
                 </li>
-                <li class="flex items-center gap-2">
-                  <i class="fas fa-check text-accent"></i>
-                  Mejora técnica y resistencia
+                <li class="flex items-center gap-2 text-white/90">
+                  <i class="fas fa-check text-accent text-lg"></i>
+                  <span>Mejora técnica y resistencia</span>
                 </li>
-                <li class="flex items-center gap-2">
-                  <i class="fas fa-check text-accent"></i>
-                  Horarios flexibles
+                <li class="flex items-center gap-2 text-white/90">
+                  <i class="fas fa-check text-accent text-lg"></i>
+                  <span>Horarios flexibles</span>
                 </li>
               </ul>
-              <a href="https://wa.me/56991040157?text=Hola%2C%20quiero%20más%20información%20sobre%20clases%20de%20boxeo" target="_blank" rel="noopener noreferrer" class="block w-full text-center bg-accent text-dark-bg px-4 py-3 rounded-full font-bold hover:bg-yellow-600 transition-colors duration-300">
-                Más info
+              <a href="https://wa.me/56991040157?text=Hola%2C%20quiero%20más%20información%20sobre%20clases%20de%20boxeo" target="_blank" rel="noopener noreferrer" class="block w-full text-center bg-gradient-to-r from-accent to-yellow-600 text-dark-bg px-4 py-3 rounded-full font-bold hover:from-yellow-600 hover:to-accent transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 btn-primary relative overflow-hidden">
+                <span class="relative z-10">Más info</span>
               </a>
             </div>
           </div>
 
           <!-- Personalizado -->
           <div class="swiper-slide">
-            <div class="bg-gray-900/50 border border-gray-800 rounded-2xl p-8 hover:border-accent transition-all duration-300 hover:scale-105">
+            <div class="bg-gray-900/60 backdrop-blur-sm border border-gray-800 rounded-2xl p-8 card-hover shine-effect h-full flex flex-col">
               <div class="flex flex-col items-center mb-4">
-                <div class="w-16 h-16 flex items-center justify-center mb-2 rounded-full bg-gradient-to-br from-accent to-yellow-600 text-white text-2xl">
+                <div class="w-20 h-20 flex items-center justify-center mb-4 rounded-full bg-gradient-to-br from-accent to-yellow-600 text-white text-3xl shadow-lg hover:scale-110 transition-transform duration-300">
                   <i class="fas fa-user-check"></i>
                 </div>
-                <h3 class="text-2xl font-bold mb-2 text-center">Personalizado</h3>
+                <h3 class="text-2xl font-bold mb-2 text-center text-white">Personalizado</h3>
                 <p class="text-muted text-center mb-4">Entrenamiento a tu medida</p>
               </div>
-              <ul class="space-y-3 mb-6">
-                <li class="flex items-center gap-2">
-                  <i class="fas fa-check text-accent"></i>
-                  Planes totalmente a medida
+              <ul class="space-y-3 mb-6 flex-grow">
+                <li class="flex items-center gap-2 text-white/90">
+                  <i class="fas fa-check text-accent text-lg"></i>
+                  <span>Planes totalmente a medida</span>
                 </li>
-                <li class="flex items-center gap-2">
-                  <i class="fas fa-check text-accent"></i>
-                  Entrenamiento personal 1 a 1
+                <li class="flex items-center gap-2 text-white/90">
+                  <i class="fas fa-check text-accent text-lg"></i>
+                  <span>Entrenamiento personal 1 a 1</span>
                 </li>
-                <li class="flex items-center gap-2">
-                  <i class="fas fa-check text-accent"></i>
-                  Flexibilidad de horarios
+                <li class="flex items-center gap-2 text-white/90">
+                  <i class="fas fa-check text-accent text-lg"></i>
+                  <span>Flexibilidad de horarios</span>
                 </li>
               </ul>
-              <a href="https://wa.me/56991040157?text=Hola%2C%20quiero%20más%20información%20sobre%20entrenamiento%20personalizado" target="_blank" rel="noopener noreferrer" class="block w-full text-center bg-accent text-dark-bg px-4 py-3 rounded-full font-bold hover:bg-yellow-600 transition-colors duration-300">
-                Más info
+              <a href="https://wa.me/56991040157?text=Hola%2C%20quiero%20más%20información%20sobre%20entrenamiento%20personalizado" target="_blank" rel="noopener noreferrer" class="block w-full text-center bg-gradient-to-r from-accent to-yellow-600 text-dark-bg px-4 py-3 rounded-full font-bold hover:from-yellow-600 hover:to-accent transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 btn-primary relative overflow-hidden">
+                <span class="relative z-10">Más info</span>
               </a>
             </div>
           </div>
@@ -351,27 +526,27 @@
 <section id="entrenadores" class="py-20 bg-gray-900">
   <div class="container mx-auto px-4">
     <div class="text-center mb-12" data-aos="fade-up">
-      <div class="flex items-center justify-center gap-3 mb-4 text-accent">
-        <i class="fas fa-users text-3xl"></i>
-        <h2 class="text-4xl md:text-5xl font-bold text-white">Nuestros Entrenadores</h2>
+      <div class="flex items-center justify-center gap-3 mb-4">
+        <i class="fas fa-users text-accent text-3xl icon-bounce"></i>
+        <h2 class="text-4xl md:text-5xl font-bold gradient-text">Nuestros Entrenadores</h2>
       </div>
-      <p class="text-lg text-gray-300">Profesionales certificados comprometidos con tu progreso</p>
+      <p class="text-lg text-gray-300 max-w-2xl mx-auto">Profesionales certificados comprometidos con tu progreso</p>
     </div>
     <div class="flex justify-center">
       <div class="swiper trainersSwiper w-full max-w-[900px]">
         <div class="swiper-wrapper">
           <div class="swiper-slide flex justify-center px-4">
-            <div class="bg-white rounded-3xl shadow-2xl overflow-hidden w-full max-w-[540px]">
+            <div class="bg-white rounded-3xl shadow-2xl overflow-hidden w-full max-w-[540px] img-zoom hover:shadow-accent/30 transition-all duration-300">
               <img src="assets/images/profe3.webp" alt="Entrenador" class="w-full h-auto object-cover" />
             </div>
           </div>
           <div class="swiper-slide flex justify-center px-4">
-            <div class="bg-white rounded-3xl shadow-2xl overflow-hidden w-full max-w-[540px]">
+            <div class="bg-white rounded-3xl shadow-2xl overflow-hidden w-full max-w-[540px] img-zoom hover:shadow-accent/30 transition-all duration-300">
               <img src="assets/images/profe2.webp" alt="Entrenadora" class="w-full h-auto object-cover" />
             </div>
           </div>
           <div class="swiper-slide flex justify-center px-4">
-            <div class="bg-white rounded-3xl shadow-2xl overflow-hidden w-full max-w-[540px]">
+            <div class="bg-white rounded-3xl shadow-2xl overflow-hidden w-full max-w-[540px] img-zoom hover:shadow-accent/30 transition-all duration-300">
               <img src="assets/images/profe1.webp" alt="Entrenador" class="w-full h-auto object-cover" />
             </div>
           </div>
@@ -398,15 +573,8 @@
 
     <div class="flex flex-col lg:flex-row gap-8 justify-center items-start">
       <div class="max-w-[720px] w-full bg-gray-900/50 border border-gray-800 rounded-3xl shadow-lg p-6" data-aos="fade-right">
-        <div class="video-container mx-auto max-w-full aspect-video">
-          <iframe 
-            src="https://drive.google.com/file/d/11GO5pIuK6QgErswOlTBgOzO6oC-3FmWP/preview"
-            class="w-full h-full rounded-xl shadow-lg border-0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
-            allowfullscreen
-            loading="lazy"
-            title="Instalaciones - Box Nexo Deportes">
-          </iframe>
+        <div class="video-container mx-auto max-w-full">
+          <div style="position:relative; width:100%; height:0px; padding-bottom:177.778%"><iframe allow="fullscreen" allowfullscreen height="100%" src="https://streamable.com/e/cg2o6h?" width="100%" style="border:none; width:100%; height:100%; position:absolute; left:0px; top:0px; overflow:hidden;"></iframe></div>
         </div>
       </div>
     </div>
@@ -422,41 +590,41 @@
         </div>
         <p class="text-muted text-lg">Encuentra el horario perfecto para tu rutina</p>
       </div>
-      <div class="max-w-4xl mx-auto bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-2xl overflow-hidden" data-aos="fade-up">
+      <div class="max-w-4xl mx-auto bg-gray-900/60 backdrop-blur-sm border border-gray-800 rounded-2xl overflow-hidden shadow-2xl" data-aos="fade-up">
         <div class="overflow-x-auto">
           <table class="w-full">
-            <thead class="bg-accent text-dark-bg">
+            <thead class="bg-gradient-to-r from-accent to-yellow-600 text-dark-bg">
               <tr>
-                <th class="px-6 py-4 text-left font-bold">Día</th>
-                <th class="px-6 py-4 text-left font-bold">Mañana</th>
-                <th class="px-6 py-4 text-left font-bold">Tarde</th>
+                <th class="px-6 py-5 text-left font-bold text-lg"><i class="fas fa-calendar-day mr-2"></i>Día</th>
+                <th class="px-6 py-5 text-left font-bold text-lg"><i class="fas fa-sun mr-2"></i>Mañana</th>
+                <th class="px-6 py-5 text-left font-bold text-lg"><i class="fas fa-moon mr-2"></i>Tarde</th>
               </tr>
             </thead>
-            <tbody class="divide-y divide-gray-800">
-              <tr class="hover:bg-gray-800/50 transition-colors">
-                <td class="px-6 py-4 font-semibold">Lunes</td>
-                <td class="px-6 py-4 text-muted">09:00 - 14:00</td>
-                <td class="px-6 py-4 text-muted">16:00 - 20:30</td>
+            <tbody class="divide-y divide-gray-800/50">
+              <tr class="hover:bg-accent/10 transition-all duration-300 cursor-pointer">
+                <td class="px-6 py-5 font-semibold text-white text-lg">Lunes</td>
+                <td class="px-6 py-5 text-white/80"><i class="fas fa-clock text-accent mr-2"></i>09:00 - 14:00</td>
+                <td class="px-6 py-5 text-white/80"><i class="fas fa-clock text-accent mr-2"></i>16:00 - 20:30</td>
               </tr>
-              <tr class="hover:bg-gray-800/50 transition-colors">
-                <td class="px-6 py-4 font-semibold">Martes</td>
-                <td class="px-6 py-4 text-muted">09:00 - 14:00</td>
-                <td class="px-6 py-4 text-muted">16:00 - 20:30</td>
+              <tr class="hover:bg-accent/10 transition-all duration-300 cursor-pointer">
+                <td class="px-6 py-5 font-semibold text-white text-lg">Martes</td>
+                <td class="px-6 py-5 text-white/80"><i class="fas fa-clock text-accent mr-2"></i>09:00 - 14:00</td>
+                <td class="px-6 py-5 text-white/80"><i class="fas fa-clock text-accent mr-2"></i>16:00 - 20:30</td>
               </tr>
-              <tr class="hover:bg-gray-800/50 transition-colors">
-                <td class="px-6 py-4 font-semibold">Miércoles</td>
-                <td class="px-6 py-4 text-muted">09:00 - 14:00</td>
-                <td class="px-6 py-4 text-muted">16:00 - 20:30</td>
+              <tr class="hover:bg-accent/10 transition-all duration-300 cursor-pointer">
+                <td class="px-6 py-5 font-semibold text-white text-lg">Miércoles</td>
+                <td class="px-6 py-5 text-white/80"><i class="fas fa-clock text-accent mr-2"></i>09:00 - 14:00</td>
+                <td class="px-6 py-5 text-white/80"><i class="fas fa-clock text-accent mr-2"></i>16:00 - 20:30</td>
               </tr>
-              <tr class="hover:bg-gray-800/50 transition-colors">
-                <td class="px-6 py-4 font-semibold">Jueves</td>
-                <td class="px-6 py-4 text-muted">09:00 - 14:00</td>
-                <td class="px-6 py-4 text-muted">16:00 - 20:30</td>
+              <tr class="hover:bg-accent/10 transition-all duration-300 cursor-pointer">
+                <td class="px-6 py-5 font-semibold text-white text-lg">Jueves</td>
+                <td class="px-6 py-5 text-white/80"><i class="fas fa-clock text-accent mr-2"></i>09:00 - 14:00</td>
+                <td class="px-6 py-5 text-white/80"><i class="fas fa-clock text-accent mr-2"></i>16:00 - 20:30</td>
               </tr>
-              <tr class="hover:bg-gray-800/50 transition-colors">
-                <td class="px-6 py-4 font-semibold">Viernes</td>
-                <td class="px-6 py-4 text-muted">09:00 - 14:00</td>
-                <td class="px-6 py-4 text-muted">16:00 - 20:30</td>
+              <tr class="hover:bg-accent/10 transition-all duration-300 cursor-pointer">
+                <td class="px-6 py-5 font-semibold text-white text-lg">Viernes</td>
+                <td class="px-6 py-5 text-white/80"><i class="fas fa-clock text-accent mr-2"></i>09:00 - 14:00</td>
+                <td class="px-6 py-5 text-white/80"><i class="fas fa-clock text-accent mr-2"></i>16:00 - 20:30</td>
               </tr>
             </tbody>
           </table>
@@ -476,91 +644,131 @@
     <div class="container mx-auto px-4">
       <div class="text-center mb-16" data-aos="fade-up">
         <div class="flex items-center justify-center gap-3 mb-4">
-          <i class="fas fa-comments text-accent text-3xl"></i>
+          <i class="fab fa-google text-accent text-3xl"></i>
           <h2 class="text-4xl md:text-5xl font-bold">Testimonios</h2>
         </div>
-        <p class="text-muted text-lg">Lo que dicen nuestros alumnos</p>
+        <p class="text-muted text-lg">Opiniones reales de Google</p>
+        <a href="https://www.google.com/maps/place/Box+Nexo+Deportes" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-accent hover:text-yellow-600 transition-colors text-sm mt-2">
+          <i class="fab fa-google"></i>
+          Ver todas las reseñas en Google
+        </a>
       </div>
       <div class="swiper testimoniosSwiper max-w-6xl mx-auto">
         <div class="swiper-wrapper">
           <div class="swiper-slide">
-            <div class="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-2xl p-8">
-              <div class="flex items-center gap-4 mb-4">
-                <div class="w-16 h-16 rounded-full bg-gradient-to-br from-accent to-yellow-600 flex items-center justify-center text-2xl">
-                  <i class="fas fa-user"></i>
-                </div>
-                <div>
-                  <h4 class="font-bold">Francisca Rojas</h4>
-                  <div class="flex gap-1 text-accent">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
+            <div class="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-2xl p-8 hover:border-accent transition-all duration-300 h-full flex flex-col">
+              <div class="flex items-start justify-between mb-4">
+                <div class="flex items-center gap-4 flex-1">
+                  <div class="w-16 h-16 rounded-full bg-gradient-to-br from-accent to-yellow-600 flex items-center justify-center text-2xl flex-shrink-0">
+                    <i class="fas fa-user"></i>
+                  </div>
+                  <div class="flex-1">
+                    <h4 class="font-bold text-white mb-1">Francisca Rojas</h4>
+                    <div class="flex items-center gap-2 mb-2">
+                      <div class="flex gap-1 text-accent">
+                        <i class="fas fa-star text-sm"></i>
+                        <i class="fas fa-star text-sm"></i>
+                        <i class="fas fa-star text-sm"></i>
+                        <i class="fas fa-star text-sm"></i>
+                        <i class="fas fa-star text-sm"></i>
+                      </div>
+                      <span class="text-xs text-muted">hace 2 meses</span>
+                    </div>
+                    <div class="flex items-center gap-1 text-xs text-muted">
+                      <i class="fab fa-google"></i>
+                      <span>Google</span>
+                    </div>
                   </div>
                 </div>
               </div>
-              <p class="text-muted italic">"Llevo 6 meses entrenando y los resultados son increíbles. Los entrenadores son profesionales y el ambiente es muy motivador."</p>
+              <p class="text-muted italic leading-relaxed flex-grow">"Llevo 6 meses entrenando y los resultados son increíbles. Los entrenadores son profesionales y el ambiente es muy motivador."</p>
             </div>
           </div>
           <div class="swiper-slide">
-            <div class="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-2xl p-8">
-              <div class="flex items-center gap-4 mb-4">
-                <div class="w-16 h-16 rounded-full bg-gradient-to-br from-accent to-yellow-600 flex items-center justify-center text-2xl">
-                  <i class="fas fa-user"></i>
-                </div>
-                <div>
-                  <h4 class="font-bold">Miguel Ángel Torres</h4>
-                  <div class="flex gap-1 text-accent">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
+            <div class="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-2xl p-8 hover:border-accent transition-all duration-300 h-full flex flex-col">
+              <div class="flex items-start justify-between mb-4">
+                <div class="flex items-center gap-4 flex-1">
+                  <div class="w-16 h-16 rounded-full bg-gradient-to-br from-accent to-yellow-600 flex items-center justify-center text-2xl flex-shrink-0">
+                    <i class="fas fa-user"></i>
+                  </div>
+                  <div class="flex-1">
+                    <h4 class="font-bold text-white mb-1">Miguel Ángel Torres</h4>
+                    <div class="flex items-center gap-2 mb-2">
+                      <div class="flex gap-1 text-accent">
+                        <i class="fas fa-star text-sm"></i>
+                        <i class="fas fa-star text-sm"></i>
+                        <i class="fas fa-star text-sm"></i>
+                        <i class="fas fa-star text-sm"></i>
+                        <i class="fas fa-star text-sm"></i>
+                      </div>
+                      <span class="text-xs text-muted">hace 1 mes</span>
+                    </div>
+                    <div class="flex items-center gap-1 text-xs text-muted">
+                      <i class="fab fa-google"></i>
+                      <span>Google</span>
+                    </div>
                   </div>
                 </div>
               </div>
-              <p class="text-muted italic">"El mejor box de San Bernardo. Equipamiento de primera y entrenadores que realmente se preocupan por tu progreso."</p>
+              <p class="text-muted italic leading-relaxed flex-grow">"El mejor box de San Bernardo. Equipamiento de primera y entrenadores que realmente se preocupan por tu progreso."</p>
             </div>
           </div>
           <div class="swiper-slide">
-            <div class="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-2xl p-8">
-              <div class="flex items-center gap-4 mb-4">
-                <div class="w-16 h-16 rounded-full bg-gradient-to-br from-accent to-yellow-600 flex items-center justify-center text-2xl">
-                  <i class="fas fa-user"></i>
-                </div>
-                <div>
-                  <h4 class="font-bold">Carolina Pérez</h4>
-                  <div class="flex gap-1 text-accent">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
+            <div class="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-2xl p-8 hover:border-accent transition-all duration-300 h-full flex flex-col">
+              <div class="flex items-start justify-between mb-4">
+                <div class="flex items-center gap-4 flex-1">
+                  <div class="w-16 h-16 rounded-full bg-gradient-to-br from-accent to-yellow-600 flex items-center justify-center text-2xl flex-shrink-0">
+                    <i class="fas fa-user"></i>
+                  </div>
+                  <div class="flex-1">
+                    <h4 class="font-bold text-white mb-1">Carolina Pérez</h4>
+                    <div class="flex items-center gap-2 mb-2">
+                      <div class="flex gap-1 text-accent">
+                        <i class="fas fa-star text-sm"></i>
+                        <i class="fas fa-star text-sm"></i>
+                        <i class="fas fa-star text-sm"></i>
+                        <i class="fas fa-star text-sm"></i>
+                        <i class="fas fa-star text-sm"></i>
+                      </div>
+                      <span class="text-xs text-muted">hace 3 semanas</span>
+                    </div>
+                    <div class="flex items-center gap-1 text-xs text-muted">
+                      <i class="fab fa-google"></i>
+                      <span>Google</span>
+                    </div>
                   </div>
                 </div>
               </div>
-              <p class="text-muted italic">"Empecé sin experiencia y ahora no puedo dejar de entrenar. El ambiente es súper acogedor y te sientes parte de una familia."</p>
+              <p class="text-muted italic leading-relaxed flex-grow">"Empecé sin experiencia y ahora no puedo dejar de entrenar. El ambiente es súper acogedor y te sientes parte de una familia."</p>
             </div>
           </div>
           <div class="swiper-slide">
-            <div class="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-2xl p-8">
-              <div class="flex items-center gap-4 mb-4">
-                <div class="w-16 h-16 rounded-full bg-gradient-to-br from-accent to-yellow-600 flex items-center justify-center text-2xl">
-                  <i class="fas fa-user"></i>
-                </div>
-                <div>
-                  <h4 class="font-bold">Juan Pérez</h4>
-                  <div class="flex gap-1 text-accent">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
+            <div class="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-2xl p-8 hover:border-accent transition-all duration-300 h-full flex flex-col">
+              <div class="flex items-start justify-between mb-4">
+                <div class="flex items-center gap-4 flex-1">
+                  <div class="w-16 h-16 rounded-full bg-gradient-to-br from-accent to-yellow-600 flex items-center justify-center text-2xl flex-shrink-0">
+                    <i class="fas fa-user"></i>
+                  </div>
+                  <div class="flex-1">
+                    <h4 class="font-bold text-white mb-1">Juan Pérez</h4>
+                    <div class="flex items-center gap-2 mb-2">
+                      <div class="flex gap-1 text-accent">
+                        <i class="fas fa-star text-sm"></i>
+                        <i class="fas fa-star text-sm"></i>
+                        <i class="fas fa-star text-sm"></i>
+                        <i class="fas fa-star text-sm"></i>
+                        <i class="fas fa-star text-sm"></i>
+                      </div>
+                      <span class="text-xs text-muted">hace 1 semana</span>
+                    </div>
+                    <div class="flex items-center gap-1 text-xs text-muted">
+                      <i class="fab fa-google"></i>
+                      <span>Google</span>
+                    </div>
                   </div>
                 </div>
               </div>
-              <p class="text-muted italic">"Excelente atención y resultados rápidos. Totalmente recomendado para quienes buscan un cambio real."</p>
+              <p class="text-muted italic leading-relaxed flex-grow">"Excelente atención y resultados rápidos. Totalmente recomendado para quienes buscan un cambio real."</p>
             </div>
           </div>
         </div>
@@ -650,9 +858,9 @@
               </div>
             </div>
           </div>
-          <a href="https://www.google.com/maps/dir//Maipú+640,+San+Bernardo" target="_blank" rel="noopener noreferrer" class="mt-8 flex items-center justify-center gap-2 bg-accent text-dark-bg px-6 py-3 rounded-full font-bold hover:bg-yellow-600 transition-colors w-full">
-            <i class="fas fa-directions"></i>
-            Cómo llegar
+          <a href="https://www.google.com/maps/dir//Maipú+640,+San+Bernardo" target="_blank" rel="noopener noreferrer" class="mt-8 flex items-center justify-center gap-2 bg-gradient-to-r from-accent to-yellow-600 text-dark-bg px-6 py-3 rounded-full font-bold hover:from-yellow-600 hover:to-accent transition-all duration-300 w-full shadow-lg hover:shadow-xl hover:scale-105 btn-primary relative overflow-hidden">
+            <i class="fas fa-directions relative z-10"></i>
+            <span class="relative z-10">Cómo llegar</span>
           </a>
         </div>
         <div class="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-2xl overflow-hidden" data-aos="fade-left">
@@ -672,12 +880,13 @@
         </div>
         <p class="text-muted text-lg mb-8">Contáctanos hoy y da el primer paso hacia una mejor versión de ti mismo</p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="https://wa.me/56991040157?text=Hola%20Box%20Nexo%20Deportes,%20quiero%20reservar" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 bg-accent text-dark-bg px-8 py-4 rounded-full font-bold text-lg hover:bg-yellow-600 transition-colors">
-            <i class="fab fa-whatsapp text-2xl"></i>
-            Contáctanos por WhatsApp
+          <a href="https://wa.me/56991040157?text=Hola%20Box%20Nexo%20Deportes,%20quiero%20reservar" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-green-500 to-green-600 text-white px-8 py-4 rounded-full font-bold text-lg hover:from-green-600 hover:to-green-500 transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 btn-primary pulse-effect relative overflow-hidden">
+            <i class="fab fa-whatsapp text-2xl relative z-10"></i>
+            <span class="relative z-10">Contáctanos por WhatsApp</span>
           </a>
-          <a href="#servicios" class="inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white/20 transition-colors border border-white/20">
-            Ver planes
+          <a href="#servicios" class="inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white/20 transition-all duration-300 border border-white/20 hover:border-accent hover:scale-105 shadow-lg">
+            <span>Ver planes</span>
+            <i class="fas fa-arrow-right"></i>
           </a>
         </div>
       </div>
@@ -686,54 +895,53 @@
 </main>
 
 <!-- Footer -->
-<footer class="bg-dark-bg border-t border-gray-800 py-8">
+<footer class="bg-gradient-to-b from-dark-bg to-black border-t border-gray-800/50 py-12">
   <div class="container mx-auto px-4">
-    <div class="grid md:grid-cols-3 gap-8 mb-4">
+    <div class="grid md:grid-cols-3 gap-8 mb-8">
       <div>
         <div class="flex items-center gap-3 mb-4">
-          <div class="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-lg">
+          <div class="w-12 h-12 rounded-full bg-gradient-to-br from-accent to-yellow-600 flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-300">
             <img src="assets/images/logo.jpg" alt="Logo" class="w-10 h-10 object-contain rounded-full" />
           </div>
-          <span class="text-xl font-bold">Box Nexo Deportes</span>
+          <span class="text-xl font-bold gradient-text">Box Nexo Deportes</span>
         </div>
-        <p class="text-muted text-sm">Tu centro de entrenamiento en San Bernardo. Transformando vidas a través del deporte.</p>
+        <p class="text-muted text-sm leading-relaxed">Tu centro de entrenamiento en San Bernardo. Transformando vidas a través del deporte.</p>
       </div>
       <div>
-        <h4 class="text-lg font-semibold mb-2">Síguenos</h4>
+        <h4 class="text-lg font-semibold mb-4 text-white">Síguenos</h4>
         <div class="flex space-x-4">
-          <a href="https://www.instagram.com/box.nexodeport/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="text-accent hover:text-yellow-600 transition">
-            <i class="fab fa-instagram text-2xl"></i>
+          <a href="https://www.instagram.com/box.nexodeport/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="text-accent hover:text-yellow-600 transition-all duration-300 hover:scale-125 icon-bounce">
+            <i class="fab fa-instagram text-3xl"></i>
           </a>
         </div>
       </div>
       <div>
-        <h4 class="text-lg font-semibold mb-2">Enlaces Rápidos</h4>
-        <ul class="space-y-2 text-sm text-muted">
-          <li><a href="#inicio" class="hover:text-accent transition-colors">Inicio</a></li>
-          <li><a href="#servicios" class="hover:text-accent transition-colors">Servicios</a></li>
-          <li><a href="#horarios" class="hover:text-accent transition-colors">Horarios</a></li>
-          <li><a href="#contacto" class="hover:text-accent transition-colors">Contacto</a></li>
+        <h4 class="text-lg font-semibold mb-4 text-white">Enlaces Rápidos</h4>
+        <ul class="space-y-3 text-sm">
+          <li><a href="#inicio" class="text-muted hover:text-accent transition-all duration-300 hover:translate-x-2 inline-block"><i class="fas fa-chevron-right text-xs mr-2"></i>Inicio</a></li>
+          <li><a href="#servicios" class="text-muted hover:text-accent transition-all duration-300 hover:translate-x-2 inline-block"><i class="fas fa-chevron-right text-xs mr-2"></i>Servicios</a></li>
+          <li><a href="#horarios" class="text-muted hover:text-accent transition-all duration-300 hover:translate-x-2 inline-block"><i class="fas fa-chevron-right text-xs mr-2"></i>Horarios</a></li>
+          <li><a href="#contacto" class="text-muted hover:text-accent transition-all duration-300 hover:translate-x-2 inline-block"><i class="fas fa-chevron-right text-xs mr-2"></i>Contacto</a></li>
         </ul>
       </div>
     </div>
-    <div class="mt-4 text-center text-sm text-muted">
-      &copy; <span x-text="new Date().getFullYear()"></span> Box Nexo Deportes — Todos los derechos reservados.
-      <br>
-      <p>Desarrollado por Hardwaremania</p>
+    <div class="pt-8 border-t border-gray-800/50 text-center text-sm text-muted">
+      <p>&copy; <span id="currentYear"></span> Box Nexo Deportes — Todos los derechos reservados.</p>
+      <p class="mt-2">Desarrollado por <span class="text-accent font-semibold">Hardwaremania</span></p>
     </div>
   </div>
 </footer>
 
 <!-- Floating Buttons -->
-<div id="floatingButtons" class="fixed bottom-4 right-4 flex-col gap-3 z-50 hidden">
+<div id="floatingButtons" class="fixed bottom-6 right-6 flex-col gap-4 z-50 hidden">
   <!-- WhatsApp Button -->
-  <a href="https://wa.me/56991040157?text=Hola%20Box%20Nexo%20Deportes,%20quiero%20reservar" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg floating-btn">
-    <i class="fab fa-whatsapp text-2xl"></i>
+  <a href="https://wa.me/56991040157?text=Hola%20Box%20Nexo%20Deportes,%20quiero%20reservar" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="bg-gradient-to-br from-green-500 to-green-600 hover:from-green-600 hover:to-green-500 text-white p-4 rounded-full shadow-2xl floating-btn pulse-effect group">
+    <i class="fab fa-whatsapp text-2xl group-hover:scale-110 transition-transform"></i>
   </a>
 
   <!-- Scroll to Top Button -->
-  <button id="scrollTopBtn" aria-label="Volver arriba" class="bg-gray-700 hover:bg-gray-600 text-white p-3 rounded-full shadow-lg floating-btn">
-    <i class="fas fa-arrow-up"></i>
+  <button id="scrollTopBtn" aria-label="Volver arriba" class="bg-gradient-to-br from-gray-700 to-gray-800 hover:from-accent hover:to-yellow-600 text-white p-3 rounded-full shadow-2xl floating-btn group">
+    <i class="fas fa-arrow-up group-hover:scale-110 transition-transform"></i>
   </button>
 </div>
 
@@ -746,7 +954,6 @@
   const heroSwiper = new Swiper('.heroSwiper', {
     loop: true,
     autoplay: { delay: 5000, disableOnInteraction: false },
-    navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
     pagination: { el: '.swiper-pagination', clickable: true },
     effect: 'fade',
     fadeEffect: { crossFade: true }
@@ -833,7 +1040,56 @@
   // Botón scroll to top
   document.getElementById('scrollTopBtn').addEventListener('click', function() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  });;
+  });
+
+  // Efecto de scroll en header
+  let lastScroll = 0;
+  const header = document.getElementById('mainHeader');
+  
+  window.addEventListener('scroll', function() {
+    const currentScroll = window.pageYOffset;
+    
+    if (currentScroll > 50) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+    
+    lastScroll = currentScroll;
+  });
+
+  // Inicializar AOS (Animate On Scroll)
+  if (typeof AOS !== 'undefined') {
+    AOS.init({
+      duration: 800,
+      easing: 'ease-in-out',
+      once: true,
+      offset: 100
+    });
+  }
+
+  // Agregar animaciones de entrada a elementos
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('fade-in-up');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  // Observar elementos con data-aos
+  document.querySelectorAll('[data-aos]').forEach(el => {
+    observer.observe(el);
+  });
+
+  // Actualizar año en footer
+  document.getElementById('currentYear').textContent = new Date().getFullYear();
 </script>
 </body>
 </html>
