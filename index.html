@@ -35,6 +35,11 @@
     }
   </script>
 
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
@@ -44,7 +49,8 @@
   <!-- Swiper CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
-
+  <!-- AOS CSS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
   <!-- Animate.css -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
@@ -53,8 +59,12 @@
     :root {
       --bg: #0b1020;
       --accent: #c59a2a;
+      --accent-light: #fbbf24;
+      --accent-dark: #a67c1a;
       --text: #ffffff;
       --muted: #e5e7eb;
+      --card-bg: rgba(15, 23, 42, 0.7);
+      --glass-bg: rgba(15, 23, 42, 0.85);
     }
 
     * {
@@ -64,9 +74,21 @@
     }
 
     body {
-      background-color: var(--bg);
+      background: linear-gradient(180deg, #0b1020 0%, #0a0f1e 50%, #0b1020 100%);
+      background-attachment: fixed;
       color: var(--text);
       overflow-x: hidden;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-weight: 400;
+      line-height: 1.7;
+      letter-spacing: -0.01em;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
     }
 
     html {
@@ -118,19 +140,24 @@
 
     /* Efectos de scroll para header */
     header {
-      transition: all 0.3s ease;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(11, 16, 32, 0.98) 100%);
     }
 
     header.scrolled {
-      background-color: rgba(15, 23, 42, 0.98);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.98) 0%, rgba(11, 16, 32, 0.99) 100%);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(197, 154, 42, 0.1);
+      backdrop-filter: blur(20px) saturate(180%);
     }
 
     /* Mejoras en botones */
     .btn-primary {
       position: relative;
       overflow: hidden;
-      transition: all 0.3s ease;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      box-shadow: 0 4px 15px rgba(197, 154, 42, 0.3), 0 0 0 1px rgba(197, 154, 42, 0.1);
     }
 
     .btn-primary::before {
@@ -141,20 +168,31 @@
       width: 0;
       height: 0;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.2);
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
       transform: translate(-50%, -50%);
-      transition: width 0.6s, height 0.6s;
+      transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1), height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .btn-primary:hover::before {
-      width: 300px;
-      height: 300px;
+      width: 400px;
+      height: 400px;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(197, 154, 42, 0.5), 0 0 0 1px rgba(197, 154, 42, 0.2);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0);
     }
 
     /* Efectos en tarjetas */
     .card-hover {
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
+      background: var(--card-bg);
+      backdrop-filter: blur(20px) saturate(180%);
     }
 
     .card-hover::before {
@@ -166,47 +204,109 @@
       bottom: 0;
       border-radius: inherit;
       padding: 2px;
-      background: linear-gradient(135deg, var(--accent), transparent);
+      background: linear-gradient(135deg, var(--accent), var(--accent-light), transparent);
       -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
       -webkit-mask-composite: xor;
       mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
       mask-composite: exclude;
       opacity: 0;
-      transition: opacity 0.3s;
+      transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .card-hover::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(197, 154, 42, 0.1) 0%, transparent 70%);
+      opacity: 0;
+      transition: opacity 0.5s;
+      pointer-events: none;
     }
 
     .card-hover:hover::before {
       opacity: 1;
     }
 
+    .card-hover:hover::after {
+      opacity: 1;
+    }
+
     .card-hover:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 20px 40px rgba(197, 154, 42, 0.2);
+      transform: translateY(-12px) scale(1.02);
+      box-shadow: 0 25px 50px rgba(197, 154, 42, 0.3), 0 0 0 1px rgba(197, 154, 42, 0.2);
+      background: rgba(15, 23, 42, 0.85);
     }
 
     /* Gradientes mejorados */
     .gradient-text {
-      background: linear-gradient(135deg, var(--accent), #fbbf24);
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 50%, #f59e0b 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+      filter: drop-shadow(0 2px 4px rgba(197, 154, 42, 0.3));
+      position: relative;
+    }
+
+    .gradient-text::after {
+      content: attr(data-text);
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: -1;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 50%, #f59e0b 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: blur(10px);
+      opacity: 0.5;
     }
 
     /* Animaciones de entrada */
     @keyframes fadeInUp {
       from {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(40px) scale(0.95);
       }
 
       to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes fadeInScale {
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(-30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
       }
     }
 
     .fade-in-up {
-      animation: fadeInUp 0.6s ease-out;
+      animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+
+    .fade-in-scale {
+      animation: fadeInScale 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
     }
 
     /* Efecto parallax sutil */
@@ -285,28 +385,63 @@
 
     /* Efecto de pulso en botones CTA */
     @keyframes pulse {
-
-      0%,
-      100% {
-        box-shadow: 0 0 0 0 rgba(197, 154, 42, 0.7);
+      0%, 100% {
+        box-shadow: 0 0 0 0 rgba(197, 154, 42, 0.7), 0 4px 15px rgba(197, 154, 42, 0.3);
       }
 
       50% {
-        box-shadow: 0 0 0 10px rgba(197, 154, 42, 0);
+        box-shadow: 0 0 0 12px rgba(197, 154, 42, 0), 0 8px 25px rgba(197, 154, 42, 0.5);
+      }
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+
+      50% {
+        transform: translateY(-10px);
       }
     }
 
     .pulse-effect {
-      animation: pulse 2s infinite;
+      animation: pulse 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+
+    .float-effect {
+      animation: float 3s ease-in-out infinite;
     }
 
     /* Mejoras en imágenes */
     img {
-      transition: transform 0.3s ease;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .img-zoom {
+      overflow: hidden;
+      border-radius: inherit;
     }
 
     .img-zoom:hover img {
-      transform: scale(1.05);
+      transform: scale(1.08);
+      filter: brightness(1.1) contrast(1.05);
+    }
+
+    .img-zoom::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(197, 154, 42, 0.1) 0%, transparent 100%);
+      opacity: 0;
+      transition: opacity 0.5s;
+      pointer-events: none;
+    }
+
+    .img-zoom:hover::after {
+      opacity: 1;
     }
 
     /* Scrollbar personalizado */
@@ -331,7 +466,8 @@
     .aspect-video {
       position: relative;
       width: 100%;
-      padding-bottom: 56.25%; /* 16:9 aspect ratio */
+      padding-bottom: 56.25%;
+      /* 16:9 aspect ratio */
     }
 
     /* Video sin bordes negros y simétrico */
@@ -350,40 +486,40 @@
     #video-invitacion .rounded-2xl {
       background: transparent;
     }
-    
+
     /* Bordes redondeados estilo celular para el video */
     .video-phone-frame {
       border-radius: 2rem !important;
       overflow: hidden;
     }
-    
+
     @media (max-width: 1023px) {
       .video-phone-frame {
         border-radius: 2.5rem !important;
         padding: 0.5rem;
         background: linear-gradient(135deg, rgba(197, 154, 42, 0.1), rgba(251, 191, 36, 0.1));
       }
-      
-      .video-phone-frame > div {
+
+      .video-phone-frame>div {
         border-radius: 2rem !important;
         overflow: hidden;
       }
-      
+
       .video-phone-frame .aspect-video {
         border-radius: 1.75rem !important;
       }
     }
-    
+
     @media (max-width: 640px) {
       .video-phone-frame {
         border-radius: 2rem !important;
         padding: 0.4rem;
       }
-      
-      .video-phone-frame > div {
+
+      .video-phone-frame>div {
         border-radius: 1.75rem !important;
       }
-      
+
       .video-phone-frame .aspect-video {
         border-radius: 1.5rem !important;
       }
@@ -394,12 +530,12 @@
       #video-invitacion .grid {
         align-items: stretch;
       }
-      
+
       #video-invitacion .aspect-video {
         min-height: 500px;
       }
     }
-    
+
     /* Simetría entre video y texto en móvil */
     @media (max-width: 1023px) {
       .mobile-video-symmetric {
@@ -408,20 +544,20 @@
         align-items: stretch;
         gap: 1.5rem !important;
       }
-      
+
       /* Contenedor del texto - primera columna en móvil */
       .mobile-video-symmetric .order-1 {
         width: 100%;
         display: flex;
         flex: 0 0 auto;
       }
-      
-      .mobile-video-symmetric .order-1 > div {
+
+      .mobile-video-symmetric .order-1>div {
         width: 100%;
         display: flex;
         flex-direction: column;
       }
-      
+
       /* Contenedor del video - segunda columna en móvil - MÁS GRANDE */
       .mobile-video-symmetric .order-2 {
         width: 100%;
@@ -430,14 +566,14 @@
         align-items: stretch;
         min-height: 400px;
       }
-      
-      .mobile-video-symmetric .order-2 > div {
+
+      .mobile-video-symmetric .order-2>div {
         width: 100%;
         display: flex;
         align-items: stretch;
         min-height: 400px;
       }
-      
+
       /* Ajustar el aspect-video para que sea más grande en móvil */
       .mobile-video-symmetric .order-2 .aspect-video {
         width: 100% !important;
@@ -446,7 +582,7 @@
         padding-bottom: 0 !important;
         position: relative;
       }
-      
+
       /* Asegurar que el iframe ocupe todo el espacio */
       .mobile-video-symmetric .order-2 .aspect-video iframe {
         position: absolute;
@@ -456,32 +592,32 @@
         height: 100%;
       }
     }
-    
+
     /* Video aún más grande en pantallas pequeñas */
     @media (max-width: 640px) {
       .mobile-video-symmetric .order-2 {
         min-height: 350px;
       }
-      
-      .mobile-video-symmetric .order-2 > div {
+
+      .mobile-video-symmetric .order-2>div {
         min-height: 350px;
       }
-      
+
       .mobile-video-symmetric .order-2 .aspect-video {
         height: 350px !important;
         min-height: 350px !important;
       }
     }
-    
+
     @media (min-width: 641px) and (max-width: 1023px) {
       .mobile-video-symmetric .order-2 {
         min-height: 450px;
       }
-      
-      .mobile-video-symmetric .order-2 > div {
+
+      .mobile-video-symmetric .order-2>div {
         min-height: 450px;
       }
-      
+
       .mobile-video-symmetric .order-2 .aspect-video {
         height: 450px !important;
         min-height: 450px !important;
@@ -492,7 +628,7 @@
     .hero-swiper-responsive {
       height: calc(100vh - 80px);
     }
-    
+
     /* Clase para imágenes proporcionales en móvil */
     .imagen-proporcional {
       height: 100vh;
@@ -500,63 +636,283 @@
       width: auto;
       object-fit: contain;
     }
-    
+
     /* Mejoras responsivas para hero en móvil */
     @media (max-width: 768px) {
       .hero-section {
         min-height: 100vh;
       }
-      
+
       .hero-swiper-responsive {
         height: 100vh !important;
       }
-      
+
       .hero-section .swiper-slide {
         display: flex;
         align-items: center;
         justify-content: center;
       }
-      
+
       .hero-section .img-zoom {
         width: 100%;
         height: 100%;
-        min-height: 100%;
+        min-height: 100vh;
         display: flex;
         overflow: hidden;
         align-items: center;
         justify-content: center;
       }
-      
-      /* Aplicar clase imagen-proporcional en móvil */
+
+      /* Imagen completa que ocupa toda la altura del hero en móvil */
       .hero-section .swiper-slide .img-zoom img {
+        width: 100% !important;
         height: 100vh !important;
-        max-width: 100% !important;
-        width: auto !important;
-        object-fit: contain !important;
+        min-height: 100vh !important;
+        object-fit: cover !important;
+        object-position: center center !important;
         display: block;
       }
+
+      /* Contenedor de contenido con glassmorphism en móvil */
+      .hero-content-mobile {
+        background: rgba(11, 16, 32, 0.4);
+        backdrop-filter: blur(10px) saturate(150%);
+        border-radius: 1.5rem;
+        padding: 2rem 1.5rem;
+        border: 1px solid rgba(197, 154, 42, 0.1);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 
+                    0 0 0 1px rgba(197, 154, 42, 0.05),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        max-width: 90% !important;
+        margin: 0 auto;
+      }
+
+      /* Mejorar legibilidad del título en móvil */
+      .hero-content-mobile h1 {
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+        margin-bottom: 0.75rem;
+      }
+
+      /* Mejorar legibilidad del subtítulo en móvil */
+      .hero-content-mobile p {
+        line-height: 1.5;
+        margin-bottom: 1.5rem;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+      }
+
+      /* Optimizar botón CTA en móvil */
+      .hero-content-mobile a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 200px;
+        box-shadow: 0 4px 20px rgba(197, 154, 42, 0.4),
+                    0 0 0 1px rgba(197, 154, 42, 0.2);
+      }
+
+      /* Mejorar overlay en móvil - más sutil */
+      .hero-section .swiper-slide > div[class*="bg-gradient"] {
+        background: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.5) 0%,
+          rgba(0, 0, 0, 0.35) 50%,
+          rgba(0, 0, 0, 0.5) 100%
+        ) !important;
+      }
     }
-    
+
     @media (max-width: 480px) {
       .hero-section {
         min-height: 100vh;
       }
-      
+
       .hero-swiper-responsive {
         height: 100vh !important;
       }
-      
+
       .hero-section .swiper-slide .img-zoom img {
+        width: 100% !important;
         height: 100vh !important;
-        max-width: 100% !important;
-        width: auto !important;
-        object-fit: contain !important;
+        min-height: 100vh !important;
+        object-fit: cover !important;
+        object-position: center center !important;
+      }
+
+      /* Ajustes adicionales para pantallas muy pequeñas */
+      .hero-content-mobile {
+        padding: 1.5rem 1rem;
+        border-radius: 1.25rem;
+        max-width: 95% !important;
+      }
+
+      .hero-content-mobile h1 {
+        font-size: 1.875rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .hero-content-mobile p {
+        font-size: 0.9375rem;
+        margin-bottom: 1.25rem;
+      }
+
+      .hero-content-mobile a {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.875rem;
+        min-width: 180px;
       }
     }
 
     /* Asegurar que los videos sean responsivos */
     iframe {
       max-width: 100%;
+    }
+
+    /* Mejoras en secciones */
+    section {
+      position: relative;
+    }
+
+    section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(197, 154, 42, 0.3), transparent);
+      opacity: 0.5;
+    }
+
+    /* Mejoras en glassmorphism */
+    .glass-effect {
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(20px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+
+    /* Mejoras en tablas */
+    table {
+      border-collapse: separate;
+      border-spacing: 0;
+    }
+
+    table thead th {
+      position: relative;
+      overflow: hidden;
+    }
+
+    table thead th::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    }
+
+    /* Efectos de hover mejorados en enlaces */
+    a {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Mejoras en iconos */
+    i {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Efecto de partículas de fondo sutil */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        radial-gradient(circle at 20% 50%, rgba(197, 154, 42, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(251, 191, 36, 0.05) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Mejoras en el footer */
+    footer {
+      position: relative;
+      background: linear-gradient(180deg, rgba(11, 16, 32, 0.95) 0%, rgba(0, 0, 0, 0.98) 100%);
+    }
+
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(197, 154, 42, 0.5), transparent);
+    }
+
+    /* Mejoras en swiper */
+    .swiper-pagination-bullet {
+      width: 12px;
+      height: 12px;
+      background: rgba(255, 255, 255, 0.3);
+      opacity: 1;
+      transition: all 0.3s;
+    }
+
+    .swiper-pagination-bullet-active {
+      width: 32px;
+      border-radius: 6px;
+      background: var(--accent);
+      box-shadow: 0 0 10px rgba(197, 154, 42, 0.5);
+    }
+
+    /* Mejoras en el hero */
+    .hero-section .swiper-slide {
+      position: relative;
+    }
+
+    .hero-section .swiper-slide::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.4) 100%);
+      pointer-events: none;
+    }
+
+    /* Efecto de brillo en texto */
+    .text-glow {
+      text-shadow: 0 0 20px rgba(197, 154, 42, 0.5), 0 0 40px rgba(197, 154, 42, 0.3);
+    }
+
+    /* Mejoras en contenedores */
+    .container {
+      position: relative;
+    }
+
+    /* Efecto de scroll suave mejorado */
+    @media (prefers-reduced-motion: no-preference) {
+      html {
+        scroll-behavior: smooth;
+      }
+    }
+
+    /* Mejoras en responsive */
+    @media (max-width: 768px) {
+      .card-hover:hover {
+        transform: translateY(-6px) scale(1.01);
+      }
     }
   </style>
 </head>
@@ -565,7 +921,7 @@
 
   <!-- Header / Navbar -->
   <header id="mainHeader"
-    class="fixed top-0 left-0 right-0 bg-slate-900/95 backdrop-blur-md z-50 border-b border-slate-800/50 transition-all duration-300">
+    class="fixed top-0 left-0 right-0 z-50 border-b border-slate-800/50 transition-all duration-300 glass-effect">
     <nav class="container mx-auto px-4 py-4">
       <div class="flex items-center justify-between">
         <!-- Logo -->
@@ -632,81 +988,7 @@
 
   <!-- Mobile Menu -->
   <div id="mobileMenu"
-    class="fixed top-0 right-0 w-72 h-full bg-slate-900/95 backdrop-blur-xl border-l border-blue-500/20 shadow-2xl z-50 lg:hidden mobile-menu-closed transition-transform duration-300">
-    <div class="p-6">
-      <!-- Close Button -->
-      <button id="closeMobileMenu" class="text-white text-2xl mb-8 hover:text-yellow-500 transition-colors">
-        <i class="fas fa-times"></i>
-      </button>
-
-      <!-- Menu Items -->
-      <ul class="space-y-1">
-        <li>
-          <a href="#inicio"
-            class="mobile-menu-link flex items-center gap-3 text-white py-3 px-4 rounded-lg hover:bg-slate-800 hover:text-yellow-500 transition-all">
-            <i class="fas fa-home w-5 text-center"></i>
-            <span>Inicio</span>
-          </a>
-        </li>
-        <li>
-          <a href="#servicios"
-            class="mobile-menu-link flex items-center gap-3 text-white py-3 px-4 rounded-lg hover:bg-slate-800 hover:text-yellow-500 transition-all">
-            <i class="fas fa-dumbbell w-5 text-center"></i>
-            <span>Clases</span>
-          </a>
-        </li>
-        <li>
-          <a href="#horarios"
-            class="mobile-menu-link flex items-center gap-3 text-white py-3 px-4 rounded-lg hover:bg-slate-800 hover:text-yellow-500 transition-all">
-            <i class="fas fa-clock w-5 text-center"></i>
-            <span>Horarios</span>
-          </a>
-        </li>
-        <li>
-          <a href="#entrenadores"
-            class="mobile-menu-link flex items-center gap-3 text-white py-3 px-4 rounded-lg hover:bg-slate-800 hover:text-yellow-500 transition-all">
-            <i class="fas fa-users w-5 text-center"></i>
-            <span>Entrenadores</span>
-          </a>
-        </li>
-        <li>
-          <a href="#testimonios"
-            class="mobile-menu-link flex items-center gap-3 text-white py-3 px-4 rounded-lg hover:bg-slate-800 hover:text-yellow-500 transition-all">
-            <i class="fas fa-comments w-5 text-center"></i>
-            <span>Testimonios</span>
-          </a>
-        </li>
-        <li>
-          <a href="#ubicacion"
-            class="mobile-menu-link flex items-center gap-3 text-white py-3 px-4 rounded-lg hover:bg-slate-800 hover:text-yellow-500 transition-all">
-            <i class="fas fa-map-marker-alt w-5 text-center"></i>
-            <span>Dónde estamos</span>
-          </a>
-        </li>
-        <li>
-          <a href="#contacto"
-            class="mobile-menu-link flex items-center gap-3 text-white py-3 px-4 rounded-lg hover:bg-slate-800 hover:text-yellow-500 transition-all">
-            <i class="fas fa-phone w-5 text-center"></i>
-            <span>Contacto</span>
-          </a>
-        </li>
-      </ul>
-
-      <!-- CTA Mobile -->
-      <a href="https://wa.me/56991040157?text=Hola%20Box%20Nexo%20Deportes%2C%20quiero%20reservar%20una%20clase"
-        target="_blank"
-        class="block mt-8 bg-gradient-to-r from-green-500 to-green-600 text-white text-center px-6 py-3 rounded-full font-semibold hover:from-green-600 hover:to-green-500 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105">
-        <i class="fab fa-whatsapp mr-2"></i>Reservar Clase
-      </a>
-    </div>
-  </div>
-  <div id="mobileMenuOverlay"
-    class="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 lg:hidden opacity-0 pointer-events-none transition-opacity duration-300">
-  </div>
-
-  <!-- Mobile Menu -->
-  <div id="mobileMenu"
-    class="fixed top-0 right-0 w-72 h-full bg-slate-900/95 backdrop-blur-xl border-l border-blue-500/20 shadow-2xl z-50 lg:hidden mobile-menu-closed transition-transform duration-300">
+    class="fixed top-0 right-0 w-72 h-full glass-effect border-l border-accent/20 shadow-2xl z-50 lg:hidden mobile-menu-closed transition-transform duration-300">
     <div class="p-6">
       <!-- Close Button -->
       <button id="closeMobileMenu" class="text-white text-2xl mb-8 hover:text-yellow-500 transition-colors">
@@ -788,8 +1070,15 @@
                 class="w-full h-full object-cover object-center" />
             </div>
             <div
-              class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70 flex items-center justify-center">
-              <div class="text-center fade-in-up px-4 max-w-4xl mx-auto">
+              class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60 md:from-black/70 md:via-black/50 md:to-black/70 flex items-center justify-center">
+              <div class="text-center fade-in-up px-4 max-w-4xl mx-auto hero-content-mobile hidden md:block">
+                <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-3 md:mb-4 gradient-text drop-shadow-2xl text-glow">Box Nexo Deportes</h1>
+                <p class="text-base sm:text-lg md:text-xl lg:text-2xl text-white mb-6 md:mb-8 font-light drop-shadow-lg">Entrena más fuerte, recupérate
+                  mejor</p>
+                <a href="#servicios"
+                  class="inline-block bg-gradient-to-r from-accent to-yellow-600 text-dark-bg px-6 py-3 md:px-8 md:py-4 rounded-full font-bold text-sm sm:text-base md:text-lg hover:from-yellow-600 hover:to-accent transition-all duration-300 shadow-2xl hover:shadow-accent/50 hover:scale-110 btn-primary pulse-effect relative overflow-hidden">
+                  <span class="relative z-10">Ver Servicios</span>
+                </a>
               </div>
             </div>
           </div>
@@ -799,17 +1088,17 @@
                 class="w-full h-full object-cover object-center" />
             </div>
             <div
-              class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70 flex items-center justify-center">
-              <div class="text-center fade-in-up px-4 max-w-4xl mx-auto">
+              class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60 md:from-black/70 md:via-black/50 md:to-black/70 flex items-center justify-center">
+              <div class="text-center fade-in-up px-4 max-w-4xl mx-auto hero-content-mobile">
                 <div class="hidden md:flex mb-4 sm:mb-5 md:mb-6 justify-center">
-                  <img src="assets/images/logo.jpg" alt="Logo Nexo Deportes" 
+                  <img src="assets/images/logo.jpg" alt="Logo Nexo Deportes"
                     class="w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 rounded-full object-cover shadow-2xl border-2 md:border-4 border-accent/50 animate-pulse" />
                 </div>
-                <h1 class="text-5xl md:text-7xl font-bold mb-4 gradient-text drop-shadow-2xl">Box Nexo Deportes</h1>
-                <p class="text-xl md:text-2xl text-white mb-8 font-light drop-shadow-lg">Entrena más fuerte, recupérate
+                <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-3 md:mb-4 gradient-text drop-shadow-2xl text-glow">Box Nexo Deportes</h1>
+                <p class="text-base sm:text-lg md:text-xl lg:text-2xl text-white mb-6 md:mb-8 font-light drop-shadow-lg">Entrena más fuerte, recupérate
                   mejor</p>
                 <a href="#servicios"
-                  class="inline-block bg-gradient-to-r from-accent to-yellow-600 text-dark-bg px-8 py-4 rounded-full font-bold hover:from-yellow-600 hover:to-accent transition-all duration-300 shadow-2xl hover:shadow-accent/50 hover:scale-110 btn-primary pulse-effect relative overflow-hidden">
+                  class="inline-block bg-gradient-to-r from-accent to-yellow-600 text-dark-bg px-6 py-3 md:px-8 md:py-4 rounded-full font-bold text-sm sm:text-base md:text-lg hover:from-yellow-600 hover:to-accent transition-all duration-300 shadow-2xl hover:shadow-accent/50 hover:scale-110 btn-primary pulse-effect relative overflow-hidden">
                   <span class="relative z-10">Ver Servicios</span>
                 </a>
               </div>
@@ -821,17 +1110,17 @@
                 class="w-full h-full object-cover object-center" />
             </div>
             <div
-              class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70 flex items-center justify-center">
-              <div class="text-center fade-in-up px-4 max-w-4xl mx-auto">
+              class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60 md:from-black/70 md:via-black/50 md:to-black/70 flex items-center justify-center">
+              <div class="text-center fade-in-up px-4 max-w-4xl mx-auto hero-content-mobile">
                 <div class="hidden md:flex mb-4 sm:mb-5 md:mb-6 justify-center">
-                  <img src="assets/images/logo.jpg" alt="Logo Nexo Deportes" 
+                  <img src="assets/images/logo.jpg" alt="Logo Nexo Deportes"
                     class="w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 rounded-full object-cover shadow-2xl border-2 md:border-4 border-accent/50 animate-pulse" />
                 </div>
-                <h1 class="text-5xl md:text-7xl font-bold mb-4 gradient-text drop-shadow-2xl">Box Nexo Deportes</h1>
-                <p class="text-xl md:text-2xl text-white mb-8 font-light drop-shadow-lg">Entrena más fuerte, recupérate
+                <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-3 md:mb-4 gradient-text drop-shadow-2xl text-glow">Box Nexo Deportes</h1>
+                <p class="text-base sm:text-lg md:text-xl lg:text-2xl text-white mb-6 md:mb-8 font-light drop-shadow-lg">Entrena más fuerte, recupérate
                   mejor</p>
                 <a href="#servicios"
-                  class="inline-block bg-gradient-to-r from-accent to-yellow-600 text-dark-bg px-8 py-4 rounded-full font-bold hover:from-yellow-600 hover:to-accent transition-all duration-300 shadow-2xl hover:shadow-accent/50 hover:scale-110 btn-primary pulse-effect relative overflow-hidden">
+                  class="inline-block bg-gradient-to-r from-accent to-yellow-600 text-dark-bg px-6 py-3 md:px-8 md:py-4 rounded-full font-bold text-sm sm:text-base md:text-lg hover:from-yellow-600 hover:to-accent transition-all duration-300 shadow-2xl hover:shadow-accent/50 hover:scale-110 btn-primary pulse-effect relative overflow-hidden">
                   <span class="relative z-10">Ver Servicios</span>
                 </a>
               </div>
@@ -843,17 +1132,17 @@
                 class="w-full h-full object-cover object-top md:object-top" />
             </div>
             <div
-              class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70 flex items-center justify-center">
-              <div class="text-center fade-in-up px-4 max-w-4xl mx-auto">
+              class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60 md:from-black/70 md:via-black/50 md:to-black/70 flex items-center justify-center">
+              <div class="text-center fade-in-up px-4 max-w-4xl mx-auto hero-content-mobile">
                 <div class="hidden md:flex mb-4 sm:mb-5 md:mb-6 justify-center">
-                  <img src="assets/images/logo.jpg" alt="Logo Nexo Deportes" 
+                  <img src="assets/images/logo.jpg" alt="Logo Nexo Deportes"
                     class="w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 rounded-full object-cover shadow-2xl border-2 md:border-4 border-accent/50 animate-pulse" />
                 </div>
-                <h1 class="text-5xl md:text-7xl font-bold mb-4 gradient-text drop-shadow-2xl">Box Nexo Deportes</h1>
-                <p class="text-xl md:text-2xl text-white mb-8 font-light drop-shadow-lg">Entrena más fuerte, recupérate
+                <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-3 md:mb-4 gradient-text drop-shadow-2xl text-glow">Box Nexo Deportes</h1>
+                <p class="text-base sm:text-lg md:text-xl lg:text-2xl text-white mb-6 md:mb-8 font-light drop-shadow-lg">Entrena más fuerte, recupérate
                   mejor</p>
                 <a href="#servicios"
-                  class="inline-block bg-gradient-to-r from-accent to-yellow-600 text-dark-bg px-8 py-4 rounded-full font-bold hover:from-yellow-600 hover:to-accent transition-all duration-300 shadow-2xl hover:shadow-accent/50 hover:scale-110 btn-primary pulse-effect relative overflow-hidden">
+                  class="inline-block bg-gradient-to-r from-accent to-yellow-600 text-dark-bg px-6 py-3 md:px-8 md:py-4 rounded-full font-bold text-sm sm:text-base md:text-lg hover:from-yellow-600 hover:to-accent transition-all duration-300 shadow-2xl hover:shadow-accent/50 hover:scale-110 btn-primary pulse-effect relative overflow-hidden">
                   <span class="relative z-10">Ver Servicios</span>
                 </a>
               </div>
@@ -865,22 +1154,21 @@
     </section>
 
     <!-- Video e Invitación -->
-    <section id="video-invitacion" class="py-12 md:py-20 bg-gray-900/30">
+    <section id="video-invitacion" class="py-16 md:py-24 bg-gradient-to-b from-transparent via-gray-900/20 to-transparent relative overflow-hidden">
       <div class="container mx-auto px-4 sm:px-6">
         <div class="max-w-7xl mx-auto">
           <div class="grid lg:grid-cols-2 gap-6 md:gap-8 lg:gap-12 items-stretch mobile-video-symmetric">
             <!-- Video a la izquierda -->
             <div class="w-full order-2 lg:order-1 flex items-stretch" data-aos="fade-right">
-              <div class="relative w-full rounded-2xl md:rounded-2xl overflow-hidden shadow-2xl flex items-center video-phone-frame">
+              <div
+                class="relative w-full rounded-2xl md:rounded-2xl overflow-hidden shadow-2xl flex items-center video-phone-frame">
                 <div class="aspect-video w-full" style="min-height: 100%;">
-                  <iframe 
-                    src="https://player.vimeo.com/video/1153682064?autoplay=1&amp;muted=0&amp;controls=1&amp;badge=0&amp;autopause=0&amp;byline=0&amp;portrait=0&amp;title=0" 
-                    width="100%" 
-                    height="100%" 
-                    frameborder="0" 
-                    allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" 
-                    referrerpolicy="strict-origin-when-cross-origin" 
-                    title="VIDEONEXO"
+                  <iframe
+                    src="https://player.vimeo.com/video/1153682064?autoplay=1&amp;muted=0&amp;controls=1&amp;badge=0&amp;autopause=1&amp;loop=1&amp;byline=0&amp;portrait=0&amp;title=0"
+                    width="100%" height="100%" frameborder="0"
+                    allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
+                    referrerpolicy="strict-origin-when-cross-origin" title="VIDEONEXO"
+                    id="vimeo-video"
                     class="absolute top-0 left-0 w-full h-full"
                     style="border: none; display: block; background: transparent;">
                   </iframe>
@@ -890,58 +1178,69 @@
 
             <!-- Texto a la derecha -->
             <div class="w-full flex flex-col justify-center order-1 lg:order-2" data-aos="fade-left">
-              <div class="bg-gray-900/60 backdrop-blur-sm border border-gray-800 rounded-2xl p-6 sm:p-8 md:p-10 shadow-xl h-full flex flex-col">
+              <div
+                class="glass-effect rounded-2xl p-6 sm:p-8 md:p-10 shadow-xl h-full flex flex-col card-hover">
                 <div class="mb-6 md:mb-8">
                   <div class="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-5">
-                    <div class="w-14 h-14 sm:w-16 sm:h-16 md:w-12 md:h-12 rounded-full bg-gradient-to-br from-accent to-yellow-600 flex items-center justify-center shadow-lg flex-shrink-0">
+                    <div
+                      class="w-14 h-14 sm:w-16 sm:h-16 md:w-12 md:h-12 rounded-full bg-gradient-to-br from-accent to-yellow-600 flex items-center justify-center shadow-lg flex-shrink-0">
                       <i class="fas fa-dumbbell text-white text-xl sm:text-2xl md:text-xl"></i>
                     </div>
-                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold gradient-text leading-tight">Únete a Nexo Deportes</h2>
+                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold gradient-text leading-tight">Únete a Nexo
+                      Deportes</h2>
                   </div>
                 </div>
-                
+
                 <div class="space-y-6 sm:space-y-7 md:space-y-6 text-white/90 flex-grow">
                   <p class="text-base sm:text-lg md:text-xl leading-relaxed">
-                    En <span class="text-accent font-semibold">Nexo Deportes</span> no solo entrenas tu cuerpo, 
+                    En <span class="text-accent font-semibold">Nexo Deportes</span> no solo entrenas tu cuerpo,
                     transformas tu vida. Somos más que un gimnasio, somos una comunidad comprometida con tu éxito.
                   </p>
-                  
+
                   <div class="space-y-5 sm:space-y-6 md:space-y-4">
                     <div class="flex items-start gap-4 sm:gap-5">
-                      <div class="w-10 h-10 sm:w-12 sm:h-12 md:w-8 md:h-8 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0 mt-1">
+                      <div
+                        class="w-10 h-10 sm:w-12 sm:h-12 md:w-8 md:h-8 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0 mt-1">
                         <i class="fas fa-check text-accent text-lg sm:text-xl md:text-base"></i>
                       </div>
                       <div class="flex-1">
-                        <h3 class="font-bold text-white mb-2 sm:mb-1 text-lg sm:text-xl md:text-base">Entrenamiento Profesional</h3>
-                        <p class="text-white/80 text-sm sm:text-base md:text-sm leading-relaxed">Instructores certificados que te guiarán en cada paso de tu transformación física y mental.</p>
+                        <h3 class="font-bold text-white mb-2 sm:mb-1 text-lg sm:text-xl md:text-base">Entrenamiento
+                          Profesional</h3>
+                        <p class="text-white/80 text-sm sm:text-base md:text-sm leading-relaxed">Instructores
+                          certificados que te guiarán en cada paso de tu transformación física y mental.</p>
                       </div>
                     </div>
-                    
+
                     <div class="flex items-start gap-4 sm:gap-5">
-                      <div class="w-10 h-10 sm:w-12 sm:h-12 md:w-8 md:h-8 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0 mt-1">
+                      <div
+                        class="w-10 h-10 sm:w-12 sm:h-12 md:w-8 md:h-8 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0 mt-1">
                         <i class="fas fa-check text-accent text-lg sm:text-xl md:text-base"></i>
                       </div>
                       <div class="flex-1">
-                        <h3 class="font-bold text-white mb-2 sm:mb-1 text-lg sm:text-xl md:text-base">Ambiente Motivador</h3>
-                        <p class="text-white/80 text-sm sm:text-base md:text-sm leading-relaxed">Un espacio donde cada persona es parte de una familia que se apoya mutuamente.</p>
+                        <h3 class="font-bold text-white mb-2 sm:mb-1 text-lg sm:text-xl md:text-base">Ambiente Motivador
+                        </h3>
+                        <p class="text-white/80 text-sm sm:text-base md:text-sm leading-relaxed">Un espacio donde cada
+                          persona es parte de una familia que se apoya mutuamente.</p>
                       </div>
                     </div>
-                    
+
                     <div class="flex items-start gap-4 sm:gap-5">
-                      <div class="w-10 h-10 sm:w-12 sm:h-12 md:w-8 md:h-8 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0 mt-1">
+                      <div
+                        class="w-10 h-10 sm:w-12 sm:h-12 md:w-8 md:h-8 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0 mt-1">
                         <i class="fas fa-check text-accent text-lg sm:text-xl md:text-base"></i>
                       </div>
                       <div class="flex-1">
-                        <h3 class="font-bold text-white mb-2 sm:mb-1 text-lg sm:text-xl md:text-base">Resultados Garantizados</h3>
-                        <p class="text-white/80 text-sm sm:text-base md:text-sm leading-relaxed">Programas diseñados para alcanzar tus objetivos, sin importar tu nivel de experiencia.</p>
+                        <h3 class="font-bold text-white mb-2 sm:mb-1 text-lg sm:text-xl md:text-base">Resultados
+                          Garantizados</h3>
+                        <p class="text-white/80 text-sm sm:text-base md:text-sm leading-relaxed">Programas diseñados
+                          para alcanzar tus objetivos, sin importar tu nivel de experiencia.</p>
                       </div>
                     </div>
                   </div>
-                  
+
                   <div class="pt-6 sm:pt-8 md:pt-4 mt-auto">
-                    <a href="https://wa.me/56991040157?text=Hola%20Nexo%20Deportes%2C%20quiero%20ser%20parte%20de%20la%20comunidad" 
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <a href="https://wa.me/56991040157?text=Hola%20Nexo%20Deportes%2C%20quiero%20ser%20parte%20de%20la%20comunidad"
+                      target="_blank" rel="noopener noreferrer"
                       class="inline-flex items-center justify-center gap-3 bg-gradient-to-r from-accent to-yellow-600 text-dark-bg px-6 py-4 sm:px-8 sm:py-5 md:px-8 md:py-4 rounded-full font-bold text-base sm:text-lg md:text-lg hover:from-yellow-600 hover:to-accent transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 btn-primary relative overflow-hidden w-full sm:w-auto">
                       <i class="fab fa-whatsapp text-2xl sm:text-3xl md:text-2xl relative z-10"></i>
                       <span class="relative z-10 text-center">Comienza tu Transformación</span>
@@ -957,7 +1256,7 @@
     </section>
 
     <!-- Servicios -->
-    <section id="servicios" class="py-20 bg-gray-900/30">
+    <section id="servicios" class="py-20 md:py-28 bg-gradient-to-b from-transparent via-gray-900/30 to-transparent relative overflow-hidden">
       <div class="container mx-auto px-4">
         <div class="text-center mb-16" data-aos="fade-up">
           <div class="flex items-center justify-center gap-3 mb-4">
@@ -973,7 +1272,7 @@
             <!-- Open Box -->
             <div class="swiper-slide">
               <div
-                class="bg-gray-900/60 backdrop-blur-sm border border-gray-800 rounded-2xl p-8 card-hover shine-effect h-full flex flex-col">
+                class="glass-effect rounded-2xl p-8 card-hover shine-effect h-full flex flex-col">
                 <div class="flex flex-col items-center mb-4">
                   <div
                     class="w-20 h-20 flex items-center justify-center mb-4 rounded-full bg-gradient-to-br from-accent to-yellow-600 text-white text-3xl shadow-lg hover:scale-110 transition-transform duration-300">
@@ -1007,7 +1306,7 @@
             <!-- Clases de Boxeo -->
             <div class="swiper-slide">
               <div
-                class="bg-gray-900/60 backdrop-blur-sm border border-gray-800 rounded-2xl p-8 card-hover shine-effect h-full flex flex-col">
+                class="glass-effect rounded-2xl p-8 card-hover shine-effect h-full flex flex-col">
                 <div class="flex flex-col items-center mb-4">
                   <div
                     class="w-20 h-20 flex items-center justify-center mb-4 rounded-full bg-gradient-to-br from-accent to-yellow-600 text-white text-3xl shadow-lg hover:scale-110 transition-transform duration-300">
@@ -1118,7 +1417,7 @@
       </div>
     </section>
     <!-- Horarios -->
-    <section id="horarios" class="py-20 bg-gray-900/30">
+    <section id="horarios" class="py-20 md:py-28 bg-gradient-to-b from-transparent via-gray-900/30 to-transparent relative overflow-hidden">
       <div class="container mx-auto px-4">
         <div class="text-center mb-16" data-aos="fade-up">
           <div class="flex items-center justify-center gap-3 mb-4">
@@ -1128,7 +1427,7 @@
           <p class="text-muted text-lg">Encuentra el horario perfecto para tu rutina</p>
         </div>
         <div
-          class="max-w-4xl mx-auto bg-gray-900/60 backdrop-blur-sm border border-gray-800 rounded-2xl overflow-hidden shadow-2xl"
+          class="max-w-4xl mx-auto glass-effect rounded-2xl overflow-hidden shadow-2xl card-hover"
           data-aos="fade-up">
           <div class="overflow-x-auto">
             <table class="w-full">
@@ -1181,7 +1480,7 @@
 
 
     <!-- Testimonios -->
-    <section id="testimonios" class="py-20 bg-dark-bg">
+    <section id="testimonios" class="py-20 md:py-28 bg-gradient-to-b from-gray-900/50 via-dark-bg to-gray-900/50 relative overflow-hidden">
       <div class="container mx-auto px-4">
         <div class="text-center mb-16" data-aos="fade-up">
           <div class="flex items-center justify-center gap-3 mb-4">
@@ -1334,7 +1633,7 @@
     </section>
 
     <!-- Quiénes Somos -->
-    <section id="nosotros" class="py-20 bg-gray-900/30">
+    <section id="nosotros" class="py-20 md:py-28 bg-gradient-to-b from-transparent via-gray-900/30 to-transparent relative overflow-hidden">
       <div class="container mx-auto px-4">
         <div class="max-w-4xl mx-auto">
           <div class="text-center mb-16" data-aos="fade-up">
@@ -1347,14 +1646,14 @@
               transforma cuerpo y mente.</p>
           </div>
           <div class="grid md:grid-cols-3 gap-8 mb-12">
-            <div class="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-2xl p-6 text-center"
+            <div class="glass-effect rounded-2xl p-6 text-center card-hover"
               data-aos="fade-up">
               <div class="text-4xl mb-4"><i class="fas fa-bullseye text-accent"></i></div>
               <h3 class="text-xl font-bold mb-3">Nuestra Misión</h3>
               <p class="text-muted text-sm">Proporcionar un espacio de entrenamiento profesional donde cada persona
                 alcance su máximo potencial.</p>
             </div>
-            <div class="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-2xl p-6 text-center"
+            <div class="glass-effect rounded-2xl p-6 text-center card-hover"
               data-aos="fade-up" data-aos-delay="100">
               <div class="text-4xl mb-4"><i class="fas fa-dumbbell text-accent"></i></div>
               <h3 class="text-xl font-bold mb-3">Nuestros Valores</h3>
@@ -1362,7 +1661,7 @@
                 pilares
                 de nuestra comunidad.</p>
             </div>
-            <div class="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-2xl p-6 text-center"
+            <div class="glass-effect rounded-2xl p-6 text-center card-hover"
               data-aos="fade-up" data-aos-delay="200">
               <div class="text-4xl mb-4"><i class="fas fa-trophy text-accent"></i></div>
               <h3 class="text-xl font-bold mb-3">Nuestra Visión</h3>
@@ -1381,7 +1680,7 @@
     </section>
 
     <!-- Ubicación -->
-    <section id="ubicacion" class="py-20 bg-dark-bg">
+    <section id="ubicacion" class="py-20 md:py-28 bg-gradient-to-b from-gray-900/50 via-dark-bg to-gray-900/50 relative overflow-hidden">
       <div class="container mx-auto px-4">
         <div class="text-center mb-16" data-aos="fade-up">
           <div class="flex items-center justify-center gap-3 mb-4">
@@ -1391,7 +1690,7 @@
           <p class="text-muted text-lg">Visítanos en el corazón de San Bernardo</p>
         </div>
         <div class="max-w-5xl mx-auto grid lg:grid-cols-2 gap-8">
-          <div class="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-2xl p-8" data-aos="fade-right">
+          <div class="glass-effect rounded-2xl p-8 card-hover" data-aos="fade-right">
             <h3 class="text-2xl font-bold mb-6">Información de Contacto</h3>
             <div class="space-y-6">
               <div class="flex items-start gap-4">
@@ -1429,7 +1728,7 @@
               <span class="relative z-10">Cómo llegar</span>
             </a>
           </div>
-          <div class="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-2xl overflow-hidden"
+          <div class="glass-effect rounded-2xl overflow-hidden card-hover"
             data-aos="fade-left">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3310.179!2d-70.6985!3d-33.5974!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzPCsDM1JzUwLjYiUyA3MMKwNDEnNTQuNiJX!5e0!3m2!1ses!2scl!4v1234567890"
@@ -1440,7 +1739,7 @@
     </section>
 
     <!-- Contacto -->
-    <section id="contacto" class="py-20 bg-gray-900/30">
+    <section id="contacto" class="py-20 md:py-28 bg-gradient-to-b from-transparent via-gray-900/30 to-transparent relative overflow-hidden">
       <div class="container mx-auto px-4">
         <div class="max-w-3xl mx-auto text-center" data-aos="fade-up">
           <div class="flex items-center justify-center gap-3 mb-6">
@@ -1467,7 +1766,7 @@
   </main>
 
   <!-- Footer -->
-  <footer class="bg-gradient-to-b from-dark-bg to-black border-t border-gray-800/50 py-12">
+  <footer class="bg-gradient-to-b from-dark-bg via-black to-black border-t border-gray-800/50 py-12 relative">
     <div class="container mx-auto px-4">
       <div class="grid md:grid-cols-3 gap-8 mb-8">
         <div>
@@ -1576,13 +1875,6 @@
       },
     });
 
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
-    });
     // Mobile Menu Toggle
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
@@ -1629,7 +1921,7 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    // Efecto de scroll en header
+    // Efecto de scroll en header mejorado
     let lastScroll = 0;
     const header = document.getElementById('mainHeader');
 
@@ -1642,7 +1934,26 @@
         header.classList.remove('scrolled');
       }
 
+      // Efecto parallax sutil en el header
+      if (currentScroll > 0) {
+        header.style.transform = `translateY(${Math.min(currentScroll * 0.1, 10)}px)`;
+      } else {
+        header.style.transform = 'translateY(0)';
+      }
+
       lastScroll = currentScroll;
+    });
+
+    // Efecto parallax en secciones
+    const parallaxSections = document.querySelectorAll('section');
+    window.addEventListener('scroll', function() {
+      const scrolled = window.pageYOffset;
+      parallaxSections.forEach((section, index) => {
+        const rate = scrolled * 0.1 * (index % 2 === 0 ? 1 : -1);
+        if (section.id && section.id !== 'inicio') {
+          section.style.transform = `translateY(${rate * 0.1}px)`;
+        }
+      });
     });
 
     // Inicializar AOS (Animate On Scroll)
@@ -1655,28 +1966,118 @@
       });
     }
 
-    // Agregar animaciones de entrada a elementos
+    // Agregar animaciones de entrada mejoradas a elementos
     const observerOptions = {
       threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
+      rootMargin: '0px 0px -100px 0px'
     };
 
     const observer = new IntersectionObserver(function (entries) {
-      entries.forEach(entry => {
+      entries.forEach((entry, index) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('fade-in-up');
+          setTimeout(() => {
+            entry.target.classList.add('fade-in-up');
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }, index * 100);
           observer.unobserve(entry.target);
         }
       });
     }, observerOptions);
 
-    // Observar elementos con data-aos
-    document.querySelectorAll('[data-aos]').forEach(el => {
+    // Observar elementos con data-aos y cards
+    document.querySelectorAll('[data-aos], .card-hover, section > div').forEach((el, index) => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(30px)';
+      el.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
       observer.observe(el);
+    });
+
+    // Efecto de cursor personalizado en elementos interactivos
+    const interactiveElements = document.querySelectorAll('a, button, .card-hover');
+    interactiveElements.forEach(el => {
+      el.addEventListener('mouseenter', function() {
+        this.style.cursor = 'pointer';
+      });
     });
 
     // Actualizar año en footer
     document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+    // Añadir efecto de brillo dinámico a los títulos
+    const gradientTexts = document.querySelectorAll('.gradient-text');
+    gradientTexts.forEach(text => {
+      text.addEventListener('mouseenter', function() {
+        this.style.filter = 'drop-shadow(0 0 20px rgba(197, 154, 42, 0.6))';
+      });
+      text.addEventListener('mouseleave', function() {
+        this.style.filter = 'drop-shadow(0 2px 4px rgba(197, 154, 42, 0.3))';
+      });
+    });
+
+    // Mejorar efecto de scroll suave
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          const headerOffset = 80;
+          const elementPosition = target.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // Efecto de carga inicial
+    window.addEventListener('load', function() {
+      document.body.style.opacity = '0';
+      setTimeout(() => {
+        document.body.style.transition = 'opacity 0.5s ease-in';
+        document.body.style.opacity = '1';
+      }, 100);
+    });
+
+    // Control de video Vimeo con smart play/pause según foco
+    const vimeoIframe = document.getElementById('vimeo-video');
+    if (vimeoIframe) {
+      // Cargar la API de Vimeo
+      const script = document.createElement('script');
+      script.src = 'https://player.vimeo.com/api/player.js';
+      script.onload = function() {
+        const player = new Vimeo.Player(vimeoIframe);
+        
+        // Observer para detectar cuando el video entra/sale del viewport
+        const videoObserver = new IntersectionObserver(function(entries) {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              // Video visible - reproducir
+              player.play().catch(err => {
+                console.log('Error al reproducir:', err);
+              });
+            } else {
+              // Video no visible - pausar
+              player.pause().catch(err => {
+                console.log('Error al pausar:', err);
+              });
+            }
+          });
+        }, {
+          threshold: 0.5 // Se activa cuando el 50% del video es visible
+        });
+        
+        // Observar el contenedor del video
+        const videoContainer = vimeoIframe.closest('.order-2');
+        if (videoContainer) {
+          videoObserver.observe(videoContainer);
+        }
+      };
+      document.head.appendChild(script);
+    }
   </script>
 </body>
 
