@@ -1834,6 +1834,30 @@
     </div>
   </footer>
 
+  <!-- Agenda Administrativa Privada (solo visible con parámetro de URL) -->
+  <div id="agenda-admin-container" style="display: none; min-height: 100vh;" class="py-12 md:py-20 bg-gradient-to-b from-dark-bg via-black to-dark-bg">
+    <div class="container mx-auto px-4">
+      <div class="max-w-6xl mx-auto">
+        <div class="glass-effect rounded-2xl p-6 md:p-8 shadow-2xl">
+          <div class="flex items-center justify-between mb-6 flex-wrap gap-4">
+            <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold gradient-text">
+              <i class="fas fa-calendar-alt mr-3"></i>Agenda Administrativa
+            </h2>
+            <a href="index.html" class="text-accent hover:text-yellow-600 transition-colors text-sm md:text-base">
+              <i class="fas fa-home mr-2"></i>Volver al sitio
+            </a>
+          </div>
+          <div id="agenda-admin-content">
+            <div class="text-center text-muted py-8">
+              <i class="fas fa-spinner fa-spin text-4xl mb-4"></i>
+              <p>Cargando agendamientos...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Floating Buttons -->
   <div id="floatingButtons" class="fixed bottom-6 right-6 flex-col gap-4 z-50 hidden">
     <!-- WhatsApp Button -->
@@ -1868,6 +1892,32 @@
   <!-- Cal element-click embed code ends -->
   
   <script>
+    // Agenda Administrativa Privada - Detección temprana del parámetro
+    const urlParams = new URLSearchParams(window.location.search);
+    const isAdmin = urlParams.get('acceso') === 'nexo2026';
+
+    if (isAdmin) {
+      // Ocultar todo el contenido principal antes de que se renderice
+      document.addEventListener('DOMContentLoaded', function() {
+        const header = document.getElementById('mainHeader');
+        const main = document.querySelector('main');
+        const footer = document.querySelector('footer');
+        const floatingButtons = document.getElementById('floatingButtons');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+
+        if (header) header.style.display = 'none';
+        if (main) main.style.display = 'none';
+        if (footer) footer.style.display = 'none';
+        if (floatingButtons) floatingButtons.style.display = 'none';
+        if (mobileMenu) mobileMenu.style.display = 'none';
+        if (mobileMenuOverlay) mobileMenuOverlay.style.display = 'none';
+
+        // Ajustar estilos del body para la vista administrativa
+        document.body.style.margin = '0';
+        document.body.style.padding = '0';
+      });
+    }
 
     const heroSwiper = new Swiper('.heroSwiper', {
       loop: true,
@@ -2109,6 +2159,109 @@
         }
       };
       document.head.appendChild(script);
+    }
+
+    // Agenda Administrativa Privada - Renderizar solo si es admin
+    if (isAdmin) {
+      renderizarAgendaPrivada();
+    }
+
+    async function renderizarAgendaPrivada() {
+      const API_KEY = 'cal_live_8db492ce7f424dd00cd3fba14f652c47';
+      const contenedor = document.getElementById('agenda-admin-container');
+      const contenido = document.getElementById('agenda-admin-content');
+      
+      if (!contenedor || !contenido) return;
+
+      // Mostrar el contenedor
+      contenedor.style.display = 'block';
+
+      try {
+        const response = await fetch(`https://api.cal.com/v1/bookings?apiKey=${API_KEY}`);
+        
+        if (!response.ok) {
+          throw new Error('Error al obtener los agendamientos');
+        }
+
+        const data = await response.json();
+        
+        if (data.bookings && data.bookings.length > 0) {
+          const ahora = new Date();
+          
+          // Filtrar solo las citas futuras
+          const citasFuturas = data.bookings.filter(booking => {
+            const fechaCita = new Date(booking.startTime);
+            return fechaCita > ahora;
+          });
+          
+          if (citasFuturas.length > 0) {
+            let html = '<div class="space-y-4">';
+            
+            // Ordenar por fecha (más próximos primero)
+            const bookingsOrdenados = citasFuturas.sort((a, b) => {
+              return new Date(a.startTime) - new Date(b.startTime);
+            });
+
+            bookingsOrdenados.forEach(booking => {
+            const fecha = new Date(booking.startTime);
+            const fechaFormateada = fecha.toLocaleDateString('es-CL', {
+              weekday: 'long',
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+              hour: '2-digit',
+              minute: '2-digit'
+            });
+
+            html += `
+              <div class="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-xl p-6 hover:border-accent transition-all duration-300">
+                <div class="flex items-start justify-between flex-wrap gap-4">
+                  <div class="flex-1">
+                    <h3 class="text-xl font-bold text-white mb-2">
+                      <i class="fas fa-user text-accent mr-2"></i>${booking.attendees?.[0]?.email || booking.title || 'Sin nombre'}
+                    </h3>
+                    <p class="text-muted mb-3">
+                      <i class="fas fa-calendar text-accent mr-2"></i>${fechaFormateada}
+                    </p>
+                    ${booking.description ? `<p class="text-white/80 text-sm mb-2">${booking.description}</p>` : ''}
+                    ${booking.eventType?.title ? `<p class="text-accent text-sm"><i class="fas fa-tag mr-2"></i>${booking.eventType.title}</p>` : ''}
+                  </div>
+                  <div class="flex items-center gap-2">
+                    ${booking.status ? `<span class="px-3 py-1 rounded-full text-xs font-semibold ${booking.status === 'confirmed' ? 'bg-green-500/20 text-green-400' : 'bg-yellow-500/20 text-yellow-400'}">${booking.status}</span>` : ''}
+                  </div>
+                </div>
+              </div>
+            `;
+            });
+            
+            html += '</div>';
+            contenido.innerHTML = html;
+          } else {
+            contenido.innerHTML = `
+              <div class="text-center py-12">
+                <i class="fas fa-calendar-times text-5xl text-muted mb-4"></i>
+                <p class="text-muted text-lg">No hay citas próximas programadas</p>
+              </div>
+            `;
+          }
+        } else {
+          contenido.innerHTML = `
+            <div class="text-center py-12">
+              <i class="fas fa-calendar-times text-5xl text-muted mb-4"></i>
+              <p class="text-muted text-lg">No hay agendamientos próximos</p>
+            </div>
+          `;
+        }
+      } catch (e) {
+        console.error("Error al cargar agendamientos:", e);
+        contenido.innerHTML = `
+          <div class="text-center py-12">
+            <i class="fas fa-exclamation-triangle text-5xl text-red-500 mb-4"></i>
+            <p class="text-red-400 text-lg">Error al cargar los agendamientos</p>
+            <p class="text-muted text-sm mt-2">Por favor, verifica la conexión o intenta más tarde</p>
+          </div>
+        `;
+      }
     }
   </script>
 </body>
