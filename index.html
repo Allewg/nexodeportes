@@ -1,2269 +1,1226 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Box Nexo Deportes - Entrena más fuerte, recupérate mejor</title>
-  <meta name="description"
-    content="Box Nexo Deportes en San Bernardo. Clases de boxing, funcional y cross-training para todos los niveles. ¡Reserva tu clase ahora!">
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="Box Nexo Deportes - Entrena más fuerte" />
-  <meta property="og:description"
-    content="Clases de boxing, funcional y cross-training para todos los niveles en San Bernardo" />
+  <title>Box Nexo Deportes — Entrena más fuerte, recupérate mejor</title>
+  <meta name="description" content="Box Nexo Deportes en San Bernardo. Clases de boxing, funcional y cross-training para todos los niveles. ¡Reserva tu clase ahora!">
+  <meta property="og:title" content="Box Nexo Deportes — Entrena más fuerte" />
+  <meta property="og:description" content="Clases de boxing, funcional y cross-training para todos los niveles en San Bernardo" />
   <meta property="og:image" content="assets/og-image.jpg" />
   <meta property="og:type" content="website" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🥊</text></svg>" />
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml"
-    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🥊</text></svg>" />
-
-  <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
+        screens: {
+          'xs':  '400px',
+          'sm':  '640px',
+          'md':  '768px',
+          'lg':  '1024px',
+          'xl':  '1280px',
+          '2xl': '1536px',
+        },
         extend: {
           colors: {
-            'dark-bg': '#0b1020',
-            'accent': '#c59a2a',
-            'muted': '#e5e7eb',
-          }
+            bg:      '#080c14',
+            surface: '#0d1424',
+            accent:  '#c9a84c',
+            gold:    '#e8c870',
+            muted:   '#94a3b8',
+          },
+          fontFamily: {
+            sans:    ['Inter', 'system-ui', 'sans-serif'],
+            display: ['Poppins', 'sans-serif'],
+          },
         }
       }
     }
   </script>
 
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-  <!-- Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-
-  <!-- Flowbite CSS -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css" rel="stylesheet" />
-
-  <!-- Swiper CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-
-  <!-- AOS CSS -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-  <!-- Animate.css -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-
   <style>
-    :root {
-      --bg: #0b1020;
-      --accent: #c59a2a;
-      --accent-light: #fbbf24;
-      --accent-dark: #a67c1a;
-      --text: #ffffff;
-      --muted: #e5e7eb;
-      --card-bg: rgba(15, 23, 42, 0.7);
-      --glass-bg: rgba(15, 23, 42, 0.85);
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
     body {
-      background: linear-gradient(180deg, #0b1020 0%, #0a0f1e 50%, #0b1020 100%);
-      background-attachment: fixed;
-      color: var(--text);
-      overflow-x: hidden;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      font-weight: 400;
+      background-color: #080c14;
+      color: #f1f5f9;
+      font-family: 'Inter', system-ui, sans-serif;
       line-height: 1.7;
-      letter-spacing: -0.01em;
+      -webkit-font-smoothing: antialiased;
+    }
+    h1,h2,h3,h4 { font-family: 'Poppins', sans-serif; line-height: 1.15; letter-spacing: -0.025em; }
+    *:focus-visible { outline: 2px solid #c9a84c; outline-offset: 3px; }
+
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: #080c14; }
+    ::-webkit-scrollbar-thumb { background: #c9a84c; border-radius: 3px; }
+
+    /* Text gradient gold */
+    .text-gold-gradient {
+      background: linear-gradient(135deg, #c9a84c 0%, #e8c870 50%, #b8962e 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
-    h1, h2, h3, h4, h5, h6 {
-      font-family: 'Poppins', sans-serif;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      line-height: 1.2;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    *:focus-visible {
-      outline: 2px solid var(--accent);
-      outline-offset: 2px;
-    }
-
-    .hero-section {
-      min-height: calc(100vh - 80px);
-    }
-
-    .swiper-button-next,
-    .swiper-button-prev {
-      color: var(--accent) !important;
-    }
-
-    .swiper-pagination-bullet-active {
-      background-color: var(--accent) !important;
-    }
-
-    .floating-btn {
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-    }
-
-    .floating-btn:hover {
-      transform: scale(1.1) translateY(-2px);
-      box-shadow: 0 15px 35px rgba(197, 154, 42, 0.4);
-    }
-
-    .glass-menu {
-      background: rgba(15, 35, 70, 0.85);
+    /* Header */
+    #mainHeader {
+      background: rgba(8,12,20,0.85);
       backdrop-filter: blur(20px) saturate(180%);
-      border-left: 1px solid rgba(100, 150, 255, 0.2);
-      box-shadow: -10px 0 40px rgba(0, 40, 100, 0.5);
+      border-bottom: 1px solid rgba(201,168,76,0.07);
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    #mainHeader.scrolled {
+      border-bottom-color: rgba(201,168,76,0.18);
+      box-shadow: 0 4px 32px rgba(0,0,0,0.45);
     }
 
-    .mobile-menu-open {
-      transform: translateX(0);
+    /* Mobile menu drawer */
+    #mobileMenu {
+      background: #080c14;
+      border-left: 1px solid rgba(201,168,76,0.1);
     }
 
-    .mobile-menu-closed {
-      transform: translateX(100%);
+    /* Section overline label */
+    .label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #c9a84c;
+      margin-bottom: 1rem;
+    }
+    .label::before, .label::after {
+      content: '';
+      width: 20px;
+      height: 1px;
+      background: #c9a84c;
+      opacity: 0.5;
     }
 
-    /* Efectos de scroll para header */
-    header {
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(11, 16, 32, 0.98) 100%);
+    /* Thin gold divider */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,168,76,0.2), transparent);
     }
 
-    header.scrolled {
-      background: linear-gradient(135deg, rgba(15, 23, 42, 0.98) 0%, rgba(11, 16, 32, 0.99) 100%);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(197, 154, 42, 0.1);
-      backdrop-filter: blur(20px) saturate(180%);
-    }
+    /* Hero */
+    .hero-section { height: 100vh; min-height: 580px; }
 
-    /* Mejoras en botones */
-    .btn-primary {
-      position: relative;
-      overflow: hidden;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: 'Inter', sans-serif;
       font-weight: 600;
       letter-spacing: 0.02em;
-      box-shadow: 0 4px 15px rgba(197, 154, 42, 0.3), 0 0 0 1px rgba(197, 154, 42, 0.1);
+      border-radius: 9999px;
+      transition: all 0.25s ease;
+      cursor: pointer;
     }
-
-    .btn-primary::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 0;
-      height: 0;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
-      transform: translate(-50%, -50%);
-      transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1), height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .btn-primary:hover::before {
-      width: 400px;
-      height: 400px;
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(197, 154, 42, 0.5), 0 0 0 1px rgba(197, 154, 42, 0.2);
-    }
-
-    .btn-primary:active {
-      transform: translateY(0);
-    }
-
-    /* Efectos en tarjetas */
-    .card-hover {
-      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
-      background: var(--card-bg);
-      backdrop-filter: blur(20px) saturate(180%);
-    }
-
-    .card-hover::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      border-radius: inherit;
-      padding: 2px;
-      background: linear-gradient(135deg, var(--accent), var(--accent-light), transparent);
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      mask-composite: exclude;
-      opacity: 0;
-      transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .card-hover::after {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(197, 154, 42, 0.1) 0%, transparent 70%);
-      opacity: 0;
-      transition: opacity 0.5s;
-      pointer-events: none;
-    }
-
-    .card-hover:hover::before {
-      opacity: 1;
-    }
-
-    .card-hover:hover::after {
-      opacity: 1;
-    }
-
-    .card-hover:hover {
-      transform: translateY(-12px) scale(1.02);
-      box-shadow: 0 25px 50px rgba(197, 154, 42, 0.3), 0 0 0 1px rgba(197, 154, 42, 0.2);
-      background: rgba(15, 23, 42, 0.85);
-    }
-
-    /* Gradientes mejorados */
-    .gradient-text {
-      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 50%, #f59e0b 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      filter: drop-shadow(0 2px 4px rgba(197, 154, 42, 0.3));
-      position: relative;
-    }
-
-    .gradient-text::after {
-      content: attr(data-text);
-      position: absolute;
-      left: 0;
-      top: 0;
-      z-index: -1;
-      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 50%, #f59e0b 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      filter: blur(10px);
-      opacity: 0.5;
-    }
-
-    /* Animaciones de entrada */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(40px) scale(0.95);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-    }
-
-    @keyframes fadeInScale {
-      from {
-        opacity: 0;
-        transform: scale(0.9);
-      }
-
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
-
-    @keyframes slideInRight {
-      from {
-        opacity: 0;
-        transform: translateX(-30px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-
-    .fade-in-up {
-      animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-    }
-
-    .fade-in-scale {
-      animation: fadeInScale 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-    }
-
-    /* Efecto parallax sutil */
-    .parallax-bg {
-      background-attachment: fixed;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
-    }
-
-    /* Mejoras en iconos */
-    .icon-bounce:hover {
-      animation: bounce 0.6s ease;
-    }
-
-    @keyframes bounce {
-
-      0%,
-      100% {
-        transform: translateY(0);
-      }
-
-      50% {
-        transform: translateY(-10px);
-      }
-    }
-
-    /* Efecto de brillo en hover */
-    .shine-effect {
+    .btn-gold {
+      background: linear-gradient(135deg, #c9a84c, #e8c870);
+      color: #080c14;
+      box-shadow: 0 4px 18px rgba(201,168,76,0.3);
       position: relative;
       overflow: hidden;
     }
-
-    .shine-effect::after {
+    .btn-gold::after {
       content: '';
       position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-      transform: rotate(45deg);
-      transition: all 0.5s;
+      inset: 0;
+      background: linear-gradient(135deg, #e8c870, #c9a84c);
       opacity: 0;
-    }
-
-    .shine-effect:hover::after {
-      animation: shine 0.6s ease;
-    }
-
-    @keyframes shine {
-      0% {
-        transform: translateX(-100%) translateY(-100%) rotate(45deg);
-        opacity: 0;
-      }
-
-      50% {
-        opacity: 1;
-      }
-
-      100% {
-        transform: translateX(100%) translateY(100%) rotate(45deg);
-        opacity: 0;
-      }
-    }
-
-    /* Mejoras en tabla */
-    table tbody tr {
-      transition: all 0.2s ease;
-    }
-
-    table tbody tr:hover {
-      background-color: rgba(197, 154, 42, 0.1) !important;
-      transform: scale(1.02);
-    }
-
-    /* Efecto de pulso en botones CTA */
-    @keyframes pulse {
-      0%, 100% {
-        box-shadow: 0 0 0 0 rgba(197, 154, 42, 0.7), 0 4px 15px rgba(197, 154, 42, 0.3);
-      }
-
-      50% {
-        box-shadow: 0 0 0 12px rgba(197, 154, 42, 0), 0 8px 25px rgba(197, 154, 42, 0.5);
-      }
-    }
-
-    @keyframes float {
-      0%, 100% {
-        transform: translateY(0px);
-      }
-
-      50% {
-        transform: translateY(-10px);
-      }
-    }
-
-    .pulse-effect {
-      animation: pulse 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-    }
-
-    .float-effect {
-      animation: float 3s ease-in-out infinite;
-    }
-
-    /* Mejoras en imágenes */
-    img {
-      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .img-zoom {
-      overflow: hidden;
+      transition: opacity 0.25s;
       border-radius: inherit;
     }
-
-    .img-zoom:hover img {
-      transform: scale(1.08);
-      filter: brightness(1.1) contrast(1.05);
+    .btn-gold > * { position: relative; z-index: 1; }
+    .btn-gold:hover { box-shadow: 0 8px 28px rgba(201,168,76,0.45); transform: translateY(-1px); }
+    .btn-gold:hover::after { opacity: 1; }
+    .btn-outline {
+      border: 1px solid rgba(255,255,255,0.13);
+      color: #f1f5f9;
+      background: rgba(255,255,255,0.04);
+    }
+    .btn-outline:hover {
+      border-color: rgba(201,168,76,0.35);
+      background: rgba(201,168,76,0.07);
     }
 
-    .img-zoom::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(135deg, rgba(197, 154, 42, 0.1) 0%, transparent 100%);
-      opacity: 0;
-      transition: opacity 0.5s;
-      pointer-events: none;
+    /* Card */
+    .card {
+      background: rgba(13,20,36,0.65);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 1.25rem;
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(201,168,76,0.22);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.35);
     }
 
-    .img-zoom:hover::after {
-      opacity: 1;
-    }
+    /* Video */
+    .video-wrapper { position: relative; width: 100%; padding-bottom: 56.25%; }
+    .video-wrapper iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
 
-    /* Scrollbar personalizado */
-    ::-webkit-scrollbar {
-      width: 10px;
-    }
+    /* Schedule table rows */
+    .sched-row { border-bottom: 1px solid rgba(255,255,255,0.05); transition: background 0.2s; }
+    .sched-row:last-child { border-bottom: none; }
+    .sched-row:hover { background: rgba(201,168,76,0.05); }
 
-    ::-webkit-scrollbar-track {
-      background: var(--bg);
-    }
+    /* Swiper */
+    .swiper-pagination-bullet { background: rgba(255,255,255,0.25); opacity: 1; width: 7px; height: 7px; }
+    .swiper-pagination-bullet-active { background: #c9a84c; width: 22px; border-radius: 4px; }
+    .swiper-button-next, .swiper-button-prev { color: #c9a84c !important; }
+    .swiper-button-next::after, .swiper-button-prev::after { font-size: 1.1rem !important; font-weight: 700; }
 
-    ::-webkit-scrollbar-thumb {
-      background: var(--accent);
-      border-radius: 5px;
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-      background: #fbbf24;
-    }
-
-    /* Responsividad para video */
-    .aspect-video {
+    /* Phone / Reel frame */
+    .phone-frame {
       position: relative;
       width: 100%;
-      padding-bottom: 56.25%;
-      /* 16:9 aspect ratio */
+      max-width: 300px;
+      background: linear-gradient(160deg, #1c1c2e 0%, #12121a 100%);
+      border-radius: 3rem;
+      padding: 14px 10px 20px;
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.07),
+        0 0 0 2px rgba(0,0,0,0.6),
+        0 40px 80px rgba(0,0,0,0.7),
+        inset 0 1px 0 rgba(255,255,255,0.08);
     }
-
-    /* Video sin bordes negros y simétrico */
-    #video-invitacion iframe {
-      border: none !important;
-      outline: none !important;
-      background: transparent !important;
-      margin: 0 !important;
-      padding: 0 !important;
-    }
-
-    #video-invitacion .aspect-video {
-      background: transparent !important;
-    }
-
-    #video-invitacion .rounded-2xl {
-      background: transparent;
-    }
-
-    /* Bordes redondeados estilo celular para el video */
-    .video-phone-frame {
-      border-radius: 2rem !important;
-      overflow: hidden;
-    }
-
-    @media (max-width: 1023px) {
-      .video-phone-frame {
-        border-radius: 2.5rem !important;
-        padding: 0.5rem;
-        background: linear-gradient(135deg, rgba(197, 154, 42, 0.1), rgba(251, 191, 36, 0.1));
-      }
-
-      .video-phone-frame>div {
-        border-radius: 2rem !important;
-        overflow: hidden;
-      }
-
-      .video-phone-frame .aspect-video {
-        border-radius: 1.75rem !important;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .video-phone-frame {
-        border-radius: 2rem !important;
-        padding: 0.4rem;
-      }
-
-      .video-phone-frame>div {
-        border-radius: 1.75rem !important;
-      }
-
-      .video-phone-frame .aspect-video {
-        border-radius: 1.5rem !important;
-      }
-    }
-
-    /* Asegurar simetría en la sección de video */
-    @media (min-width: 1024px) {
-      #video-invitacion .grid {
-        align-items: stretch;
-      }
-
-      #video-invitacion .aspect-video {
-        min-height: 500px;
-      }
-    }
-
-    /* Simetría entre video y texto en móvil */
-    @media (max-width: 1023px) {
-      .mobile-video-symmetric {
-        display: flex !important;
-        flex-direction: column;
-        align-items: stretch;
-        gap: 1.5rem !important;
-      }
-
-      /* Contenedor del texto - primera columna en móvil */
-      .mobile-video-symmetric .order-1 {
-        width: 100%;
-        display: flex;
-        flex: 0 0 auto;
-      }
-
-      .mobile-video-symmetric .order-1>div {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-      }
-
-      /* Contenedor del video - segunda columna en móvil - MÁS GRANDE */
-      .mobile-video-symmetric .order-2 {
-        width: 100%;
-        display: flex;
-        flex: 0 0 auto;
-        align-items: stretch;
-        min-height: 400px;
-      }
-
-      .mobile-video-symmetric .order-2>div {
-        width: 100%;
-        display: flex;
-        align-items: stretch;
-        min-height: 400px;
-      }
-
-      /* Ajustar el aspect-video para que sea más grande en móvil */
-      .mobile-video-symmetric .order-2 .aspect-video {
-        width: 100% !important;
-        height: 400px !important;
-        min-height: 400px !important;
-        padding-bottom: 0 !important;
-        position: relative;
-      }
-
-      /* Asegurar que el iframe ocupe todo el espacio */
-      .mobile-video-symmetric .order-2 .aspect-video iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-      }
-    }
-
-    /* Video aún más grande en pantallas pequeñas */
-    @media (max-width: 640px) {
-      .mobile-video-symmetric .order-2 {
-        min-height: 350px;
-      }
-
-      .mobile-video-symmetric .order-2>div {
-        min-height: 350px;
-      }
-
-      .mobile-video-symmetric .order-2 .aspect-video {
-        height: 350px !important;
-        min-height: 350px !important;
-      }
-    }
-
-    @media (min-width: 641px) and (max-width: 1023px) {
-      .mobile-video-symmetric .order-2 {
-        min-height: 450px;
-      }
-
-      .mobile-video-symmetric .order-2>div {
-        min-height: 450px;
-      }
-
-      .mobile-video-symmetric .order-2 .aspect-video {
-        height: 450px !important;
-        min-height: 450px !important;
-      }
-    }
-
-    /* Hero Swiper Responsive */
-    .hero-swiper-responsive {
-      height: calc(100vh - 80px);
-    }
-
-    /* Clase para imágenes proporcionales en móvil */
-    .imagen-proporcional {
-      height: 100vh;
-      max-width: 100%;
-      width: auto;
-      object-fit: contain;
-    }
-
-    /* Mejoras responsivas para hero en móvil */
-    @media (max-width: 768px) {
-      .hero-section {
-        min-height: 100vh;
-      }
-
-      .hero-swiper-responsive {
-        height: 100vh !important;
-      }
-
-      .hero-section .swiper-slide {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .hero-section .img-zoom {
-        width: 100%;
-        height: 100%;
-        min-height: 100vh;
-        display: flex;
-        overflow: hidden;
-        align-items: center;
-        justify-content: center;
-      }
-
-      /* Imagen completa que ocupa toda la altura del hero en móvil */
-      .hero-section .swiper-slide .img-zoom img {
-        width: 100% !important;
-        height: 100vh !important;
-        min-height: 100vh !important;
-        object-fit: cover !important;
-        object-position: center center !important;
-        display: block;
-      }
-
-      /* Contenedor de contenido con glassmorphism en móvil */
-      .hero-content-mobile {
-        background: rgba(11, 16, 32, 0.4);
-        backdrop-filter: blur(10px) saturate(150%);
-        border-radius: 1.5rem;
-        padding: 2rem 1.5rem;
-        border: 1px solid rgba(197, 154, 42, 0.1);
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 
-                    0 0 0 1px rgba(197, 154, 42, 0.05),
-                    inset 0 1px 0 rgba(255, 255, 255, 0.05);
-        max-width: 90% !important;
-        margin: 0 auto;
-      }
-
-      /* Mejorar legibilidad del título en móvil */
-      .hero-content-mobile h1 {
-        line-height: 1.1;
-        letter-spacing: -0.02em;
-        margin-bottom: 0.75rem;
-      }
-
-      /* Mejorar legibilidad del subtítulo en móvil */
-      .hero-content-mobile p {
-        line-height: 1.5;
-        margin-bottom: 1.5rem;
-        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-      }
-
-      /* Optimizar botón CTA en móvil */
-      .hero-content-mobile a {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-width: 200px;
-        box-shadow: 0 4px 20px rgba(197, 154, 42, 0.4),
-                    0 0 0 1px rgba(197, 154, 42, 0.2);
-      }
-
-      /* Mejorar overlay en móvil - más sutil */
-      .hero-section .swiper-slide > div[class*="bg-gradient"] {
-        background: linear-gradient(
-          to bottom,
-          rgba(0, 0, 0, 0.5) 0%,
-          rgba(0, 0, 0, 0.35) 50%,
-          rgba(0, 0, 0, 0.5) 100%
-        ) !important;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .hero-section {
-        min-height: 100vh;
-      }
-
-      .hero-swiper-responsive {
-        height: 100vh !important;
-      }
-
-      .hero-section .swiper-slide .img-zoom img {
-        width: 100% !important;
-        height: 100vh !important;
-        min-height: 100vh !important;
-        object-fit: cover !important;
-        object-position: center center !important;
-      }
-
-      /* Ajustes adicionales para pantallas muy pequeñas */
-      .hero-content-mobile {
-        padding: 1.5rem 1rem;
-        border-radius: 1.25rem;
-        max-width: 95% !important;
-      }
-
-      .hero-content-mobile h1 {
-        font-size: 1.875rem;
-        margin-bottom: 0.5rem;
-      }
-
-      .hero-content-mobile p {
-        font-size: 0.9375rem;
-        margin-bottom: 1.25rem;
-      }
-
-      .hero-content-mobile a {
-        padding: 0.75rem 1.5rem;
-        font-size: 0.875rem;
-        min-width: 180px;
-      }
-    }
-
-    /* Asegurar que los videos sean responsivos */
-    iframe {
-      max-width: 100%;
-    }
-
-    /* Mejoras en secciones */
-    section {
-      position: relative;
-    }
-
-    section::before {
+    .phone-frame::before {
+      /* Left buttons */
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(197, 154, 42, 0.3), transparent);
-      opacity: 0.5;
+      left: -3px;
+      top: 22%;
+      width: 3px;
+      height: 32px;
+      background: #2a2a3e;
+      border-radius: 2px 0 0 2px;
+      box-shadow: 0 44px 0 #2a2a3e;
     }
-
-    /* Mejoras en glassmorphism */
-    .glass-effect {
-      background: rgba(15, 23, 42, 0.7);
-      backdrop-filter: blur(20px) saturate(180%);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-    }
-
-    /* Mejoras en tablas */
-    table {
-      border-collapse: separate;
-      border-spacing: 0;
-    }
-
-    table thead th {
-      position: relative;
-      overflow: hidden;
-    }
-
-    table thead th::after {
+    .phone-frame::after {
+      /* Right button */
       content: '';
       position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      right: -3px;
+      top: 28%;
+      width: 3px;
+      height: 52px;
+      background: #2a2a3e;
+      border-radius: 0 2px 2px 0;
     }
-
-    /* Efectos de hover mejorados en enlaces */
-    a {
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    .phone-notch {
+      width: 90px;
+      height: 6px;
+      background: #0d0d14;
+      border-radius: 3px;
+      margin: 0 auto 10px;
     }
-
-    /* Mejoras en iconos */
-    i {
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    .phone-screen {
+      border-radius: 2.2rem;
+      overflow: hidden;
+      aspect-ratio: 9/16;
+      position: relative;
+      background: #000;
     }
-
-    /* Efecto de partículas de fondo sutil */
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
+    .phone-screen iframe {
+      position: absolute;
+      inset: 0;
       width: 100%;
       height: 100%;
-      background-image: 
-        radial-gradient(circle at 20% 50%, rgba(197, 154, 42, 0.05) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(251, 191, 36, 0.05) 0%, transparent 50%);
-      pointer-events: none;
-      z-index: 0;
+      border: none;
+    }
+    .phone-bar {
+      width: 48px;
+      height: 4px;
+      background: rgba(255,255,255,0.18);
+      border-radius: 2px;
+      margin: 10px auto 0;
     }
 
-    main {
-      position: relative;
-      z-index: 1;
+    /* Float */
+    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-7px)} }
+    .float { animation: float 4s ease-in-out infinite; }
+
+    /* Floating action buttons */
+    .fab { transition: transform 0.25s ease, box-shadow 0.25s ease; }
+    .fab:hover { transform: scale(1.1) translateY(-2px); }
+
+    /* ── MOBILE-FIRST OVERRIDES ───────────────────────────── */
+
+    /* Phone frame — se adapta al ancho disponible */
+    @media (max-width: 640px) {
+      .phone-frame {
+        max-width: 260px;
+        padding: 10px 8px 16px;
+        border-radius: 2.5rem;
+      }
+      .phone-notch { width: 60px; height: 5px; margin-bottom: 8px;}
+      .phone-screen { border-radius: 1.8rem; }
     }
 
-    /* Mejoras en el footer */
-    footer {
-      position: relative;
-      background: linear-gradient(180deg, rgba(11, 16, 32, 0.95) 0%, rgba(0, 0, 0, 0.98) 100%);
-    }
-
-    footer::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(197, 154, 42, 0.5), transparent);
-    }
-
-    /* Mejoras en swiper */
-    .swiper-pagination-bullet {
-      width: 12px;
-      height: 12px;
-      background: rgba(255, 255, 255, 0.3);
-      opacity: 1;
-      transition: all 0.3s;
-    }
-
-    .swiper-pagination-bullet-active {
-      width: 32px;
-      border-radius: 6px;
-      background: var(--accent);
-      box-shadow: 0 0 10px rgba(197, 154, 42, 0.5);
-    }
-
-    /* Mejoras en el hero */
-    .hero-section .swiper-slide {
-      position: relative;
-    }
-
-    .hero-section .swiper-slide::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.4) 100%);
-      pointer-events: none;
-    }
-
-    /* Efecto de brillo en texto */
-    .text-glow {
-      text-shadow: 0 0 20px rgba(197, 154, 42, 0.5), 0 0 40px rgba(197, 154, 42, 0.3);
-    }
-
-    /* Mejoras en contenedores */
-    .container {
-      position: relative;
-    }
-
-    /* Efecto de scroll suave mejorado */
-    @media (prefers-reduced-motion: no-preference) {
-      html {
-        scroll-behavior: smooth;
+    /* Tabla horarios — celdas más compactas en móvil */
+    @media (max-width: 640px) {
+      .sched-row td, .sched-row th,
+      table thead tr th {
+        padding: 0.75rem 1rem !important;
+        font-size: 0.8rem !important;
       }
     }
 
-    /* Mejoras en responsive */
+    /* Mobile menu — no desborda en pantallas pequeñas */
+    #mobileMenu { max-width: calc(100vw - 32px); }
+
+    /* Floating buttons — safe area bottom en móviles con notch */
+    #floatingButtons {
+      bottom: max(1.5rem, env(safe-area-inset-bottom, 1.5rem));
+    }
+
+    /* Botones — tamaño táctil mínimo 44px en móvil */
     @media (max-width: 768px) {
-      .card-hover:hover {
-        transform: translateY(-6px) scale(1.01);
-      }
+      .btn { min-height: 44px; }
+    }
+
+    /* Google review card — layout vertical en móvil */
+    @media (max-width: 767px) {
+      .review-card { flex-direction: column; text-align: center; }
+      .review-card .label { justify-content: center; }
     }
   </style>
 </head>
 
-<body class="font-sans antialiased">
+<body>
 
-  <!-- Header / Navbar -->
-  <header id="mainHeader"
-    class="fixed top-0 left-0 right-0 z-50 border-b border-slate-800/50 transition-all duration-300 glass-effect">
-    <nav class="container mx-auto px-4 py-4">
-      <div class="flex items-center justify-between">
-        <!-- Logo -->
-        <a href="#inicio" class="flex items-center gap-3 group">
-          <div
-            class="w-12 h-12 rounded-full bg-gradient-to-br from-accent to-yellow-600 flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:scale-110 transition-all duration-300">
-            <img src="assets/images/logo.jpg" alt="Logo" class="w-10 h-10 object-contain rounded-full" />
-          </div>
-          <span class="text-xl font-bold text-white group-hover:text-accent transition-colors">Nexo Deportes</span>
-        </a>
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ HEADER ━━━ -->
+<header id="mainHeader" class="fixed top-0 inset-x-0 z-50">
+  <nav class="max-w-7xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between gap-4">
 
-        <!-- Desktop Nav -->
-        <ul class="hidden lg:flex items-center gap-6 text-sm text-white">
-          <li><a href="#inicio" class="hover:text-accent transition-all duration-300 relative group"><i
-                class="fas fa-home mr-2 icon-bounce"></i>Inicio<span
-                class="absolute bottom-0 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300"></span></a>
-          </li>
-          <li><a href="#servicios" class="hover:text-accent transition-all duration-300 relative group"><i
-                class="fas fa-dumbbell mr-2 icon-bounce"></i>Clases<span
-                class="absolute bottom-0 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300"></span></a>
-          </li>
-          <li><a href="#horarios" class="hover:text-accent transition-all duration-300 relative group"><i
-                class="fas fa-clock mr-2 icon-bounce"></i>Horarios<span
-                class="absolute bottom-0 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300"></span></a>
-          </li>
-          <li><a href="#entrenadores" class="hover:text-accent transition-all duration-300 relative group"><i
-                class="fas fa-users mr-2 icon-bounce"></i>Entrenadores<span
-                class="absolute bottom-0 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300"></span></a>
-          </li>
-          <li><a href="#testimonios" class="hover:text-accent transition-all duration-300 relative group"><i
-                class="fas fa-comments mr-2 icon-bounce"></i>Testimonios<span
-                class="absolute bottom-0 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300"></span></a>
-          </li>
-          <li><a href="#ubicacion" class="hover:text-accent transition-all duration-300 relative group"><i
-                class="fas fa-map-marker-alt mr-2 icon-bounce"></i>Ubicación<span
-                class="absolute bottom-0 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300"></span></a>
-          </li>
-          <li><a href="#contacto" class="hover:text-accent transition-all duration-300 relative group"><i
-                class="fas fa-phone mr-2 icon-bounce"></i>Contacto<span
-                class="absolute bottom-0 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300"></span></a>
-          </li>
-        </ul>
-
-        <!-- CTA Desktop -->
-        <button
-          data-cal-link="box-nexo-iq4l0s"
-          data-cal-namespace="box-nexo"
-          data-cal-config='{"layout":"month_view"}'
-          class="hidden lg:block bg-gradient-to-r from-accent to-yellow-600 text-slate-900 px-6 py-2.5 rounded-full font-semibold hover:from-yellow-600 hover:to-accent transition-all duration-300 shadow-lg hover:shadow-xl pulse-effect relative overflow-hidden btn-primary cursor-pointer">
-          <span class="relative z-10">Agenda Ya</span>
-        </button>
-
-        <!-- Mobile Menu Button - SIEMPRE VISIBLE en móvil -->
-        <button id="mobileMenuBtn"
-          class="lg:hidden text-white text-2xl p-2 hover:text-accent transition-all duration-300 relative z-50 hover:scale-110">
-          <i class="fas fa-bars"></i>
-        </button>
+    <a href="#inicio" class="flex items-center gap-2.5 group shrink-0">
+      <div class="w-8 h-8 rounded-full overflow-hidden ring-1 ring-accent/25 group-hover:ring-accent/55 transition-all">
+        <img src="assets/images/logo.jpg" alt="Logo" class="w-full h-full object-cover" />
       </div>
-    </nav>
-  </header>
-
-  <!-- Mobile Menu Overlay -->
-  <div id="mobileMenuOverlay"
-    class="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 lg:hidden opacity-0 pointer-events-none transition-opacity duration-300">
-  </div>
-
-  <!-- Mobile Menu -->
-  <div id="mobileMenu"
-    class="fixed top-0 right-0 w-72 h-full glass-effect border-l border-accent/20 shadow-2xl z-50 lg:hidden mobile-menu-closed transition-transform duration-300">
-    <div class="p-6">
-      <!-- Close Button -->
-      <button id="closeMobileMenu" class="text-white text-2xl mb-8 hover:text-yellow-500 transition-colors">
-        <i class="fas fa-times"></i>
-      </button>
-
-      <!-- Menu Items -->
-      <ul class="space-y-1">
-        <li>
-          <a href="#inicio"
-            class="mobile-menu-link flex items-center gap-3 text-white py-3 px-4 rounded-lg hover:bg-slate-800 hover:text-yellow-500 transition-all">
-            <i class="fas fa-home w-5 text-center"></i>
-            <span>Inicio</span>
-          </a>
-        </li>
-        <li>
-          <a href="#servicios"
-            class="mobile-menu-link flex items-center gap-3 text-white py-3 px-4 rounded-lg hover:bg-slate-800 hover:text-yellow-500 transition-all">
-            <i class="fas fa-dumbbell w-5 text-center"></i>
-            <span>Clases</span>
-          </a>
-        </li>
-        <li>
-          <a href="#horarios"
-            class="mobile-menu-link flex items-center gap-3 text-white py-3 px-4 rounded-lg hover:bg-slate-800 hover:text-yellow-500 transition-all">
-            <i class="fas fa-clock w-5 text-center"></i>
-            <span>Horarios</span>
-          </a>
-        </li>
-        <li>
-          <a href="#entrenadores"
-            class="mobile-menu-link flex items-center gap-3 text-white py-3 px-4 rounded-lg hover:bg-slate-800 hover:text-yellow-500 transition-all">
-            <i class="fas fa-users w-5 text-center"></i>
-            <span>Entrenadores</span>
-          </a>
-        </li>
-        <li>
-          <a href="#testimonios"
-            class="mobile-menu-link flex items-center gap-3 text-white py-3 px-4 rounded-lg hover:bg-slate-800 hover:text-yellow-500 transition-all">
-            <i class="fas fa-comments w-5 text-center"></i>
-            <span>Testimonios</span>
-          </a>
-        </li>
-        <li>
-          <a href="#ubicacion"
-            class="mobile-menu-link flex items-center gap-3 text-white py-3 px-4 rounded-lg hover:bg-slate-800 hover:text-yellow-500 transition-all">
-            <i class="fas fa-map-marker-alt w-5 text-center"></i>
-            <span>Dónde estamos</span>
-          </a>
-        </li>
-        <li>
-          <a href="#contacto"
-            class="mobile-menu-link flex items-center gap-3 text-white py-3 px-4 rounded-lg hover:bg-slate-800 hover:text-yellow-500 transition-all">
-            <i class="fas fa-phone w-5 text-center"></i>
-            <span>Contacto</span>
-          </a>
-        </li>
-      </ul>
-
-      <!-- CTA Mobile -->
-      <button
-        data-cal-link="box-nexo-iq4l0s"
-        data-cal-namespace="box-nexo"
-        data-cal-config='{"layout":"month_view"}'
-        class="block mt-8 bg-gradient-to-r from-accent to-yellow-600 text-dark-bg text-center px-6 py-3 rounded-full font-semibold hover:from-yellow-600 hover:to-accent transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 cursor-pointer w-full">
-        <i class="fas fa-calendar-alt mr-2"></i>Agenda Ya
-      </button>
-    </div>
-  </div>
-
-  <!-- Main Content -->
-  <main class="mt-20">
-
-    <!-- Hero -->
-    <section id="inicio" class="hero-section relative flex items-center justify-center overflow-hidden">
-      <div class="swiper heroSwiper hero-swiper-responsive">
-        <div class="swiper-wrapper relative">
-          <div class="swiper-slide relative">
-            <div class="img-zoom w-full h-full">
-              <img src="assets/images/PORTADA/PORTADA1.webp" alt="Boxing Training"
-                class="w-full h-full object-cover object-center" />
-            </div>
-            <div
-              class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60 md:from-black/70 md:via-black/50 md:to-black/70 flex items-center justify-center">
-              <div class="text-center fade-in-up px-4 max-w-4xl mx-auto">
-                <button
-                  data-cal-link="box-nexo-iq4l0s"
-                  data-cal-namespace="box-nexo"
-                  data-cal-config='{"layout":"month_view"}'
-                  class="inline-block bg-gradient-to-r from-accent to-yellow-600 text-dark-bg px-6 py-3 md:px-8 md:py-4 rounded-full font-bold text-sm sm:text-base md:text-lg hover:from-yellow-600 hover:to-accent transition-all duration-300 shadow-2xl hover:shadow-accent/50 hover:scale-110 btn-primary pulse-effect relative overflow-hidden cursor-pointer">
-                  <span class="relative z-10">Agenda Ya</span>
-                </button>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide relative">
-            <div class="img-zoom w-full h-full">
-              <img src="assets/images/PORTADA/PORTADA0.heic" alt="Boxing Training"
-                class="w-full h-full object-cover object-center" />
-            </div>
-            <div
-              class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60 md:from-black/70 md:via-black/50 md:to-black/70 flex items-center justify-center">
-              <div class="text-center fade-in-up px-4 max-w-4xl mx-auto hero-content-mobile">
-                <div class="hidden md:flex mb-4 sm:mb-5 md:mb-6 justify-center">
-                  <img src="assets/images/logo.jpg" alt="Logo Nexo Deportes"
-                    class="w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 rounded-full object-cover shadow-2xl border-2 md:border-4 border-accent/50 animate-pulse" />
-                </div>
-                <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-3 md:mb-4 gradient-text drop-shadow-2xl text-glow">Box Nexo Deportes</h1>
-                <p class="text-base sm:text-lg md:text-xl lg:text-2xl text-white mb-6 md:mb-8 font-light drop-shadow-lg">Entrena más fuerte, recupérate
-                  mejor</p>
-                <button
-                  data-cal-link="box-nexo-iq4l0s"
-                  data-cal-namespace="box-nexo"
-                  data-cal-config='{"layout":"month_view"}'
-                  class="inline-block bg-gradient-to-r from-accent to-yellow-600 text-dark-bg px-6 py-3 md:px-8 md:py-4 rounded-full font-bold text-sm sm:text-base md:text-lg hover:from-yellow-600 hover:to-accent transition-all duration-300 shadow-2xl hover:shadow-accent/50 hover:scale-110 btn-primary pulse-effect relative overflow-hidden cursor-pointer">
-                  <span class="relative z-10">Agenda Ya</span>
-                </button>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide relative">
-            <div class="img-zoom w-full h-full">
-              <img src="assets/images/PORTADA/PORTADA2.webp" alt="Fitness Training"
-                class="w-full h-full object-cover object-center" />
-            </div>
-            <div
-              class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60 md:from-black/70 md:via-black/50 md:to-black/70 flex items-center justify-center">
-              <div class="text-center fade-in-up px-4 max-w-4xl mx-auto hero-content-mobile">
-                <div class="hidden md:flex mb-4 sm:mb-5 md:mb-6 justify-center">
-                  <img src="assets/images/logo.jpg" alt="Logo Nexo Deportes"
-                    class="w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 rounded-full object-cover shadow-2xl border-2 md:border-4 border-accent/50 animate-pulse" />
-                </div>
-                <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-3 md:mb-4 gradient-text drop-shadow-2xl text-glow">Box Nexo Deportes</h1>
-                <p class="text-base sm:text-lg md:text-xl lg:text-2xl text-white mb-6 md:mb-8 font-light drop-shadow-lg">Entrena más fuerte, recupérate
-                  mejor</p>
-                <button
-                  data-cal-link="box-nexo-iq4l0s"
-                  data-cal-namespace="box-nexo"
-                  data-cal-config='{"layout":"month_view"}'
-                  class="inline-block bg-gradient-to-r from-accent to-yellow-600 text-dark-bg px-6 py-3 md:px-8 md:py-4 rounded-full font-bold text-sm sm:text-base md:text-lg hover:from-yellow-600 hover:to-accent transition-all duration-300 shadow-2xl hover:shadow-accent/50 hover:scale-110 btn-primary pulse-effect relative overflow-hidden cursor-pointer">
-                  <span class="relative z-10">Agenda Ya</span>
-                </button>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide relative">
-            <div class="img-zoom w-full h-full">
-              <img src="assets/images/PORTADA/PORTADA3.webp" alt="Group Training"
-                class="w-full h-full object-cover object-top md:object-top" />
-            </div>
-            <div
-              class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60 md:from-black/70 md:via-black/50 md:to-black/70 flex items-center justify-center">
-              <div class="text-center fade-in-up px-4 max-w-4xl mx-auto hero-content-mobile">
-                <div class="hidden md:flex mb-4 sm:mb-5 md:mb-6 justify-center">
-                  <img src="assets/images/logo.jpg" alt="Logo Nexo Deportes"
-                    class="w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 rounded-full object-cover shadow-2xl border-2 md:border-4 border-accent/50 animate-pulse" />
-                </div>
-                <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-3 md:mb-4 gradient-text drop-shadow-2xl text-glow">Box Nexo Deportes</h1>
-                <p class="text-base sm:text-lg md:text-xl lg:text-2xl text-white mb-6 md:mb-8 font-light drop-shadow-lg">Entrena más fuerte, recupérate
-                  mejor</p>
-                <button
-                  data-cal-link="box-nexo-iq4l0s"
-                  data-cal-namespace="box-nexo"
-                  data-cal-config='{"layout":"month_view"}'
-                  class="inline-block bg-gradient-to-r from-accent to-yellow-600 text-dark-bg px-6 py-3 md:px-8 md:py-4 rounded-full font-bold text-sm sm:text-base md:text-lg hover:from-yellow-600 hover:to-accent transition-all duration-300 shadow-2xl hover:shadow-accent/50 hover:scale-110 btn-primary pulse-effect relative overflow-hidden cursor-pointer">
-                  <span class="relative z-10">Agenda Ya</span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-pagination"></div>
-      </div>
-    </section>
-
-    <!-- Video e Invitación -->
-    <section id="video-invitacion" class="py-16 md:py-24 bg-gradient-to-b from-transparent via-gray-900/20 to-transparent relative overflow-hidden">
-      <div class="container mx-auto px-4 sm:px-6">
-        <div class="max-w-7xl mx-auto">
-          <div class="grid lg:grid-cols-2 gap-6 md:gap-8 lg:gap-12 items-stretch mobile-video-symmetric">
-            <!-- Video a la izquierda -->
-            <div class="w-full order-2 lg:order-1 flex items-stretch" data-aos="fade-right">
-              <div
-                class="relative w-full rounded-2xl md:rounded-2xl overflow-hidden shadow-2xl flex items-center video-phone-frame">
-                <div class="aspect-video w-full" style="min-height: 100%;">
-                  <iframe
-                    src="https://player.vimeo.com/video/1153682064?autoplay=1&amp;muted=0&amp;controls=1&amp;badge=0&amp;autopause=1&amp;loop=1&amp;byline=0&amp;portrait=0&amp;title=0"
-                    width="100%" height="100%" frameborder="0"
-                    allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
-                    referrerpolicy="strict-origin-when-cross-origin" title="VIDEONEXO"
-                    id="vimeo-video"
-                    class="absolute top-0 left-0 w-full h-full"
-                    style="border: none; display: block; background: transparent;">
-                  </iframe>
-                </div>
-              </div>
-            </div>
-
-            <!-- Texto a la derecha -->
-            <div class="w-full flex flex-col justify-center order-1 lg:order-2" data-aos="fade-left">
-              <div
-                class="glass-effect rounded-2xl p-6 sm:p-8 md:p-10 shadow-xl h-full flex flex-col card-hover">
-                <div class="mb-6 md:mb-8">
-                  <div class="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-5">
-                    <div
-                      class="w-14 h-14 sm:w-16 sm:h-16 md:w-12 md:h-12 rounded-full bg-gradient-to-br from-accent to-yellow-600 flex items-center justify-center shadow-lg flex-shrink-0">
-                      <i class="fas fa-dumbbell text-white text-xl sm:text-2xl md:text-xl"></i>
-                    </div>
-                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold gradient-text leading-tight">Únete a Nexo
-                      Deportes</h2>
-                  </div>
-                </div>
-
-                <div class="space-y-6 sm:space-y-7 md:space-y-6 text-white/90 flex-grow">
-                  <p class="text-base sm:text-lg md:text-xl leading-relaxed">
-                    En <span class="text-accent font-semibold">Nexo Deportes</span> no solo entrenas tu cuerpo,
-                    transformas tu vida. Somos más que un gimnasio, somos una comunidad comprometida con tu éxito.
-                  </p>
-
-                  <div class="space-y-5 sm:space-y-6 md:space-y-4">
-                    <div class="flex items-start gap-4 sm:gap-5">
-                      <div
-                        class="w-10 h-10 sm:w-12 sm:h-12 md:w-8 md:h-8 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0 mt-1">
-                        <i class="fas fa-check text-accent text-lg sm:text-xl md:text-base"></i>
-                      </div>
-                      <div class="flex-1">
-                        <h3 class="font-bold text-white mb-2 sm:mb-1 text-lg sm:text-xl md:text-base">Entrenamiento
-                          Profesional</h3>
-                        <p class="text-white/80 text-sm sm:text-base md:text-sm leading-relaxed">Instructores
-                          certificados que te guiarán en cada paso de tu transformación física y mental.</p>
-                      </div>
-                    </div>
-
-                    <div class="flex items-start gap-4 sm:gap-5">
-                      <div
-                        class="w-10 h-10 sm:w-12 sm:h-12 md:w-8 md:h-8 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0 mt-1">
-                        <i class="fas fa-check text-accent text-lg sm:text-xl md:text-base"></i>
-                      </div>
-                      <div class="flex-1">
-                        <h3 class="font-bold text-white mb-2 sm:mb-1 text-lg sm:text-xl md:text-base">Ambiente Motivador
-                        </h3>
-                        <p class="text-white/80 text-sm sm:text-base md:text-sm leading-relaxed">Un espacio donde cada
-                          persona es parte de una familia que se apoya mutuamente.</p>
-                      </div>
-                    </div>
-
-                    <div class="flex items-start gap-4 sm:gap-5">
-                      <div
-                        class="w-10 h-10 sm:w-12 sm:h-12 md:w-8 md:h-8 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0 mt-1">
-                        <i class="fas fa-check text-accent text-lg sm:text-xl md:text-base"></i>
-                      </div>
-                      <div class="flex-1">
-                        <h3 class="font-bold text-white mb-2 sm:mb-1 text-lg sm:text-xl md:text-base">Resultados
-                          Garantizados</h3>
-                        <p class="text-white/80 text-sm sm:text-base md:text-sm leading-relaxed">Programas diseñados
-                          para alcanzar tus objetivos, sin importar tu nivel de experiencia.</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="pt-6 sm:pt-8 md:pt-4 mt-auto">
-                    <button
-                      data-cal-link="box-nexo-iq4l0s"
-                      data-cal-namespace="box-nexo"
-                      data-cal-config='{"layout":"month_view"}'
-                      class="inline-flex items-center justify-center gap-3 bg-gradient-to-r from-accent to-yellow-600 text-dark-bg px-6 py-4 sm:px-8 sm:py-5 md:px-8 md:py-4 rounded-full font-bold text-base sm:text-lg md:text-lg hover:from-yellow-600 hover:to-accent transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 btn-primary relative overflow-hidden w-full sm:w-auto cursor-pointer">
-                      <i class="fas fa-calendar-alt text-2xl sm:text-3xl md:text-2xl relative z-10"></i>
-                      <span class="relative z-10 text-center">Comienza tu Transformación</span>
-                      <i class="fas fa-arrow-right relative z-10 text-xl sm:text-2xl md:text-base"></i>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Servicios -->
-    <section id="servicios" class="py-20 md:py-28 bg-gradient-to-b from-transparent via-gray-900/30 to-transparent relative overflow-hidden">
-      <div class="container mx-auto px-4">
-        <div class="text-center mb-16" data-aos="fade-up">
-          <div class="flex items-center justify-center gap-3 mb-4">
-            <i class="fas fa-star text-accent text-3xl icon-bounce"></i>
-            <h2 class="text-4xl md:text-5xl font-bold gradient-text">Nuestros Servicios</h2>
-          </div>
-          <p class="text-muted text-lg max-w-2xl mx-auto">Ofrecemos diferentes opciones para que elijas la que más te
-            conviene</p>
-        </div>
-
-        <div class="swiper serviciosSwiper max-w-6xl mx-auto">
-          <div class="swiper-wrapper">
-            <!-- Open Box -->
-            <div class="swiper-slide">
-              <div
-                class="glass-effect rounded-2xl p-8 card-hover shine-effect h-full flex flex-col">
-                <div class="flex flex-col items-center mb-4">
-                  <div
-                    class="w-20 h-20 flex items-center justify-center mb-4 rounded-full bg-gradient-to-br from-accent to-yellow-600 text-white text-3xl shadow-lg hover:scale-110 transition-transform duration-300">
-                    <i class="fas fa-door-open"></i>
-                  </div>
-                  <h3 class="text-2xl font-bold mb-2 text-center text-white">Open Box</h3>
-                  <p class="text-muted text-center mb-4">Gimnasio abierto y sin restricciones</p>
-                </div>
-                <ul class="space-y-3 mb-6 flex-grow">
-                  <li class="flex items-center gap-2 text-white/90">
-                    <i class="fas fa-check text-accent text-lg"></i>
-                    <span>Acceso libre</span>
-                  </li>
-                  <li class="flex items-center gap-2 text-white/90">
-                    <i class="fas fa-check text-accent text-lg"></i>
-                    <span>Ambiente abierto</span>
-                  </li>
-                  <li class="flex items-center gap-2 text-white/90">
-                    <i class="fas fa-check text-accent text-lg"></i>
-                    <span>Ideal para entrenar libremente</span>
-                  </li>
-                </ul>
-                <button
-                  data-cal-link="box-nexo-iq4l0s"
-                  data-cal-namespace="box-nexo"
-                  data-cal-config='{"layout":"month_view"}'
-                  class="block w-full text-center bg-gradient-to-r from-accent to-yellow-600 text-dark-bg px-4 py-3 rounded-full font-bold hover:from-yellow-600 hover:to-accent transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 btn-primary relative overflow-hidden cursor-pointer">
-                  <span class="relative z-10">Más info</span>
-                </button>
-              </div>
-            </div>
-
-            <!-- Clases de Boxeo -->
-            <div class="swiper-slide">
-              <div
-                class="glass-effect rounded-2xl p-8 card-hover shine-effect h-full flex flex-col">
-                <div class="flex flex-col items-center mb-4">
-                  <div
-                    class="w-20 h-20 flex items-center justify-center mb-4 rounded-full bg-gradient-to-br from-accent to-yellow-600 text-white text-3xl shadow-lg hover:scale-110 transition-transform duration-300">
-                    <i class="fas fa-hand-rock"></i>
-                  </div>
-                  <h3 class="text-2xl font-bold mb-2 text-center text-white">Clases de Boxeo</h3>
-                  <p class="text-muted text-center mb-4">Aprende y entrena con nosotros</p>
-                </div>
-                <ul class="space-y-3 mb-6 flex-grow">
-                  <li class="flex items-center gap-2 text-white/90">
-                    <i class="fas fa-check text-accent text-lg"></i>
-                    <span>Clases grupales y particulares</span>
-                  </li>
-                  <li class="flex items-center gap-2 text-white/90">
-                    <i class="fas fa-check text-accent text-lg"></i>
-                    <span>Mejora técnica y resistencia</span>
-                  </li>
-                  <li class="flex items-center gap-2 text-white/90">
-                    <i class="fas fa-check text-accent text-lg"></i>
-                    <span>Horarios flexibles</span>
-                  </li>
-                </ul>
-                <a href="https://wa.me/56991040157?text=Hola%2C%20quiero%20más%20información%20sobre%20clases%20de%20boxeo"
-                  target="_blank" rel="noopener noreferrer"
-                  class="block w-full text-center bg-gradient-to-r from-accent to-yellow-600 text-dark-bg px-4 py-3 rounded-full font-bold hover:from-yellow-600 hover:to-accent transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 btn-primary relative overflow-hidden">
-                  <span class="relative z-10">Más info</span>
-                </a>
-              </div>
-            </div>
-
-            <!-- Personalizado -->
-            <div class="swiper-slide">
-              <div
-                class="bg-gray-900/60 backdrop-blur-sm border border-gray-800 rounded-2xl p-8 card-hover shine-effect h-full flex flex-col">
-                <div class="flex flex-col items-center mb-4">
-                  <div
-                    class="w-20 h-20 flex items-center justify-center mb-4 rounded-full bg-gradient-to-br from-accent to-yellow-600 text-white text-3xl shadow-lg hover:scale-110 transition-transform duration-300">
-                    <i class="fas fa-user-check"></i>
-                  </div>
-                  <h3 class="text-2xl font-bold mb-2 text-center text-white">Personalizado</h3>
-                  <p class="text-muted text-center mb-4">Entrenamiento a tu medida</p>
-                </div>
-                <ul class="space-y-3 mb-6 flex-grow">
-                  <li class="flex items-center gap-2 text-white/90">
-                    <i class="fas fa-check text-accent text-lg"></i>
-                    <span>Planes totalmente a medida</span>
-                  </li>
-                  <li class="flex items-center gap-2 text-white/90">
-                    <i class="fas fa-check text-accent text-lg"></i>
-                    <span>Entrenamiento personal 1 a 1</span>
-                  </li>
-                  <li class="flex items-center gap-2 text-white/90">
-                    <i class="fas fa-check text-accent text-lg"></i>
-                    <span>Flexibilidad de horarios</span>
-                  </li>
-                </ul>
-                <a href="https://wa.me/56991040157?text=Hola%2C%20quiero%20más%20información%20sobre%20entrenamiento%20personalizado"
-                  target="_blank" rel="noopener noreferrer"
-                  class="block w-full text-center bg-gradient-to-r from-accent to-yellow-600 text-dark-bg px-4 py-3 rounded-full font-bold hover:from-yellow-600 hover:to-accent transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 btn-primary relative overflow-hidden">
-                  <span class="relative z-10">Más info</span>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-pagination mt-6"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Entrenadores -->
-    <section id="entrenadores" class="py-20 bg-gray-900">
-      <div class="container mx-auto px-4">
-        <div class="text-center mb-12" data-aos="fade-up">
-          <div class="flex items-center justify-center gap-3 mb-4">
-            <i class="fas fa-users text-accent text-3xl icon-bounce"></i>
-            <h2 class="text-4xl md:text-5xl font-bold gradient-text">Nuestros Entrenadores</h2>
-          </div>
-          <p class="text-lg text-gray-300 max-w-2xl mx-auto">Profesionales certificados comprometidos con tu progreso
-          </p>
-        </div>
-        <div class="flex justify-center">
-          <div class="swiper trainersSwiper w-full max-w-[900px]">
-            <div class="swiper-wrapper">
-              <div class="swiper-slide flex justify-center px-4">
-                <div
-                  class="bg-white rounded-3xl shadow-2xl overflow-hidden w-full max-w-[540px] img-zoom hover:shadow-accent/30 transition-all duration-300">
-                  <img src="assets/images/profe3.webp" alt="Entrenador" class="w-full h-auto object-cover" />
-                </div>
-              </div>
-              <div class="swiper-slide flex justify-center px-4">
-                <div
-                  class="bg-white rounded-3xl shadow-2xl overflow-hidden w-full max-w-[540px] img-zoom hover:shadow-accent/30 transition-all duration-300">
-                  <img src="assets/images/profe2.webp" alt="Entrenadora" class="w-full h-auto object-cover" />
-                </div>
-              </div>
-              <div class="swiper-slide flex justify-center px-4">
-                <div
-                  class="bg-white rounded-3xl shadow-2xl overflow-hidden w-full max-w-[540px] img-zoom hover:shadow-accent/30 transition-all duration-300">
-                  <img src="assets/images/profe1.webp" alt="Entrenador" class="w-full h-auto object-cover" />
-                </div>
-              </div>
-            </div>
-            <div class="swiper-pagination mt-6"></div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- Horarios -->
-    <section id="horarios" class="py-20 md:py-28 bg-gradient-to-b from-transparent via-gray-900/30 to-transparent relative overflow-hidden">
-      <div class="container mx-auto px-4">
-        <div class="text-center mb-16" data-aos="fade-up">
-          <div class="flex items-center justify-center gap-3 mb-4">
-            <i class="fas fa-clock text-accent text-3xl"></i>
-            <h2 class="text-4xl md:text-5xl font-bold">Horarios</h2>
-          </div>
-          <p class="text-muted text-lg">Encuentra el horario perfecto para tu rutina</p>
-        </div>
-        <div
-          class="max-w-4xl mx-auto glass-effect rounded-2xl overflow-hidden shadow-2xl card-hover"
-          data-aos="fade-up">
-          <div class="overflow-x-auto">
-            <table class="w-full">
-              <thead class="bg-gradient-to-r from-accent to-yellow-600 text-dark-bg">
-                <tr>
-                  <th class="px-6 py-5 text-left font-bold text-lg"><i class="fas fa-calendar-day mr-2"></i>Día</th>
-                  <th class="px-6 py-5 text-left font-bold text-lg"><i class="fas fa-sun mr-2"></i>Mañana</th>
-                  <th class="px-6 py-5 text-left font-bold text-lg"><i class="fas fa-moon mr-2"></i>Tarde</th>
-                </tr>
-              </thead>
-              <tbody class="divide-y divide-gray-800/50">
-                <tr class="hover:bg-accent/10 transition-all duration-300 cursor-pointer">
-                  <td class="px-6 py-5 font-semibold text-white text-lg">Lunes</td>
-                  <td class="px-6 py-5 text-white/80"><i class="fas fa-clock text-accent mr-2"></i>09:00 - 14:00</td>
-                  <td class="px-6 py-5 text-white/80"><i class="fas fa-clock text-accent mr-2"></i>16:00 - 20:30</td>
-                </tr>
-                <tr class="hover:bg-accent/10 transition-all duration-300 cursor-pointer">
-                  <td class="px-6 py-5 font-semibold text-white text-lg">Martes</td>
-                  <td class="px-6 py-5 text-white/80"><i class="fas fa-clock text-accent mr-2"></i>09:00 - 14:00</td>
-                  <td class="px-6 py-5 text-white/80"><i class="fas fa-clock text-accent mr-2"></i>16:00 - 20:30</td>
-                </tr>
-                <tr class="hover:bg-accent/10 transition-all duration-300 cursor-pointer">
-                  <td class="px-6 py-5 font-semibold text-white text-lg">Miércoles</td>
-                  <td class="px-6 py-5 text-white/80"><i class="fas fa-clock text-accent mr-2"></i>09:00 - 14:00</td>
-                  <td class="px-6 py-5 text-white/80"><i class="fas fa-clock text-accent mr-2"></i>16:00 - 20:30</td>
-                </tr>
-                <tr class="hover:bg-accent/10 transition-all duration-300 cursor-pointer">
-                  <td class="px-6 py-5 font-semibold text-white text-lg">Jueves</td>
-                  <td class="px-6 py-5 text-white/80"><i class="fas fa-clock text-accent mr-2"></i>09:00 - 14:00</td>
-                  <td class="px-6 py-5 text-white/80"><i class="fas fa-clock text-accent mr-2"></i>16:00 - 20:30</td>
-                </tr>
-                <tr class="hover:bg-accent/10 transition-all duration-300 cursor-pointer">
-                  <td class="px-6 py-5 font-semibold text-white text-lg">Viernes</td>
-                  <td class="px-6 py-5 text-white/80"><i class="fas fa-clock text-accent mr-2"></i>09:00 - 14:00</td>
-                  <td class="px-6 py-5 text-white/80"><i class="fas fa-clock text-accent mr-2"></i>16:00 - 20:30</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <div class="text-center mt-8" data-aos="fade-up">
-          <a href="https://wa.me/56991040157?text=Hola%2C%20quiero%20información%20sobre%20horarios" target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center gap-2 text-accent hover:text-yellow-600 transition-colors font-semibold">
-            ¿Necesitas un horario personalizado? Contáctanos <i class="fas fa-arrow-right ml-2"></i>
-          </a>
-        </div>
-      </div>
-    </section>
-
-
-    <!-- Testimonios -->
-    <section id="testimonios" class="py-20 md:py-28 bg-gradient-to-b from-gray-900/50 via-dark-bg to-gray-900/50 relative overflow-hidden">
-      <div class="container mx-auto px-4">
-        <div class="text-center mb-16" data-aos="fade-up">
-          <div class="flex items-center justify-center gap-3 mb-4">
-            <i class="fab fa-google text-accent text-3xl"></i>
-            <h2 class="text-4xl md:text-5xl font-bold">Testimonios</h2>
-          </div>
-          <p class="text-muted text-lg">Opiniones reales de Google</p>
-          <a href="https://www.google.com/maps/place/Box+Nexo+Deportes" target="_blank" rel="noopener noreferrer"
-            class="inline-flex items-center gap-2 text-accent hover:text-yellow-600 transition-colors text-sm mt-2">
-            <i class="fab fa-google"></i>
-            Ver todas las reseñas en Google
-          </a>
-        </div>
-        <div class="swiper testimoniosSwiper max-w-6xl mx-auto">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <div
-                class="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-2xl p-8 hover:border-accent transition-all duration-300 h-full flex flex-col">
-                <div class="flex items-start justify-between mb-4">
-                  <div class="flex items-center gap-4 flex-1">
-                    <div
-                      class="w-16 h-16 rounded-full bg-gradient-to-br from-accent to-yellow-600 flex items-center justify-center text-2xl flex-shrink-0">
-                      <i class="fas fa-user"></i>
-                    </div>
-                    <div class="flex-1">
-                      <h4 class="font-bold text-white mb-1">Francisca Rojas</h4>
-                      <div class="flex items-center gap-2 mb-2">
-                        <div class="flex gap-1 text-accent">
-                          <i class="fas fa-star text-sm"></i>
-                          <i class="fas fa-star text-sm"></i>
-                          <i class="fas fa-star text-sm"></i>
-                          <i class="fas fa-star text-sm"></i>
-                          <i class="fas fa-star text-sm"></i>
-                        </div>
-                        <span class="text-xs text-muted">hace 2 meses</span>
-                      </div>
-                      <div class="flex items-center gap-1 text-xs text-muted">
-                        <i class="fab fa-google"></i>
-                        <span>Google</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <p class="text-muted italic leading-relaxed flex-grow">"Llevo 6 meses entrenando y los resultados son
-                  increíbles. Los entrenadores son profesionales y el ambiente es muy motivador."</p>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div
-                class="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-2xl p-8 hover:border-accent transition-all duration-300 h-full flex flex-col">
-                <div class="flex items-start justify-between mb-4">
-                  <div class="flex items-center gap-4 flex-1">
-                    <div
-                      class="w-16 h-16 rounded-full bg-gradient-to-br from-accent to-yellow-600 flex items-center justify-center text-2xl flex-shrink-0">
-                      <i class="fas fa-user"></i>
-                    </div>
-                    <div class="flex-1">
-                      <h4 class="font-bold text-white mb-1">Miguel Ángel Torres</h4>
-                      <div class="flex items-center gap-2 mb-2">
-                        <div class="flex gap-1 text-accent">
-                          <i class="fas fa-star text-sm"></i>
-                          <i class="fas fa-star text-sm"></i>
-                          <i class="fas fa-star text-sm"></i>
-                          <i class="fas fa-star text-sm"></i>
-                          <i class="fas fa-star text-sm"></i>
-                        </div>
-                        <span class="text-xs text-muted">hace 1 mes</span>
-                      </div>
-                      <div class="flex items-center gap-1 text-xs text-muted">
-                        <i class="fab fa-google"></i>
-                        <span>Google</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <p class="text-muted italic leading-relaxed flex-grow">"El mejor box de San Bernardo. Equipamiento de
-                  primera y entrenadores que realmente se preocupan por tu progreso."</p>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div
-                class="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-2xl p-8 hover:border-accent transition-all duration-300 h-full flex flex-col">
-                <div class="flex items-start justify-between mb-4">
-                  <div class="flex items-center gap-4 flex-1">
-                    <div
-                      class="w-16 h-16 rounded-full bg-gradient-to-br from-accent to-yellow-600 flex items-center justify-center text-2xl flex-shrink-0">
-                      <i class="fas fa-user"></i>
-                    </div>
-                    <div class="flex-1">
-                      <h4 class="font-bold text-white mb-1">Carolina Pérez</h4>
-                      <div class="flex items-center gap-2 mb-2">
-                        <div class="flex gap-1 text-accent">
-                          <i class="fas fa-star text-sm"></i>
-                          <i class="fas fa-star text-sm"></i>
-                          <i class="fas fa-star text-sm"></i>
-                          <i class="fas fa-star text-sm"></i>
-                          <i class="fas fa-star text-sm"></i>
-                        </div>
-                        <span class="text-xs text-muted">hace 3 semanas</span>
-                      </div>
-                      <div class="flex items-center gap-1 text-xs text-muted">
-                        <i class="fab fa-google"></i>
-                        <span>Google</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <p class="text-muted italic leading-relaxed flex-grow">"Empecé sin experiencia y ahora no puedo dejar de
-                  entrenar. El ambiente es súper acogedor y te sientes parte de una familia."</p>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div
-                class="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-2xl p-8 hover:border-accent transition-all duration-300 h-full flex flex-col">
-                <div class="flex items-start justify-between mb-4">
-                  <div class="flex items-center gap-4 flex-1">
-                    <div
-                      class="w-16 h-16 rounded-full bg-gradient-to-br from-accent to-yellow-600 flex items-center justify-center text-2xl flex-shrink-0">
-                      <i class="fas fa-user"></i>
-                    </div>
-                    <div class="flex-1">
-                      <h4 class="font-bold text-white mb-1">Juan Pérez</h4>
-                      <div class="flex items-center gap-2 mb-2">
-                        <div class="flex gap-1 text-accent">
-                          <i class="fas fa-star text-sm"></i>
-                          <i class="fas fa-star text-sm"></i>
-                          <i class="fas fa-star text-sm"></i>
-                          <i class="fas fa-star text-sm"></i>
-                          <i class="fas fa-star text-sm"></i>
-                        </div>
-                        <span class="text-xs text-muted">hace 1 semana</span>
-                      </div>
-                      <div class="flex items-center gap-1 text-xs text-muted">
-                        <i class="fab fa-google"></i>
-                        <span>Google</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <p class="text-muted italic leading-relaxed flex-grow">"Excelente atención y resultados rápidos.
-                  Totalmente recomendado para quienes buscan un cambio real."</p>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-pagination mt-4"></div>
-          <div class="swiper-button-next"></div>
-          <div class="swiper-button-prev"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Quiénes Somos -->
-    <section id="nosotros" class="py-20 md:py-28 bg-gradient-to-b from-transparent via-gray-900/30 to-transparent relative overflow-hidden">
-      <div class="container mx-auto px-4">
-        <div class="max-w-4xl mx-auto">
-          <div class="text-center mb-16" data-aos="fade-up">
-            <div class="flex items-center justify-center gap-3 mb-4">
-              <i class="fas fa-info-circle text-accent text-3xl"></i>
-              <h2 class="text-4xl md:text-5xl font-bold">Quiénes Somos</h2>
-            </div>
-            <p class="text-muted text-lg leading-relaxed">En <span class="text-accent font-semibold">Box Nexo
-                Deportes</span> creemos que el entrenamiento va más allá del ejercicio físico. Es un estilo de vida que
-              transforma cuerpo y mente.</p>
-          </div>
-          <div class="grid md:grid-cols-3 gap-8 mb-12">
-            <div class="glass-effect rounded-2xl p-6 text-center card-hover"
-              data-aos="fade-up">
-              <div class="text-4xl mb-4"><i class="fas fa-bullseye text-accent"></i></div>
-              <h3 class="text-xl font-bold mb-3">Nuestra Misión</h3>
-              <p class="text-muted text-sm">Proporcionar un espacio de entrenamiento profesional donde cada persona
-                alcance su máximo potencial.</p>
-            </div>
-            <div class="glass-effect rounded-2xl p-6 text-center card-hover"
-              data-aos="fade-up" data-aos-delay="100">
-              <div class="text-4xl mb-4"><i class="fas fa-dumbbell text-accent"></i></div>
-              <h3 class="text-xl font-bold mb-3">Nuestros Valores</h3>
-              <p class="text-muted text-sm">Disciplina, respeto, superación constante y trabajo en equipo son los
-                pilares
-                de nuestra comunidad.</p>
-            </div>
-            <div class="glass-effect rounded-2xl p-6 text-center card-hover"
-              data-aos="fade-up" data-aos-delay="200">
-              <div class="text-4xl mb-4"><i class="fas fa-trophy text-accent"></i></div>
-              <h3 class="text-xl font-bold mb-3">Nuestra Visión</h3>
-              <p class="text-muted text-sm">Ser el centro de entrenamiento líder en San Bernardo, reconocidos por
-                resultados y comunidad.</p>
-            </div>
-          </div>
-          <div class="text-center" data-aos="fade-up">
-            <a href="#entrenadores"
-              class="inline-flex items-center gap-2 text-accent hover:text-yellow-600 transition-colors font-semibold">
-              Conoce a nuestros entrenadores <i class="fas fa-arrow-right ml-2"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Ubicación -->
-    <section id="ubicacion" class="py-20 md:py-28 bg-gradient-to-b from-gray-900/50 via-dark-bg to-gray-900/50 relative overflow-hidden">
-      <div class="container mx-auto px-4">
-        <div class="text-center mb-16" data-aos="fade-up">
-          <div class="flex items-center justify-center gap-3 mb-4">
-            <i class="fas fa-map-marker-alt text-accent text-3xl"></i>
-            <h2 class="text-4xl md:text-5xl font-bold">Dónde Estamos</h2>
-          </div>
-          <p class="text-muted text-lg">Visítanos en el corazón de San Bernardo</p>
-        </div>
-        <div class="max-w-5xl mx-auto grid lg:grid-cols-2 gap-8">
-          <div class="glass-effect rounded-2xl p-8 card-hover" data-aos="fade-right">
-            <h3 class="text-2xl font-bold mb-6">Información de Contacto</h3>
-            <div class="space-y-6">
-              <div class="flex items-start gap-4">
-                <div class="w-12 h-12 rounded-full bg-accent/20 flex items-center justify-center">
-                  <i class="fas fa-map-marker-alt text-accent text-xl"></i>
-                </div>
-                <div>
-                  <h4 class="font-bold mb-1">Dirección</h4>
-                  <p class="text-muted">Maipú 640, 8320000<br>San Bernardo, Región Metropolitana</p>
-                </div>
-              </div>
-              <div class="flex items-start gap-4">
-                <div class="w-12 h-12 rounded-full bg-accent/20 flex items-center justify-center">
-                  <i class="fas fa-clock text-accent text-xl"></i>
-                </div>
-                <div>
-                  <h4 class="font-bold mb-1">Horario de Atención</h4>
-                  <p class="text-muted">Lunes a Viernes: 09:00 - 14:00 | 16:00 - 20:30</p>
-                </div>
-              </div>
-              <div class="flex items-start gap-4">
-                <div class="w-12 h-12 rounded-full bg-accent/20 flex items-center justify-center">
-                  <i class="fas fa-phone text-accent text-xl"></i>
-                </div>
-                <div>
-                  <h4 class="font-bold mb-1">Teléfono</h4>
-                  <a href="https://wa.me/56991040157" target="_blank" rel="noopener noreferrer"
-                    class="text-accent hover:text-yellow-600 transition-colors">+56 9 9104 0157</a>
-                </div>
-              </div>
-            </div>
-            <a href="https://www.google.com/maps/dir//Maipú+640,+San+Bernardo" target="_blank" rel="noopener noreferrer"
-              class="mt-8 flex items-center justify-center gap-2 bg-gradient-to-r from-accent to-yellow-600 text-dark-bg px-6 py-3 rounded-full font-bold hover:from-yellow-600 hover:to-accent transition-all duration-300 w-full shadow-lg hover:shadow-xl hover:scale-105 btn-primary relative overflow-hidden">
-              <i class="fas fa-directions relative z-10"></i>
-              <span class="relative z-10">Cómo llegar</span>
-            </a>
-          </div>
-          <div class="glass-effect rounded-2xl overflow-hidden card-hover"
-            data-aos="fade-left">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3310.179!2d-70.6985!3d-33.5974!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzPCsDM1JzUwLjYiUyA3MMKwNDEnNTQuNiJX!5e0!3m2!1ses!2scl!4v1234567890"
-              width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" title="Mapa"></iframe>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contacto -->
-    <section id="contacto" class="py-20 md:py-28 bg-gradient-to-b from-transparent via-gray-900/30 to-transparent relative overflow-hidden">
-      <div class="container mx-auto px-4">
-        <div class="max-w-3xl mx-auto text-center" data-aos="fade-up">
-          <div class="flex items-center justify-center gap-3 mb-6">
-            <i class="fas fa-phone-alt text-accent text-3xl"></i>
-            <h2 class="text-4xl md:text-5xl font-bold">¿Listo para comenzar?</h2>
-          </div>
-          <p class="text-muted text-lg mb-8">Contáctanos hoy y da el primer paso hacia una mejor versión de ti mismo</p>
-          <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <button
-              data-cal-link="box-nexo-iq4l0s"
-              data-cal-namespace="box-nexo"
-              data-cal-config='{"layout":"month_view"}'
-              class="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-accent to-yellow-600 text-dark-bg px-8 py-4 rounded-full font-bold text-lg hover:from-yellow-600 hover:to-accent transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 btn-primary pulse-effect relative overflow-hidden cursor-pointer">
-              <i class="fas fa-calendar-alt text-2xl relative z-10"></i>
-              <span class="relative z-10">Agenda Ya</span>
-            </button>
-            <a href="#servicios"
-              class="inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white/20 transition-all duration-300 border border-white/20 hover:border-accent hover:scale-105 shadow-lg">
-              <span>Ver planes</span>
-              <i class="fas fa-arrow-right"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- Footer -->
-  <footer class="bg-gradient-to-b from-dark-bg via-black to-black border-t border-gray-800/50 py-12 relative">
-    <div class="container mx-auto px-4">
-      <div class="grid md:grid-cols-3 gap-8 mb-8">
-        <div>
-          <div class="flex items-center gap-3 mb-4">
-            <div
-              class="w-12 h-12 rounded-full bg-gradient-to-br from-accent to-yellow-600 flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-300">
-              <img src="assets/images/logo.jpg" alt="Logo" class="w-10 h-10 object-contain rounded-full" />
-            </div>
-            <span class="text-xl font-bold gradient-text">Box Nexo Deportes</span>
-          </div>
-          <p class="text-muted text-sm leading-relaxed">Tu centro de entrenamiento en San Bernardo. Transformando vidas
-            a través del deporte.</p>
-        </div>
-        <div>
-          <h4 class="text-lg font-semibold mb-4 text-white">Síguenos</h4>
-          <div class="flex space-x-4">
-            <a href="https://www.instagram.com/box.nexodeport/" target="_blank" rel="noopener noreferrer"
-              aria-label="Instagram"
-              class="text-accent hover:text-yellow-600 transition-all duration-300 hover:scale-125 icon-bounce">
-              <i class="fab fa-instagram text-3xl"></i>
-            </a>
-          </div>
-        </div>
-        <div>
-          <h4 class="text-lg font-semibold mb-4 text-white">Enlaces Rápidos</h4>
-          <ul class="space-y-3 text-sm">
-            <li><a href="#inicio"
-                class="text-muted hover:text-accent transition-all duration-300 hover:translate-x-2 inline-block"><i
-                  class="fas fa-chevron-right text-xs mr-2"></i>Inicio</a></li>
-            <li><a href="#servicios"
-                class="text-muted hover:text-accent transition-all duration-300 hover:translate-x-2 inline-block"><i
-                  class="fas fa-chevron-right text-xs mr-2"></i>Servicios</a></li>
-            <li><a href="#horarios"
-                class="text-muted hover:text-accent transition-all duration-300 hover:translate-x-2 inline-block"><i
-                  class="fas fa-chevron-right text-xs mr-2"></i>Horarios</a></li>
-            <li><a href="#contacto"
-                class="text-muted hover:text-accent transition-all duration-300 hover:translate-x-2 inline-block"><i
-                  class="fas fa-chevron-right text-xs mr-2"></i>Contacto</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="pt-8 border-t border-gray-800/50 text-center text-sm text-muted">
-        <p>&copy; <span id="currentYear"></span> Box Nexo Deportes — Todos los derechos reservados.</p>
-        <p class="mt-2">Desarrollado por <span class="text-accent font-semibold">Hardwaremania</span></p>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Agenda Administrativa Privada (solo visible con parámetro de URL) -->
-  <div id="agenda-admin-container" style="display: none; min-height: 100vh;" class="py-12 md:py-20 bg-gradient-to-b from-dark-bg via-black to-dark-bg">
-    <div class="container mx-auto px-4">
-      <div class="max-w-6xl mx-auto">
-        <div class="glass-effect rounded-2xl p-6 md:p-8 shadow-2xl">
-          <div class="flex items-center justify-between mb-6 flex-wrap gap-4">
-            <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold gradient-text">
-              <i class="fas fa-calendar-alt mr-3"></i>Agenda Administrativa
-            </h2>
-            <a href="index.html" class="text-accent hover:text-yellow-600 transition-colors text-sm md:text-base">
-              <i class="fas fa-home mr-2"></i>Volver al sitio
-            </a>
-          </div>
-          <div id="agenda-admin-content">
-            <div class="text-center text-muted py-8">
-              <i class="fas fa-spinner fa-spin text-4xl mb-4"></i>
-              <p>Cargando agendamientos...</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Floating Buttons -->
-  <div id="floatingButtons" class="fixed bottom-6 right-6 flex-col gap-4 z-50 hidden">
-    <!-- WhatsApp Button -->
-    <a href="https://wa.me/56991040157?text=Hola%20Box%20Nexo%20Deportes,%20quiero%20reservar" target="_blank"
-      rel="noopener noreferrer" aria-label="WhatsApp"
-      class="bg-gradient-to-br from-green-500 to-green-600 hover:from-green-600 hover:to-green-500 text-white p-4 rounded-full shadow-2xl floating-btn pulse-effect group">
-      <i class="fab fa-whatsapp text-2xl group-hover:scale-110 transition-transform"></i>
+      <span class="font-display font-bold text-white text-sm tracking-tight group-hover:text-accent transition-colors">Nexo Deportes</span>
     </a>
 
-    <!-- Scroll to Top Button -->
-    <button id="scrollTopBtn" aria-label="Volver arriba"
-      class="bg-gradient-to-br from-gray-700 to-gray-800 hover:from-accent hover:to-yellow-600 text-white p-3 rounded-full shadow-2xl floating-btn group">
-      <i class="fas fa-arrow-up group-hover:scale-110 transition-transform"></i>
+    <ul class="hidden lg:flex items-center gap-6 text-sm font-medium text-muted">
+      <li><a href="#inicio"       class="hover:text-white transition-colors">Inicio</a></li>
+      <li><a href="#servicios"    class="hover:text-white transition-colors">Clases</a></li>
+      <li><a href="#horarios"     class="hover:text-white transition-colors">Horarios</a></li>
+      <li><a href="#entrenadores" class="hover:text-white transition-colors">Entrenadores</a></li>
+      <li><a href="#testimonios"  class="hover:text-white transition-colors">Testimonios</a></li>
+      <li><a href="#ubicacion"    class="hover:text-white transition-colors">Ubicación</a></li>
+    </ul>
+
+    <div class="flex items-center gap-3">
+      <button data-cal-link="box-nexo-iq4l0s" data-cal-namespace="box-nexo" data-cal-config='{"layout":"month_view"}'
+        class="hidden lg:inline-flex btn btn-gold px-5 py-2.5 text-sm">
+        <i class="fas fa-calendar-alt text-xs"></i>Agenda Ya
+      </button>
+      <button id="mobileMenuBtn" class="lg:hidden w-10 h-10 flex items-center justify-center text-white hover:text-accent transition-colors">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+
+  </nav>
+</header>
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ MOBILE MENU ━━━ -->
+<div id="mobileMenuOverlay" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 lg:hidden opacity-0 pointer-events-none transition-opacity duration-300"></div>
+<div id="mobileMenu" class="fixed top-0 right-0 w-72 h-full z-50 lg:hidden translate-x-full transition-transform duration-300 ease-[cubic-bezier(.4,0,.2,1)]">
+  <div class="flex flex-col h-full px-6 py-7">
+    <button id="closeMobileMenu" class="absolute top-5 right-5 w-9 h-9 flex items-center justify-center text-muted hover:text-white transition-colors">
+      <i class="fas fa-times"></i>
+    </button>
+    <div class="flex items-center gap-2.5 mb-8 mt-2">
+      <div class="w-8 h-8 rounded-full overflow-hidden ring-1 ring-accent/30">
+        <img src="assets/images/logo.jpg" alt="Logo" class="w-full h-full object-cover" />
+      </div>
+      <span class="font-display font-bold text-white text-sm">Nexo Deportes</span>
+    </div>
+    <ul class="space-y-1 flex-1">
+      <li><a href="#inicio"       class="mobile-link flex items-center gap-3 text-muted hover:text-white hover:bg-white/5 px-4 py-3 rounded-xl transition-all text-sm"><i class="fas fa-home w-4 text-accent/60 text-xs"></i>Inicio</a></li>
+      <li><a href="#servicios"    class="mobile-link flex items-center gap-3 text-muted hover:text-white hover:bg-white/5 px-4 py-3 rounded-xl transition-all text-sm"><i class="fas fa-dumbbell w-4 text-accent/60 text-xs"></i>Clases</a></li>
+      <li><a href="#horarios"     class="mobile-link flex items-center gap-3 text-muted hover:text-white hover:bg-white/5 px-4 py-3 rounded-xl transition-all text-sm"><i class="fas fa-clock w-4 text-accent/60 text-xs"></i>Horarios</a></li>
+      <li><a href="#entrenadores" class="mobile-link flex items-center gap-3 text-muted hover:text-white hover:bg-white/5 px-4 py-3 rounded-xl transition-all text-sm"><i class="fas fa-users w-4 text-accent/60 text-xs"></i>Entrenadores</a></li>
+      <li><a href="#testimonios"  class="mobile-link flex items-center gap-3 text-muted hover:text-white hover:bg-white/5 px-4 py-3 rounded-xl transition-all text-sm"><i class="fas fa-comments w-4 text-accent/60 text-xs"></i>Testimonios</a></li>
+      <li><a href="#ubicacion"    class="mobile-link flex items-center gap-3 text-muted hover:text-white hover:bg-white/5 px-4 py-3 rounded-xl transition-all text-sm"><i class="fas fa-map-marker-alt w-4 text-accent/60 text-xs"></i>Ubicación</a></li>
+      <li><a href="#contacto"     class="mobile-link flex items-center gap-3 text-muted hover:text-white hover:bg-white/5 px-4 py-3 rounded-xl transition-all text-sm"><i class="fas fa-phone w-4 text-accent/60 text-xs"></i>Contacto</a></li>
+    </ul>
+    <button data-cal-link="box-nexo-iq4l0s" data-cal-namespace="box-nexo" data-cal-config='{"layout":"month_view"}'
+      class="btn btn-gold w-full py-4 text-sm mt-4">
+      <i class="fas fa-calendar-alt text-xs"></i>Agenda Ya
+    </button>
+  </div>
+</div>
+
+<main>
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ HERO ━━━ -->
+<section id="inicio" class="hero-section relative overflow-hidden">
+  <div class="swiper heroSwiper w-full h-full">
+    <div class="swiper-wrapper">
+
+      <!-- Slide 1 — solo imagen + CTA -->
+      <div class="swiper-slide relative">
+        <img src="assets/images/PORTADA/PORTADA1.webp" alt="Boxing Training"
+          class="absolute inset-0 w-full h-full object-cover object-center" />
+        <div class="absolute inset-0 bg-gradient-to-t from-bg via-bg/20 to-black/30"></div>
+        <div class="relative h-full flex items-end pb-14 sm:pb-20 md:pb-28">
+          <div class="max-w-7xl mx-auto px-5 sm:px-8 w-full">
+            <button data-cal-link="box-nexo-iq4l0s" data-cal-namespace="box-nexo" data-cal-config='{"layout":"month_view"}'
+              class="btn btn-gold px-7 py-3.5 text-sm">
+              Reserva tu clase&nbsp;<i class="fas fa-arrow-right text-xs"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 2 — Headline -->
+      <div class="swiper-slide relative">
+        <img src="assets/images/PORTADA/PORTADA2.webp" alt="Training"
+          class="absolute inset-0 w-full h-full object-cover object-center" />
+        <div class="absolute inset-0 bg-gradient-to-t from-bg via-bg/25 to-black/35"></div>
+        <div class="relative h-full flex items-end pb-14 sm:pb-20 md:pb-28">
+          <div class="max-w-7xl mx-auto px-5 sm:px-8 w-full">
+            <div class="max-w-xl">
+              <p class="label">Box · Funcional · Cross-Training</p>
+              <h1 class="font-display font-black text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white leading-tight mb-3 sm:mb-4 text-gold-gradient">
+                Box Nexo<br>Deportes
+              </h1>
+              <p class="text-white/70 text-base sm:text-base md:text-lg mb-5 sm:mb-7 font-light">Entrena más fuerte, recupérate mejor.</p>
+              <button data-cal-link="box-nexo-iq4l0s" data-cal-namespace="box-nexo" data-cal-config='{"layout":"month_view"}'
+                class="btn btn-gold px-7 py-3.5 text-sm">
+                Agenda Ya&nbsp;<i class="fas fa-arrow-right text-xs"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 3 — Comunidad -->
+      <div class="swiper-slide relative">
+        <img src="assets/images/PORTADA/PORTADA3.webp" alt="Group Training"
+          class="absolute inset-0 w-full h-full object-cover object-top" />
+        <div class="absolute inset-0 bg-gradient-to-t from-bg via-bg/25 to-black/35"></div>
+        <div class="relative h-full flex items-end pb-14 sm:pb-20 md:pb-28">
+          <div class="max-w-7xl mx-auto px-5 sm:px-8 w-full">
+            <div class="max-w-xl">
+              <p class="label">San Bernardo, Chile</p>
+              <h1 class="font-display font-black text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white leading-tight mb-3 sm:mb-4">
+                Transforma<br><span class="text-gold-gradient">Tu Vida</span>
+              </h1>
+              <p class="text-white/70 text-base sm:text-base md:text-lg mb-5 sm:mb-7 font-light">Una comunidad comprometida con tu éxito.</p>
+              <button data-cal-link="box-nexo-iq4l0s" data-cal-namespace="box-nexo" data-cal-config='{"layout":"month_view"}'
+                class="btn btn-gold px-7 py-3.5 text-sm">
+                Comienza Hoy&nbsp;<i class="fas fa-arrow-right text-xs"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="swiper-pagination !bottom-7 !left-5 sm:!left-8 text-left" style="text-align:left"></div>
+  </div>
+</section>
+
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ VIDEO + INVITACIÓN ━━━ -->
+<section id="video-invitacion" class="py-14 sm:py-20 lg:py-32 relative">
+  <div class="divider absolute top-0 inset-x-0"></div>
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="grid lg:grid-cols-[1fr_1.4fr] gap-8 lg:gap-16 items-center">
+
+      <!-- Video — phone/reel frame -->
+      <div class="order-2 lg:order-1 flex justify-center" data-aos="fade-right">
+        <div class="phone-frame">
+          <!-- Notch -->
+          <div class="phone-notch"></div>
+          <!-- Screen -->
+          <div class="phone-screen">
+            <iframe id="vimeo-video"
+              src="https://player.vimeo.com/video/1153682064?autoplay=1&muted=0&controls=0&badge=0&autopause=1&loop=1&byline=0&portrait=0&title=0&background=0"
+              allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
+              referrerpolicy="strict-origin-when-cross-origin" title="VIDEONEXO">
+            </iframe>
+          </div>
+          <!-- Home bar -->
+          <div class="phone-bar"></div>
+        </div>
+      </div>
+
+      <!-- Texto -->
+      <div class="order-1 lg:order-2" data-aos="fade-left">
+        <p class="label">Únete a Nosotros</p>
+        <h2 class="font-display font-bold text-3xl sm:text-4xl md:text-5xl text-white mb-5 leading-tight">
+          No solo entrenas tu cuerpo,<br>
+          <span class="text-gold-gradient">transformas tu vida</span>
+        </h2>
+        <p class="text-muted text-sm sm:text-base md:text-lg leading-relaxed mb-6 md:mb-8">
+          Somos más que un gimnasio — somos una comunidad comprometida con tu progreso, donde cada sesión te acerca más a la mejor versión de ti mismo.
+        </p>
+        <ul class="space-y-5 mb-10">
+          <li class="flex items-start gap-4">
+            <span class="w-7 h-7 rounded-full bg-accent/15 flex items-center justify-center shrink-0 mt-0.5">
+              <i class="fas fa-check text-accent" style="font-size:0.6rem"></i>
+            </span>
+            <div>
+              <p class="font-semibold text-white text-sm">Entrenamiento Profesional</p>
+              <p class="text-muted text-sm mt-0.5">Instructores certificados que guían cada paso de tu transformación.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <span class="w-7 h-7 rounded-full bg-accent/15 flex items-center justify-center shrink-0 mt-0.5">
+              <i class="fas fa-check text-accent" style="font-size:0.6rem"></i>
+            </span>
+            <div>
+              <p class="font-semibold text-white text-sm">Ambiente Motivador</p>
+              <p class="text-muted text-sm mt-0.5">Un espacio donde cada persona es parte de una familia que se apoya.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <span class="w-7 h-7 rounded-full bg-accent/15 flex items-center justify-center shrink-0 mt-0.5">
+              <i class="fas fa-check text-accent" style="font-size:0.6rem"></i>
+            </span>
+            <div>
+              <p class="font-semibold text-white text-sm">Resultados Garantizados</p>
+              <p class="text-muted text-sm mt-0.5">Programas diseñados para alcanzar tus metas sin importar tu nivel.</p>
+            </div>
+          </li>
+        </ul>
+        <button data-cal-link="box-nexo-iq4l0s" data-cal-namespace="box-nexo" data-cal-config='{"layout":"month_view"}'
+          class="btn btn-gold px-7 py-4 text-sm">
+          <i class="fas fa-calendar-alt text-xs"></i>Comienza tu Transformación
+        </button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ SERVICIOS ━━━ -->
+<section id="servicios" class="py-14 sm:py-20 lg:py-32 relative">
+  <div class="divider absolute top-0 inset-x-0"></div>
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+
+    <div class="text-center mb-10 md:mb-16" data-aos="fade-up">
+      <p class="label">Programas</p>
+      <h2 class="font-display font-bold text-3xl sm:text-4xl md:text-5xl text-white">Nuestros Servicios</h2>
+      <p class="text-muted mt-3 max-w-md mx-auto text-sm">Elige la modalidad que mejor se adapte a tus objetivos.</p>
+    </div>
+
+    <div class="swiper serviciosSwiper">
+      <div class="swiper-wrapper pb-12">
+
+        <div class="swiper-slide h-auto">
+          <div class="card p-5 sm:p-8 h-full flex flex-col">
+            <div class="w-11 h-11 rounded-xl bg-accent/10 flex items-center justify-center mb-5">
+              <i class="fas fa-door-open text-accent"></i>
+            </div>
+            <h3 class="font-display font-bold text-lg text-white mb-2">Open Box</h3>
+            <p class="text-muted text-sm mb-6 flex-grow-0">Gimnasio abierto sin restricciones para entrenar a tu ritmo.</p>
+            <ul class="space-y-2.5 mb-8 flex-grow text-sm text-white/75">
+              <li class="flex items-center gap-2.5"><i class="fas fa-check text-accent text-xs shrink-0"></i>Acceso libre al espacio</li>
+              <li class="flex items-center gap-2.5"><i class="fas fa-check text-accent text-xs shrink-0"></i>Ambiente sin restricciones</li>
+              <li class="flex items-center gap-2.5"><i class="fas fa-check text-accent text-xs shrink-0"></i>Ideal para entrenar libremente</li>
+            </ul>
+            <button data-cal-link="box-nexo-iq4l0s" data-cal-namespace="box-nexo" data-cal-config='{"layout":"month_view"}'
+              class="btn btn-gold w-full py-3 text-sm">Más información</button>
+          </div>
+        </div>
+
+        <div class="swiper-slide h-auto">
+          <div class="card p-5 sm:p-8 h-full flex flex-col" style="border-color:rgba(201,168,76,.18)">
+            <div class="w-11 h-11 rounded-xl bg-accent/10 flex items-center justify-center mb-5">
+              <i class="fas fa-hand-rock text-accent"></i>
+            </div>
+            <h3 class="font-display font-bold text-lg text-white mb-2">Clases de Boxeo</h3>
+            <p class="text-muted text-sm mb-6 flex-grow-0">Aprende técnica real de boxeo con instructores certificados.</p>
+            <ul class="space-y-2.5 mb-8 flex-grow text-sm text-white/75">
+              <li class="flex items-center gap-2.5"><i class="fas fa-check text-accent text-xs shrink-0"></i>Clases grupales y personales</li>
+              <li class="flex items-center gap-2.5"><i class="fas fa-check text-accent text-xs shrink-0"></i>Mejora técnica y resistencia</li>
+              <li class="flex items-center gap-2.5"><i class="fas fa-check text-accent text-xs shrink-0"></i>Horarios flexibles</li>
+            </ul>
+            <a href="https://wa.me/56991040157?text=Hola%2C%20quiero%20más%20información%20sobre%20clases%20de%20boxeo" target="_blank" rel="noopener noreferrer"
+              class="btn btn-gold w-full py-3 text-sm">Más información</a>
+          </div>
+        </div>
+
+        <div class="swiper-slide h-auto">
+          <div class="card p-5 sm:p-8 h-full flex flex-col">
+            <div class="w-11 h-11 rounded-xl bg-accent/10 flex items-center justify-center mb-5">
+              <i class="fas fa-user-check text-accent"></i>
+            </div>
+            <h3 class="font-display font-bold text-lg text-white mb-2">Personalizado</h3>
+            <p class="text-muted text-sm mb-6 flex-grow-0">Plan de entrenamiento diseñado exclusivamente para ti.</p>
+            <ul class="space-y-2.5 mb-8 flex-grow text-sm text-white/75">
+              <li class="flex items-center gap-2.5"><i class="fas fa-check text-accent text-xs shrink-0"></i>Planes totalmente a medida</li>
+              <li class="flex items-center gap-2.5"><i class="fas fa-check text-accent text-xs shrink-0"></i>Entrenamiento 1 a 1</li>
+              <li class="flex items-center gap-2.5"><i class="fas fa-check text-accent text-xs shrink-0"></i>Flexibilidad de horarios</li>
+            </ul>
+            <a href="https://wa.me/56991040157?text=Hola%2C%20quiero%20más%20información%20sobre%20entrenamiento%20personalizado" target="_blank" rel="noopener noreferrer"
+              class="btn btn-gold w-full py-3 text-sm">Más información</a>
+          </div>
+        </div>
+
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ENTRENADORES ━━━ -->
+<section id="entrenadores" class="py-14 sm:py-20 lg:py-32 relative">
+  <div class="divider absolute top-0 inset-x-0"></div>
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="grid lg:grid-cols-2 gap-8 lg:gap-20 items-center">
+
+      <!-- Texto premium -->
+      <div data-aos="fade-right">
+        <p class="label">Equipo</p>
+        <h2 class="font-display font-bold text-3xl sm:text-4xl md:text-5xl text-white mb-6 leading-tight">
+          Entrenadores que<br><span class="text-gold-gradient">transforman vidas</span>
+        </h2>
+        <p class="text-muted text-sm sm:text-base md:text-lg leading-relaxed mb-6 md:mb-8">
+          Nuestros entrenadores no son simples instructores — son profesionales seleccionados por su experiencia, metodología y capacidad de sacar lo mejor de cada alumno. Cada sesión está diseñada para que avances, te superes y descubras un rendimiento que no sabías que tenías.
+        </p>
+
+        <!-- Stats -->
+        <div class="grid grid-cols-3 gap-3 sm:gap-6 mb-8 md:mb-10">
+          <div class="border-l-2 border-accent/40 pl-3 sm:pl-4">
+            <p class="font-display font-bold text-xl sm:text-2xl lg:text-3xl text-white">+5</p>
+            <p class="text-muted text-[0.65rem] sm:text-xs mt-0.5 leading-snug">Años de<br class="sm:hidden">experiencia</p>
+          </div>
+          <div class="border-l-2 border-accent/40 pl-3 sm:pl-4">
+            <p class="font-display font-bold text-xl sm:text-2xl lg:text-3xl text-white">100%</p>
+            <p class="text-muted text-[0.65rem] sm:text-xs mt-0.5 leading-snug">Certificados</p>
+          </div>
+          <div class="border-l-2 border-accent/40 pl-3 sm:pl-4">
+            <p class="font-display font-bold text-xl sm:text-2xl lg:text-3xl text-white">3</p>
+            <p class="text-muted text-[0.65rem] sm:text-xs mt-0.5 leading-snug">Disciplinas</p>
+          </div>
+        </div>
+
+        <!-- Puntos clave -->
+        <ul class="space-y-3">
+          <li class="flex items-center gap-3 text-sm text-white/80">
+            <span class="w-1.5 h-1.5 rounded-full bg-accent shrink-0"></span>
+            Formación continua y actualización constante
+          </li>
+          <li class="flex items-center gap-3 text-sm text-white/80">
+            <span class="w-1.5 h-1.5 rounded-full bg-accent shrink-0"></span>
+            Metodología adaptada al nivel de cada alumno
+          </li>
+          <li class="flex items-center gap-3 text-sm text-white/80">
+            <span class="w-1.5 h-1.5 rounded-full bg-accent shrink-0"></span>
+            Compromiso real con tus resultados a largo plazo
+          </li>
+        </ul>
+      </div>
+
+      <!-- Swiper fotos (sin flechas) -->
+      <div data-aos="fade-left" class="min-w-0">
+        <div class="swiper trainersSwiper w-full">
+          <div class="swiper-wrapper pb-12">
+            <div class="swiper-slide flex justify-center px-1">
+              <div class="rounded-2xl overflow-hidden w-full ring-1 ring-white/5 hover:ring-accent/20 transition-all duration-300 shadow-2xl">
+                <img src="assets/images/profe3.webp" alt="Entrenador" class="w-full h-auto object-cover" />
+              </div>
+            </div>
+            <div class="swiper-slide flex justify-center px-1">
+              <div class="rounded-2xl overflow-hidden w-full ring-1 ring-white/5 hover:ring-accent/20 transition-all duration-300 shadow-2xl">
+                <img src="assets/images/profe2.webp" alt="Entrenadora" class="w-full h-auto object-cover" />
+              </div>
+            </div>
+            <div class="swiper-slide flex justify-center px-1">
+              <div class="rounded-2xl overflow-hidden w-full ring-1 ring-white/5 hover:ring-accent/20 transition-all duration-300 shadow-2xl">
+                <img src="assets/images/profe1.webp" alt="Entrenador" class="w-full h-auto object-cover" />
+              </div>
+            </div>
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ HORARIOS ━━━ -->
+<section id="horarios" class="py-14 sm:py-20 lg:py-32 relative">
+  <div class="divider absolute top-0 inset-x-0"></div>
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="text-center mb-10 md:mb-16" data-aos="fade-up">
+      <p class="label">Disponibilidad</p>
+      <h2 class="font-display font-bold text-3xl sm:text-4xl md:text-5xl text-white">Horarios</h2>
+      <p class="text-muted mt-3 text-sm">Encuentra el horario perfecto para tu rutina.</p>
+    </div>
+    <div class="max-w-3xl mx-auto" data-aos="fade-up">
+      <div class="card overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full">
+            <thead>
+              <tr class="border-b border-white/6">
+                <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-widest text-muted">Día</th>
+                <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-widest text-muted"><i class="fas fa-sun text-accent/70 mr-1.5 text-xs"></i>Mañana</th>
+                <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-widest text-muted"><i class="fas fa-moon text-accent/70 mr-1.5 text-xs"></i>Tarde</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="sched-row"><td class="px-6 py-4 font-medium text-white text-sm">Lunes</td>    <td class="px-6 py-4 text-muted text-sm">09:00 – 14:00</td><td class="px-6 py-4 text-muted text-sm">16:00 – 20:30</td></tr>
+              <tr class="sched-row"><td class="px-6 py-4 font-medium text-white text-sm">Martes</td>   <td class="px-6 py-4 text-muted text-sm">09:00 – 14:00</td><td class="px-6 py-4 text-muted text-sm">16:00 – 20:30</td></tr>
+              <tr class="sched-row"><td class="px-6 py-4 font-medium text-white text-sm">Miércoles</td><td class="px-6 py-4 text-muted text-sm">09:00 – 14:00</td><td class="px-6 py-4 text-muted text-sm">16:00 – 20:30</td></tr>
+              <tr class="sched-row"><td class="px-6 py-4 font-medium text-white text-sm">Jueves</td>   <td class="px-6 py-4 text-muted text-sm">09:00 – 14:00</td><td class="px-6 py-4 text-muted text-sm">16:00 – 20:30</td></tr>
+              <tr class="sched-row"><td class="px-6 py-4 font-medium text-white text-sm">Viernes</td>  <td class="px-6 py-4 text-muted text-sm">09:00 – 14:00</td><td class="px-6 py-4 text-muted text-sm">16:00 – 20:30</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="text-center mt-6 text-sm">
+        <a href="https://wa.me/56991040157?text=Hola%2C%20quiero%20información%20sobre%20horarios" target="_blank" rel="noopener noreferrer"
+          class="text-accent hover:text-gold transition-colors font-medium">¿Necesitas un horario diferente? Contáctanos →</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ TESTIMONIOS ━━━ -->
+<section id="testimonios" class="py-14 sm:py-20 lg:py-32 relative">
+  <div class="divider absolute top-0 inset-x-0"></div>
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="text-center mb-10 md:mb-16" data-aos="fade-up">
+      <p class="label">Reseñas</p>
+      <h2 class="font-display font-bold text-3xl sm:text-4xl md:text-5xl text-white">Lo que dicen nuestros alumnos</h2>
+      <a href="https://share.google/vUcrqIy9FXzF5w2WR" target="_blank" rel="noopener noreferrer"
+        class="inline-flex items-center gap-1.5 text-accent hover:text-gold transition-colors text-sm mt-3 font-medium">
+        <i class="fab fa-google text-xs"></i>Ver todas las reseñas en Google
+      </a>
+    </div>
+    <div class="swiper testimoniosSwiper">
+      <div class="swiper-wrapper pb-12">
+
+        <div class="swiper-slide h-auto">
+          <div class="card p-5 sm:p-7 h-full flex flex-col">
+            <div class="flex gap-0.5 mb-4"><i class="fas fa-star text-accent text-xs"></i><i class="fas fa-star text-accent text-xs"></i><i class="fas fa-star text-accent text-xs"></i><i class="fas fa-star text-accent text-xs"></i><i class="fas fa-star text-accent text-xs"></i></div>
+            <p class="text-white/75 text-sm leading-relaxed flex-grow mb-6">"Llevo 6 meses entrenando y los resultados son increíbles. Los entrenadores son profesionales y el ambiente es muy motivador."</p>
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-full bg-accent/15 flex items-center justify-center text-accent text-xs font-bold shrink-0">FR</div>
+              <div><p class="font-semibold text-white text-sm">Francisca Rojas</p><p class="text-muted text-xs">hace 2 meses</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="swiper-slide h-auto">
+          <div class="card p-5 sm:p-7 h-full flex flex-col">
+            <div class="flex gap-0.5 mb-4"><i class="fas fa-star text-accent text-xs"></i><i class="fas fa-star text-accent text-xs"></i><i class="fas fa-star text-accent text-xs"></i><i class="fas fa-star text-accent text-xs"></i><i class="fas fa-star text-accent text-xs"></i></div>
+            <p class="text-white/75 text-sm leading-relaxed flex-grow mb-6">"El mejor box de San Bernardo. Equipamiento de primera y entrenadores que realmente se preocupan por tu progreso."</p>
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-full bg-accent/15 flex items-center justify-center text-accent text-xs font-bold shrink-0">MT</div>
+              <div><p class="font-semibold text-white text-sm">Miguel Ángel Torres</p><p class="text-muted text-xs">hace 1 mes</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="swiper-slide h-auto">
+          <div class="card p-5 sm:p-7 h-full flex flex-col">
+            <div class="flex gap-0.5 mb-4"><i class="fas fa-star text-accent text-xs"></i><i class="fas fa-star text-accent text-xs"></i><i class="fas fa-star text-accent text-xs"></i><i class="fas fa-star text-accent text-xs"></i><i class="fas fa-star text-accent text-xs"></i></div>
+            <p class="text-white/75 text-sm leading-relaxed flex-grow mb-6">"Empecé sin experiencia y ahora no puedo dejar de entrenar. El ambiente es súper acogedor y te sientes parte de una familia."</p>
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-full bg-accent/15 flex items-center justify-center text-accent text-xs font-bold shrink-0">CP</div>
+              <div><p class="font-semibold text-white text-sm">Carolina Pérez</p><p class="text-muted text-xs">hace 3 semanas</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="swiper-slide h-auto">
+          <div class="card p-5 sm:p-7 h-full flex flex-col">
+            <div class="flex gap-0.5 mb-4"><i class="fas fa-star text-accent text-xs"></i><i class="fas fa-star text-accent text-xs"></i><i class="fas fa-star text-accent text-xs"></i><i class="fas fa-star text-accent text-xs"></i><i class="fas fa-star text-accent text-xs"></i></div>
+            <p class="text-white/75 text-sm leading-relaxed flex-grow mb-6">"Excelente atención y resultados rápidos. Totalmente recomendado para quienes buscan un cambio real."</p>
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-full bg-accent/15 flex items-center justify-center text-accent text-xs font-bold shrink-0">JP</div>
+              <div><p class="font-semibold text-white text-sm">Juan Pérez</p><p class="text-muted text-xs">hace 1 semana</p></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="swiper-pagination"></div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ QUIÉNES SOMOS ━━━ -->
+<section id="nosotros" class="py-14 sm:py-20 lg:py-32 relative">
+  <div class="divider absolute top-0 inset-x-0"></div>
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="text-center mb-10 md:mb-16" data-aos="fade-up">
+      <p class="label">Nosotros</p>
+      <h2 class="font-display font-bold text-3xl sm:text-4xl md:text-5xl text-white">Quiénes Somos</h2>
+      <p class="text-muted mt-3 max-w-xl mx-auto text-sm leading-relaxed">
+        En Box Nexo Deportes creemos que el entrenamiento va más allá del ejercicio físico. Es un estilo de vida que transforma cuerpo y mente.
+      </p>
+    </div>
+    <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
+      <div class="card p-5 sm:p-8 text-center" data-aos="fade-up">
+        <div class="w-11 h-11 rounded-xl bg-accent/10 flex items-center justify-center mx-auto mb-5"><i class="fas fa-bullseye text-accent"></i></div>
+        <h3 class="font-display font-bold text-base text-white mb-3">Nuestra Misión</h3>
+        <p class="text-muted text-sm leading-relaxed">Proporcionar un espacio profesional donde cada persona alcance su máximo potencial.</p>
+      </div>
+      <div class="card p-5 sm:p-8 text-center" data-aos="fade-up" data-aos-delay="100">
+        <div class="w-11 h-11 rounded-xl bg-accent/10 flex items-center justify-center mx-auto mb-5"><i class="fas fa-dumbbell text-accent"></i></div>
+        <h3 class="font-display font-bold text-base text-white mb-3">Nuestros Valores</h3>
+        <p class="text-muted text-sm leading-relaxed">Disciplina, respeto y superación constante son los pilares de nuestra comunidad.</p>
+      </div>
+      <div class="card p-5 sm:p-8 text-center" data-aos="fade-up" data-aos-delay="200">
+        <div class="w-11 h-11 rounded-xl bg-accent/10 flex items-center justify-center mx-auto mb-5"><i class="fas fa-trophy text-accent"></i></div>
+        <h3 class="font-display font-bold text-base text-white mb-3">Nuestra Visión</h3>
+        <p class="text-muted text-sm leading-relaxed">Ser el centro de entrenamiento líder en San Bernardo, reconocidos por resultados.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ UBICACIÓN ━━━ -->
+<section id="ubicacion" class="py-14 sm:py-20 lg:py-32 relative">
+  <div class="divider absolute top-0 inset-x-0"></div>
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="text-center mb-10 md:mb-16" data-aos="fade-up">
+      <p class="label">Dónde estamos</p>
+      <h2 class="font-display font-bold text-3xl sm:text-4xl md:text-5xl text-white">Encuéntranos</h2>
+      <p class="text-muted mt-3 text-sm">Visítanos en el corazón de San Bernardo.</p>
+    </div>
+    <div class="grid lg:grid-cols-2 gap-5 sm:gap-8 max-w-5xl mx-auto">
+
+      <div class="card p-5 sm:p-8" data-aos="fade-right">
+        <h3 class="font-display font-bold text-lg text-white mb-7">Información de Contacto</h3>
+        <div class="space-y-6">
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center shrink-0">
+              <i class="fas fa-map-marker-alt text-accent text-sm"></i>
+            </div>
+            <div>
+              <p class="font-semibold text-white text-sm mb-1">Dirección</p>
+              <p class="text-muted text-sm">Maipú 640, 8320000<br>San Bernardo, Región Metropolitana</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center shrink-0">
+              <i class="fas fa-clock text-accent text-sm"></i>
+            </div>
+            <div>
+              <p class="font-semibold text-white text-sm mb-1">Horario de Atención</p>
+              <p class="text-muted text-sm">Lunes a Viernes: 09:00 – 14:00 | 16:00 – 20:30</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center shrink-0">
+              <i class="fas fa-phone text-accent text-sm"></i>
+            </div>
+            <div>
+              <p class="font-semibold text-white text-sm mb-1">Teléfono</p>
+              <a href="https://wa.me/56991040157" target="_blank" rel="noopener noreferrer"
+                class="text-accent hover:text-gold transition-colors text-sm font-medium">+56 9 9104 0157</a>
+            </div>
+          </div>
+        </div>
+        <a href="https://www.google.com/maps/dir//Maipú+640,+San+Bernardo" target="_blank" rel="noopener noreferrer"
+          class="btn btn-gold w-full py-3 text-sm mt-8">
+          <i class="fas fa-directions text-xs"></i>Cómo llegar
+        </a>
+      </div>
+
+      <div class="card overflow-hidden" style="min-height:320px" data-aos="fade-left">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3310.179!2d-70.6985!3d-33.5974!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzPCsDM1JzUwLjYiUyA3MMKwNDEnNTQuNiJX!5e0!3m2!1ses!2scl!4v1234567890"
+          width="100%" height="100%" style="border:0;min-height:320px;" allowfullscreen="" loading="lazy" title="Mapa"></iframe>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ GOOGLE REVIEW CTA ━━━ -->
+<section class="py-12 sm:py-16 lg:py-28 relative">
+  <div class="divider absolute top-0 inset-x-0"></div>
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="card review-card p-6 sm:p-10 md:p-14 flex flex-col md:flex-row items-center gap-8 md:gap-16" data-aos="fade-up"
+      style="background: linear-gradient(135deg, rgba(13,20,36,0.9) 0%, rgba(20,28,48,0.9) 100%); border-color: rgba(201,168,76,0.15);">
+
+      <!-- Ícono Google -->
+      <div class="shrink-0 flex flex-col items-center gap-3">
+        <div class="w-20 h-20 rounded-2xl flex items-center justify-center shadow-xl"
+          style="background: linear-gradient(135deg, #4285F4, #34A853, #FBBC05, #EA4335); padding: 2px;">
+          <div class="w-full h-full rounded-[14px] bg-surface flex items-center justify-center">
+            <i class="fab fa-google text-3xl" style="background: linear-gradient(135deg,#4285F4,#EA4335); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;"></i>
+          </div>
+        </div>
+        <!-- Estrellas -->
+        <div class="flex gap-1">
+          <i class="fas fa-star text-accent text-sm"></i>
+          <i class="fas fa-star text-accent text-sm"></i>
+          <i class="fas fa-star text-accent text-sm"></i>
+          <i class="fas fa-star text-accent text-sm"></i>
+          <i class="fas fa-star text-accent text-sm"></i>
+        </div>
+        <p class="text-muted text-xs font-medium">5.0 en Google</p>
+      </div>
+
+      <!-- Texto -->
+      <div class="flex-1 text-center md:text-left">
+        <p class="label md:justify-start">Tu opinión importa</p>
+        <h2 class="font-display font-bold text-2xl sm:text-3xl md:text-4xl text-white mb-3 leading-tight">
+          ¿Ya entrenas con nosotros?<br>
+          <span class="text-gold-gradient">Comparte tu experiencia</span>
+        </h2>
+        <p class="text-muted text-sm md:text-base leading-relaxed mb-7 max-w-xl">
+          Tu reseña ayuda a más personas a encontrar un lugar donde transformar su vida. Solo te toma un minuto y significa todo para nuestra comunidad.
+        </p>
+        <a href="https://share.google/vUcrqIy9FXzF5w2WR" target="_blank" rel="noopener noreferrer"
+          class="btn btn-gold px-7 py-3.5 text-sm inline-flex">
+          <i class="fab fa-google text-xs"></i>Dejar una reseña en Google
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ INSTAGRAM CTA ━━━ -->
+<section class="py-20 md:py-28 relative overflow-hidden">
+  <div class="divider absolute top-0 inset-x-0"></div>
+
+  <!-- Fondo gradiente Instagram sutil -->
+  <div class="absolute inset-0 pointer-events-none"
+    style="background: radial-gradient(ellipse at 60% 50%, rgba(131,58,180,0.07) 0%, rgba(253,29,29,0.04) 40%, transparent 70%);"></div>
+
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 relative">
+    <div class="text-center max-w-2xl mx-auto" data-aos="fade-up">
+
+      <!-- Ícono Instagram -->
+      <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl mb-6 shadow-2xl"
+        style="background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); padding: 2px;">
+        <div class="w-full h-full rounded-[14px] bg-surface flex items-center justify-center">
+          <i class="fab fa-instagram text-3xl" style="background: linear-gradient(135deg,#f09433,#dc2743,#bc1888); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;"></i>
+        </div>
+      </div>
+
+      <p class="label justify-center">Comunidad</p>
+      <h2 class="font-display font-bold text-xl sm:text-3xl md:text-4xl text-white mb-3 leading-tight">
+        Síguenos en Instagram
+      </h2>
+      <p class="text-muted text-sm md:text-base leading-relaxed mb-3">
+        Entrenamientos, resultados reales y la energía de nuestra comunidad — todo en tu feed.
+      </p>
+      <p class="font-semibold text-white/60 text-sm mb-8 tracking-wide">@box.nexodeport</p>
+
+      <a href="https://www.instagram.com/box.nexodeport/" target="_blank" rel="noopener noreferrer"
+        class="btn px-8 py-3.5 text-sm inline-flex font-semibold"
+        style="background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: #fff; border-radius: 9999px; box-shadow: 0 6px 24px rgba(220,39,67,0.35);">
+        <i class="fab fa-instagram text-base"></i>Seguir en Instagram
+      </a>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ CONTACTO / CTA ━━━ -->
+<section id="contacto" class="py-14 sm:py-20 lg:py-32 relative">
+  <div class="divider absolute top-0 inset-x-0"></div>
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="max-w-2xl mx-auto text-center" data-aos="fade-up">
+      <p class="label">Empieza hoy</p>
+      <h2 class="font-display font-bold text-3xl sm:text-4xl md:text-5xl text-white mb-4">¿Listo para comenzar?</h2>
+      <p class="text-muted text-sm mb-10">Contáctanos hoy y da el primer paso hacia una mejor versión de ti mismo.</p>
+      <div class="flex flex-col xs:flex-row gap-3 sm:gap-4 justify-center">
+        <button data-cal-link="box-nexo-iq4l0s" data-cal-namespace="box-nexo" data-cal-config='{"layout":"month_view"}'
+          class="btn btn-gold w-full xs:w-auto px-7 sm:px-8 py-4 text-sm">
+          <i class="fas fa-calendar-alt text-xs"></i>Agenda Ya
+        </button>
+        <a href="#servicios" class="btn btn-outline w-full xs:w-auto px-7 sm:px-8 py-4 text-sm">
+          Ver servicios&nbsp;<i class="fas fa-arrow-right text-xs"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ FOOTER ━━━ -->
+<footer class="border-t border-white/5 py-12">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="grid xs:grid-cols-2 sm:grid-cols-3 gap-6 sm:gap-8 mb-8 sm:mb-10">
+      <div>
+        <div class="flex items-center gap-2.5 mb-4">
+          <div class="w-8 h-8 rounded-full overflow-hidden ring-1 ring-accent/25">
+            <img src="assets/images/logo.jpg" alt="Logo" class="w-full h-full object-cover" />
+          </div>
+          <span class="font-display font-bold text-white text-sm">Box Nexo Deportes</span>
+        </div>
+        <p class="text-muted text-sm leading-relaxed">Tu centro de entrenamiento en San Bernardo. Transformando vidas a través del deporte.</p>
+      </div>
+      <div>
+        <p class="font-semibold text-white text-sm mb-4">Síguenos</p>
+        <a href="https://www.instagram.com/box.nexodeport/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"
+          class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-white/5 hover:bg-accent/15 text-muted hover:text-accent transition-all duration-300">
+          <i class="fab fa-instagram text-lg"></i>
+        </a>
+      </div>
+      <div>
+        <p class="font-semibold text-white text-sm mb-4">Enlaces</p>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#inicio"    class="text-muted hover:text-accent transition-colors">Inicio</a></li>
+          <li><a href="#servicios" class="text-muted hover:text-accent transition-colors">Servicios</a></li>
+          <li><a href="#horarios"  class="text-muted hover:text-accent transition-colors">Horarios</a></li>
+          <li><a href="#contacto"  class="text-muted hover:text-accent transition-colors">Contacto</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="divider mb-6"></div>
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-muted">
+      <p>&copy; <span id="currentYear"></span> Box Nexo Deportes — Todos los derechos reservados.</p>
+      <p>Desarrollado por <span class="text-accent font-medium">Hardwaremania</span></p>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ADMIN (oculto) ━━━ -->
+<div id="agenda-admin-container" style="display:none;min-height:100vh" class="py-16">
+  <div class="max-w-5xl mx-auto px-5 sm:px-8">
+    <div class="card p-6 md:p-8">
+      <div class="flex items-center justify-between mb-6 flex-wrap gap-4">
+        <h2 class="font-display font-bold text-2xl text-gold-gradient"><i class="fas fa-calendar-alt mr-3"></i>Agenda Administrativa</h2>
+        <a href="index.html" class="text-accent hover:text-gold transition-colors text-sm"><i class="fas fa-home mr-2"></i>Volver al sitio</a>
+      </div>
+      <div id="agenda-admin-content">
+        <div class="text-center text-muted py-10">
+          <i class="fas fa-spinner fa-spin text-3xl mb-4 block"></i>Cargando agendamientos...
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ FLOATING BUTTONS ━━━ -->
+<div id="floatingButtons" class="fixed bottom-6 inset-x-5 sm:inset-x-8 z-50 hidden justify-between items-end pointer-events-none">
+  
+  <!-- Izquierda: Reserva Cal.com -->
+  <div class="pointer-events-auto flex flex-col items-start gap-1">
+    <span class="text-[0.65rem] sm:text-xs font-bold uppercase tracking-wider text-white/90 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full shadow-lg ml-2 mb-1 border border-white/10">¡Entrena hoy!</span>
+    <button data-cal-link="box-nexo-iq4l0s" data-cal-namespace="box-nexo" data-cal-config='{"layout":"month_view"}'
+      class="h-12 sm:h-14 px-5 sm:px-6 bg-gradient-to-r from-accent to-gold text-bg rounded-full shadow-xl shadow-accent/20 flex items-center justify-center gap-3 hover:-translate-y-1 transition-transform">
+      <i class="fas fa-calendar-alt text-lg sm:text-xl"></i>
+      <span class="font-display font-semibold text-sm sm:text-base">Agendar Clase</span>
     </button>
   </div>
 
-  <!-- Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  
-  <!-- Cal element-click embed code begins -->
-  <script type="text/javascript">
-    (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
-    Cal("init", "box-nexo", {origin:"https://app.cal.com"});
-    Cal.ns["box-nexo"]("ui", {
-      "styles": {"branding": {"brandColor": "#000000"}},
-      "hideEventTypeDetails": false,
-      "layout": "month_view"
-    });
-  </script>
-  <!-- Cal element-click embed code ends -->
-  
-  <script>
-    // Agenda Administrativa Privada - Detección temprana del parámetro
-    const urlParams = new URLSearchParams(window.location.search);
-    const isAdmin = urlParams.get('acceso') === 'nexo2026';
+  <!-- Derecha: WhatsApp -->
+  <div class="pointer-events-auto flex flex-col items-end gap-1">
+    <span class="text-[0.65rem] sm:text-xs font-bold uppercase tracking-wider text-white/90 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full shadow-lg mr-2 mb-1 border border-white/10">¿Dudas?</span>
+    <a href="https://wa.me/56991040157?text=Hola%20Box%20Nexo%20Deportes,%20quiero%20reservar"
+      target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"
+      class="h-12 sm:h-14 px-5 sm:px-6 bg-gradient-to-br from-green-500 to-green-600 text-white rounded-full shadow-xl shadow-green-500/20 flex items-center justify-center gap-3 hover:-translate-y-1 transition-transform">
+      <span class="font-medium text-sm sm:text-base">WhatsApp</span>
+      <i class="fab fa-whatsapp text-lg sm:text-xl"></i>
+    </a>
+  </div>
 
-    if (isAdmin) {
-      // Ocultar todo el contenido principal antes de que se renderice
-      document.addEventListener('DOMContentLoaded', function() {
-        const header = document.getElementById('mainHeader');
-        const main = document.querySelector('main');
-        const footer = document.querySelector('footer');
-        const floatingButtons = document.getElementById('floatingButtons');
-        const mobileMenu = document.getElementById('mobileMenu');
-        const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+</div>
 
-        if (header) header.style.display = 'none';
-        if (main) main.style.display = 'none';
-        if (footer) footer.style.display = 'none';
-        if (floatingButtons) floatingButtons.style.display = 'none';
-        if (mobileMenu) mobileMenu.style.display = 'none';
-        if (mobileMenuOverlay) mobileMenuOverlay.style.display = 'none';
 
-        // Ajustar estilos del body para la vista administrativa
-        document.body.style.margin = '0';
-        document.body.style.padding = '0';
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ SCRIPTS ━━━ -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<!-- Cal.com embed -->
+<script type="text/javascript">
+  (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+  Cal("init", "box-nexo", {origin:"https://app.cal.com"});
+  Cal.ns["box-nexo"]("ui", {"styles":{"branding":{"brandColor":"#000000"}},"hideEventTypeDetails":false,"layout":"month_view"});
+</script>
+
+<script>
+  // ── Admin
+  const isAdmin = new URLSearchParams(window.location.search).get('acceso') === 'nexo2026';
+  if (isAdmin) {
+    document.addEventListener('DOMContentLoaded', () => {
+      ['mainHeader','floatingButtons','mobileMenu','mobileMenuOverlay'].forEach(id => {
+        const el = document.getElementById(id); if (el) el.style.display = 'none';
       });
-    }
-
-    const heroSwiper = new Swiper('.heroSwiper', {
-      loop: true,
-      autoplay: { delay: 5000, disableOnInteraction: false },
-      pagination: { el: '.swiper-pagination', clickable: true },
-      effect: 'fade',
-      fadeEffect: { crossFade: true }
+      document.querySelector('main').style.display = 'none';
+      document.querySelector('footer').style.display = 'none';
     });
+  }
 
-    const trainersSwiper = new Swiper('.trainersSwiper', {
-      slidesPerView: 1,
-      spaceBetween: 20,
-      loop: true,
-      pagination: { el: '.trainersSwiper .swiper-pagination', clickable: true },
-      autoplay: { delay: 4000, disableOnInteraction: false },
-    });
+  // ── Swiper: Hero
+  new Swiper('.heroSwiper', {
+    loop: true, effect: 'fade', speed: 900,
+    fadeEffect: { crossFade: true },
+    autoplay: { delay: 5500, disableOnInteraction: false },
+    pagination: { el: '.heroSwiper .swiper-pagination', clickable: true },
+  });
 
-    const testimoniosSwiper = new Swiper('.testimoniosSwiper', {
-      slidesPerView: 1,
-      spaceBetween: 20,
-      loop: true,
-      pagination: { el: '.testimoniosSwiper .swiper-pagination', clickable: true },
-      navigation: { nextEl: '.testimoniosSwiper .swiper-button-next', prevEl: '.testimoniosSwiper .swiper-button-prev' },
-      autoplay: { delay: 5000, disableOnInteraction: false },
-      breakpoints: { 768: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } },
-    });
+  // ── Swiper: Trainers
+  new Swiper('.trainersSwiper', {
+    slidesPerView: 1, spaceBetween: 24, loop: true,
+    pagination: { el: '.trainersSwiper .swiper-pagination', clickable: true },
+    autoplay: { delay: 4000, disableOnInteraction: false },
+  });
 
-    const serviciosSwiper = new Swiper(".serviciosSwiper", {
-      slidesPerView: 1,
-      spaceBetween: 20,
-      loop: true,
-      pagination: { el: ".swiper-pagination", clickable: true },
-      autoplay: { delay: 4000, disableOnInteraction: false },
-      breakpoints: {
-        768: { slidesPerView: 2 },
-        1024: { slidesPerView: 3 },
-      },
-    });
+  // ── Swiper: Testimonials
+  new Swiper('.testimoniosSwiper', {
+    slidesPerView: 1, spaceBetween: 20, loop: true,
+    pagination: { el: '.testimoniosSwiper .swiper-pagination', clickable: true },
+    navigation: { nextEl: '.testimoniosSwiper .swiper-button-next', prevEl: '.testimoniosSwiper .swiper-button-prev' },
+    autoplay: { delay: 5000, disableOnInteraction: false },
+    breakpoints: { 768: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } },
+  });
 
-    // Mobile Menu Toggle
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
-    const closeMobileMenu = document.getElementById('closeMobileMenu');
-    const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
+  // ── Swiper: Services
+  new Swiper('.serviciosSwiper', {
+    slidesPerView: 1, spaceBetween: 20, loop: true,
+    pagination: { el: '.serviciosSwiper .swiper-pagination', clickable: true },
+    autoplay: { delay: 4000, disableOnInteraction: false },
+    breakpoints: { 768: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } },
+  });
 
-    function openMenu() {
-      mobileMenu.classList.remove('mobile-menu-closed');
-      mobileMenu.classList.add('mobile-menu-open');
-      mobileMenuOverlay.classList.remove('opacity-0', 'pointer-events-none');
-      mobileMenuOverlay.classList.add('opacity-100');
-    }
+  // ── Mobile menu
+  const mobileMenu = document.getElementById('mobileMenu');
+  const overlay    = document.getElementById('mobileMenuOverlay');
+  const open  = () => { mobileMenu.classList.remove('translate-x-full'); overlay.classList.remove('opacity-0','pointer-events-none'); overlay.classList.add('opacity-100'); };
+  const close = () => { mobileMenu.classList.add('translate-x-full');    overlay.classList.add('opacity-0','pointer-events-none');    overlay.classList.remove('opacity-100'); };
+  document.getElementById('mobileMenuBtn').addEventListener('click', open);
+  document.getElementById('closeMobileMenu').addEventListener('click', close);
+  overlay.addEventListener('click', close);
+  document.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', close));
 
-    function closeMenu() {
-      mobileMenu.classList.remove('mobile-menu-open');
-      mobileMenu.classList.add('mobile-menu-closed');
-      mobileMenuOverlay.classList.add('opacity-0', 'pointer-events-none');
-      mobileMenuOverlay.classList.remove('opacity-100');
-    }
-
-    mobileMenuBtn.addEventListener('click', openMenu);
-    closeMobileMenu.addEventListener('click', closeMenu);
-    mobileMenuOverlay.addEventListener('click', closeMenu);
-
-    // Close menu when clicking on links
-    mobileMenuLinks.forEach(link => {
-      link.addEventListener('click', closeMenu);
-    })
-    //Mostrar botones flotantes al hacer scroll
-    window.addEventListener('scroll', function () {
-      const floatingButtons = document.getElementById('floatingButtons');
-      if (window.pageYOffset > 100) {
-        floatingButtons.classList.remove('hidden');
-        floatingButtons.classList.add('flex');
-      } else {
-        floatingButtons.classList.add('hidden');
-        floatingButtons.classList.remove('flex');
-      }
-    });
-
-    // Botón scroll to top
-    document.getElementById('scrollTopBtn').addEventListener('click', function () {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-
-    // Efecto de scroll en header mejorado
-    let lastScroll = 0;
-    const header = document.getElementById('mainHeader');
-
-    window.addEventListener('scroll', function () {
-      const currentScroll = window.pageYOffset;
-
-      if (currentScroll > 50) {
-        header.classList.add('scrolled');
-      } else {
-        header.classList.remove('scrolled');
-      }
-
-      // Efecto parallax sutil en el header
-      if (currentScroll > 0) {
-        header.style.transform = `translateY(${Math.min(currentScroll * 0.1, 10)}px)`;
-      } else {
-        header.style.transform = 'translateY(0)';
-      }
-
-      lastScroll = currentScroll;
-    });
-
-    // Efecto parallax en secciones
-    const parallaxSections = document.querySelectorAll('section');
-    window.addEventListener('scroll', function() {
-      const scrolled = window.pageYOffset;
-      parallaxSections.forEach((section, index) => {
-        const rate = scrolled * 0.1 * (index % 2 === 0 ? 1 : -1);
-        if (section.id && section.id !== 'inicio') {
-          section.style.transform = `translateY(${rate * 0.1}px)`;
-        }
+  // ── Scroll behaviors (passive)
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        const y = window.scrollY;
+        // Header class
+        document.getElementById('mainHeader').classList.toggle('scrolled', y > 50);
+        // Floating buttons
+        const fb = document.getElementById('floatingButtons');
+        fb.classList.toggle('hidden', y <= 100);
+        fb.classList.toggle('flex',   y > 100);
+        ticking = false;
       });
-    });
-
-    // Inicializar AOS (Animate On Scroll)
-    if (typeof AOS !== 'undefined') {
-      AOS.init({
-        duration: 800,
-        easing: 'ease-in-out',
-        once: true,
-        offset: 100
-      });
+      ticking = true;
     }
+  }, { passive: true });
 
-    // Agregar animaciones de entrada mejoradas a elementos
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -100px 0px'
+  // ── Scroll to top (Removido por cambios de diseño en botones flotantes)
+
+  // ── Smooth anchor scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const t = document.querySelector(a.getAttribute('href'));
+      if (!t) return;
+      e.preventDefault();
+      window.scrollTo({ top: t.getBoundingClientRect().top + window.scrollY - 64, behavior: 'smooth' });
+    });
+  });
+
+  // ── AOS
+  AOS.init({ duration: 650, easing: 'ease-out-quad', once: true, offset: 70 });
+
+  // ── Footer year
+  document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+  // ── Vimeo smart play/pause
+  const vimeoEl = document.getElementById('vimeo-video');
+  if (vimeoEl) {
+    const s = document.createElement('script');
+    s.src = 'https://player.vimeo.com/api/player.js';
+    s.onload = () => {
+      const player = new Vimeo.Player(vimeoEl);
+      new IntersectionObserver(entries => {
+        entries[0].isIntersecting ? player.play().catch(() => {}) : player.pause().catch(() => {});
+      }, { threshold: 0.4 }).observe(vimeoEl);
     };
+    document.head.appendChild(s);
+  }
 
-    const observer = new IntersectionObserver(function (entries) {
-      entries.forEach((entry, index) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            entry.target.classList.add('fade-in-up');
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-          }, index * 100);
-          observer.unobserve(entry.target);
-        }
-      });
-    }, observerOptions);
+  // ── Admin render
+  if (isAdmin) renderAdmin();
 
-    // Observar elementos con data-aos y cards
-    document.querySelectorAll('[data-aos], .card-hover, section > div').forEach((el, index) => {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(30px)';
-      el.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
-      observer.observe(el);
-    });
+  async function renderAdmin() {
+    const API_KEY = 'cal_live_8db492ce7f424dd00cd3fba14f652c47';
+    const container = document.getElementById('agenda-admin-container');
+    const content   = document.getElementById('agenda-admin-content');
+    if (!container || !content) return;
+    container.style.display = 'block';
+    try {
+      const res = await fetch(`https://api.cal.com/v1/bookings?apiKey=${API_KEY}`);
+      if (!res.ok) throw new Error();
+      const data = await res.json();
+      const now  = new Date();
+      const upcoming = (data.bookings || [])
+        .filter(b => new Date(b.startTime) > now)
+        .sort((a, b) => new Date(a.startTime) - new Date(b.startTime));
 
-    // Efecto de cursor personalizado en elementos interactivos
-    const interactiveElements = document.querySelectorAll('a, button, .card-hover');
-    interactiveElements.forEach(el => {
-      el.addEventListener('mouseenter', function() {
-        this.style.cursor = 'pointer';
-      });
-    });
-
-    // Actualizar año en footer
-    document.getElementById('currentYear').textContent = new Date().getFullYear();
-
-    // Añadir efecto de brillo dinámico a los títulos
-    const gradientTexts = document.querySelectorAll('.gradient-text');
-    gradientTexts.forEach(text => {
-      text.addEventListener('mouseenter', function() {
-        this.style.filter = 'drop-shadow(0 0 20px rgba(197, 154, 42, 0.6))';
-      });
-      text.addEventListener('mouseleave', function() {
-        this.style.filter = 'drop-shadow(0 2px 4px rgba(197, 154, 42, 0.3))';
-      });
-    });
-
-    // Mejorar efecto de scroll suave
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          const headerOffset = 80;
-          const elementPosition = target.getBoundingClientRect().top;
-          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth'
-          });
-        }
-      });
-    });
-
-    // Efecto de carga inicial
-    window.addEventListener('load', function() {
-      document.body.style.opacity = '0';
-      setTimeout(() => {
-        document.body.style.transition = 'opacity 0.5s ease-in';
-        document.body.style.opacity = '1';
-      }, 100);
-    });
-
-    // Control de video Vimeo con smart play/pause según foco
-    const vimeoIframe = document.getElementById('vimeo-video');
-    if (vimeoIframe) {
-      // Cargar la API de Vimeo
-      const script = document.createElement('script');
-      script.src = 'https://player.vimeo.com/api/player.js';
-      script.onload = function() {
-        const player = new Vimeo.Player(vimeoIframe);
-        
-        // Observer para detectar cuando el video entra/sale del viewport
-        const videoObserver = new IntersectionObserver(function(entries) {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              // Video visible - reproducir
-              player.play().catch(err => {
-                console.log('Error al reproducir:', err);
-              });
-            } else {
-              // Video no visible - pausar
-              player.pause().catch(err => {
-                console.log('Error al pausar:', err);
-              });
-            }
-          });
-        }, {
-          threshold: 0.5 // Se activa cuando el 50% del video es visible
-        });
-        
-        // Observar el contenedor del video
-        const videoContainer = vimeoIframe.closest('.order-2');
-        if (videoContainer) {
-          videoObserver.observe(videoContainer);
-        }
-      };
-      document.head.appendChild(script);
-    }
-
-    // Agenda Administrativa Privada - Renderizar solo si es admin
-    if (isAdmin) {
-      renderizarAgendaPrivada();
-    }
-
-    async function renderizarAgendaPrivada() {
-      const API_KEY = 'cal_live_8db492ce7f424dd00cd3fba14f652c47';
-      const contenedor = document.getElementById('agenda-admin-container');
-      const contenido = document.getElementById('agenda-admin-content');
-      
-      if (!contenedor || !contenido) return;
-
-      // Mostrar el contenedor
-      contenedor.style.display = 'block';
-
-      try {
-        const response = await fetch(`https://api.cal.com/v1/bookings?apiKey=${API_KEY}`);
-        
-        if (!response.ok) {
-          throw new Error('Error al obtener los agendamientos');
-        }
-
-        const data = await response.json();
-        
-        if (data.bookings && data.bookings.length > 0) {
-          const ahora = new Date();
-          
-          // Filtrar solo las citas futuras
-          const citasFuturas = data.bookings.filter(booking => {
-            const fechaCita = new Date(booking.startTime);
-            return fechaCita > ahora;
-          });
-          
-          if (citasFuturas.length > 0) {
-            let html = '<div class="space-y-4">';
-            
-            // Ordenar por fecha (más próximos primero)
-            const bookingsOrdenados = citasFuturas.sort((a, b) => {
-              return new Date(a.startTime) - new Date(b.startTime);
-            });
-
-            bookingsOrdenados.forEach(booking => {
-            const fecha = new Date(booking.startTime);
-            const fechaFormateada = fecha.toLocaleDateString('es-CL', {
-              weekday: 'long',
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric',
-              hour: '2-digit',
-              minute: '2-digit'
-            });
-
-            html += `
-              <div class="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-xl p-6 hover:border-accent transition-all duration-300">
-                <div class="flex items-start justify-between flex-wrap gap-4">
-                  <div class="flex-1">
-                    <h3 class="text-xl font-bold text-white mb-2">
-                      <i class="fas fa-user text-accent mr-2"></i>${booking.attendees?.[0]?.email || booking.title || 'Sin nombre'}
-                    </h3>
-                    <p class="text-muted mb-3">
-                      <i class="fas fa-calendar text-accent mr-2"></i>${fechaFormateada}
-                    </p>
-                    ${booking.description ? `<p class="text-white/80 text-sm mb-2">${booking.description}</p>` : ''}
-                    ${booking.eventType?.title ? `<p class="text-accent text-sm"><i class="fas fa-tag mr-2"></i>${booking.eventType.title}</p>` : ''}
-                  </div>
-                  <div class="flex items-center gap-2">
-                    ${booking.status ? `<span class="px-3 py-1 rounded-full text-xs font-semibold ${booking.status === 'confirmed' ? 'bg-green-500/20 text-green-400' : 'bg-yellow-500/20 text-yellow-400'}">${booking.status}</span>` : ''}
-                  </div>
-                </div>
-              </div>
-            `;
-            });
-            
-            html += '</div>';
-            contenido.innerHTML = html;
-          } else {
-            contenido.innerHTML = `
-              <div class="text-center py-12">
-                <i class="fas fa-calendar-times text-5xl text-muted mb-4"></i>
-                <p class="text-muted text-lg">No hay citas próximas programadas</p>
-              </div>
-            `;
-          }
-        } else {
-          contenido.innerHTML = `
-            <div class="text-center py-12">
-              <i class="fas fa-calendar-times text-5xl text-muted mb-4"></i>
-              <p class="text-muted text-lg">No hay agendamientos próximos</p>
-            </div>
-          `;
-        }
-      } catch (e) {
-        console.error("Error al cargar agendamientos:", e);
-        contenido.innerHTML = `
-          <div class="text-center py-12">
-            <i class="fas fa-exclamation-triangle text-5xl text-red-500 mb-4"></i>
-            <p class="text-red-400 text-lg">Error al cargar los agendamientos</p>
-            <p class="text-muted text-sm mt-2">Por favor, verifica la conexión o intenta más tarde</p>
-          </div>
-        `;
+      if (upcoming.length === 0) {
+        content.innerHTML = '<div class="text-center py-12 text-muted"><i class="fas fa-calendar-times text-4xl mb-4 block"></i>No hay citas próximas programadas</div>';
+        return;
       }
-    }
-  </script>
-</body>
 
+      content.innerHTML = '<div class="space-y-4">' + upcoming.map(b => {
+        const fecha = new Date(b.startTime).toLocaleDateString('es-CL', {
+          weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit'
+        });
+        return `<div class="card p-6">
+          <div class="flex items-start justify-between flex-wrap gap-4">
+            <div class="flex-1">
+              <h3 class="font-bold text-white mb-1"><i class="fas fa-user text-accent mr-2 text-sm"></i>${b.attendees?.[0]?.email || b.title || 'Sin nombre'}</h3>
+              <p class="text-muted text-sm mb-2"><i class="fas fa-calendar text-accent mr-2 text-xs"></i>${fecha}</p>
+              ${b.description ? `<p class="text-white/70 text-sm">${b.description}</p>` : ''}
+              ${b.eventType?.title ? `<p class="text-accent text-xs mt-1"><i class="fas fa-tag mr-1"></i>${b.eventType.title}</p>` : ''}
+            </div>
+            ${b.status ? `<span class="px-3 py-1 rounded-full text-xs font-semibold ${b.status === 'confirmed' ? 'bg-green-500/15 text-green-400' : 'bg-yellow-500/15 text-yellow-400'}">${b.status}</span>` : ''}
+          </div>
+        </div>`;
+      }).join('') + '</div>';
+
+    } catch {
+      content.innerHTML = '<div class="text-center py-12"><i class="fas fa-exclamation-triangle text-red-500 text-4xl mb-4 block"></i><p class="text-red-400">Error al cargar los agendamientos</p></div>';
+    }
+  }
+</script>
+
+</body>
 </html>
