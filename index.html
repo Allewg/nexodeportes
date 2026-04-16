@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
@@ -49,6 +49,7 @@
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { overflow-x: clip; max-width: 100vw; }
     html { scroll-behavior: smooth; }
     body {
       background-color: #080c14;
@@ -74,12 +75,14 @@
 
     /* Header */
     #mainHeader {
-      background: rgba(8,12,20,0.85);
-      backdrop-filter: blur(20px) saturate(180%);
-      border-bottom: 1px solid rgba(201,168,76,0.07);
-      transition: border-color 0.3s, box-shadow 0.3s;
+      background: rgba(8,12,20,0);
+      backdrop-filter: blur(0px) saturate(120%);
+      border-bottom: 1px solid rgba(201,168,76,0);
+      transition: background-color 0.3s, backdrop-filter 0.3s, border-color 0.3s, box-shadow 0.3s;
     }
     #mainHeader.scrolled {
+      background: rgba(8,12,20,0.88);
+      backdrop-filter: blur(20px) saturate(180%);
       border-bottom-color: rgba(201,168,76,0.18);
       box-shadow: 0 4px 32px rgba(0,0,0,0.45);
     }
@@ -117,7 +120,86 @@
     }
 
     /* Hero */
-    .hero-section { height: 100vh; min-height: 580px; }
+    .hero-section {
+      display: flex;
+      align-items: center;
+    }
+    .hero-section > .hero-grid { width: 100%; }
+    .hero-bg-img { opacity: 0.5; }
+    .hero-overlay {
+      background: linear-gradient(180deg, rgba(8,12,20,0.55) 0%, rgba(8,12,20,0.35) 35%, rgba(8,12,20,0.95) 100%);
+    }
+    @media (min-width: 1024px) {
+      .hero-section { min-height: 100vh; min-height: 100dvh; }
+      .hero-bg-img { opacity: 0.35; }
+      .hero-overlay {
+        background: linear-gradient(to right, rgba(8,12,20,1), rgba(8,12,20,0.85) 50%, rgba(8,12,20,0.6));
+      }
+    }
+    .hero-logo-stage {
+      position: relative;
+      max-width: 430px;
+      margin-inline: auto;
+      aspect-ratio: 1 / 1;
+      display: grid;
+      place-items: center;
+    }
+    @media (max-width: 1023px) {
+      .hero-logo-stage { max-width: 200px; margin-bottom: 0.5rem; }
+      .hero-logo-core { width: min(42vw, 160px); }
+      .hero-logo-dot { transform-origin: 0 -90px; }
+      .hero-logo-dot.is-delay { transform-origin: 0 -68px; }
+    }
+    .hero-logo-orbit {
+      position: absolute;
+      border-radius: 9999px;
+      border: 1px dashed rgba(201,168,76,0.35);
+      animation: orbit 18s linear infinite;
+    }
+    .hero-logo-orbit.is-two {
+      animation-direction: reverse;
+      animation-duration: 24s;
+      border-color: rgba(232,200,112,0.28);
+    }
+    .hero-logo-core {
+      width: min(68vw, 260px);
+      aspect-ratio: 1 / 1;
+      border-radius: 9999px;
+      background: radial-gradient(circle at 35% 30%, rgba(255,255,255,0.28) 0%, rgba(255,255,255,0) 42%), linear-gradient(135deg, rgba(201,168,76,0.28), rgba(13,20,36,0.7));
+      box-shadow: 0 0 0 1px rgba(201,168,76,0.26), 0 0 45px rgba(201,168,76,0.28), 0 30px 60px rgba(0,0,0,0.45);
+      display: grid;
+      place-items: center;
+      animation: pulseGlow 4s ease-in-out infinite;
+      overflow: hidden;
+    }
+    .hero-logo-core img {
+      width: 76%;
+      height: 76%;
+      object-fit: cover;
+      border-radius: 9999px;
+      border: 2px solid rgba(255,255,255,0.25);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.45);
+    }
+    .hero-logo-dot {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 9999px;
+      background: linear-gradient(135deg, #c9a84c, #e8c870);
+      box-shadow: 0 0 12px rgba(201,168,76,0.85);
+      animation: dotOrbit 8s linear infinite;
+      transform-origin: 0 -148px;
+    }
+    .hero-logo-dot.is-delay {
+      animation-delay: -4s;
+      transform-origin: 0 -112px;
+    }
+    @keyframes orbit { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    @keyframes dotOrbit { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 0 1px rgba(201,168,76,0.26), 0 0 45px rgba(201,168,76,0.22), 0 30px 60px rgba(0,0,0,0.45); }
+      50% { box-shadow: 0 0 0 1px rgba(201,168,76,0.4), 0 0 65px rgba(201,168,76,0.42), 0 30px 60px rgba(0,0,0,0.5); }
+    }
 
     /* Buttons */
     .btn {
@@ -321,11 +403,9 @@
 
     <ul class="hidden lg:flex items-center gap-6 text-sm font-medium text-muted">
       <li><a href="#inicio"       class="hover:text-white transition-colors">Inicio</a></li>
-      <li><a href="#servicios"    class="hover:text-white transition-colors">Clases</a></li>
-      <li><a href="#horarios"     class="hover:text-white transition-colors">Horarios</a></li>
-      <li><a href="#entrenadores" class="hover:text-white transition-colors">Entrenadores</a></li>
-      <li><a href="#testimonios"  class="hover:text-white transition-colors">Testimonios</a></li>
-      <li><a href="#ubicacion"    class="hover:text-white transition-colors">Ubicación</a></li>
+      <li><a href="#servicios"    class="hover:text-white transition-colors">Servicios</a></li>
+      <li><a href="#proyectos"    class="hover:text-white transition-colors">Proyectos</a></li>
+      <li><a href="#contacto"     class="hover:text-white transition-colors">Contacto</a></li>
     </ul>
 
     <div class="flex items-center gap-3">
@@ -356,11 +436,8 @@
     </div>
     <ul class="space-y-1 flex-1">
       <li><a href="#inicio"       class="mobile-link flex items-center gap-3 text-muted hover:text-white hover:bg-white/5 px-4 py-3 rounded-xl transition-all text-sm"><i class="fas fa-home w-4 text-accent/60 text-xs"></i>Inicio</a></li>
-      <li><a href="#servicios"    class="mobile-link flex items-center gap-3 text-muted hover:text-white hover:bg-white/5 px-4 py-3 rounded-xl transition-all text-sm"><i class="fas fa-dumbbell w-4 text-accent/60 text-xs"></i>Clases</a></li>
-      <li><a href="#horarios"     class="mobile-link flex items-center gap-3 text-muted hover:text-white hover:bg-white/5 px-4 py-3 rounded-xl transition-all text-sm"><i class="fas fa-clock w-4 text-accent/60 text-xs"></i>Horarios</a></li>
-      <li><a href="#entrenadores" class="mobile-link flex items-center gap-3 text-muted hover:text-white hover:bg-white/5 px-4 py-3 rounded-xl transition-all text-sm"><i class="fas fa-users w-4 text-accent/60 text-xs"></i>Entrenadores</a></li>
-      <li><a href="#testimonios"  class="mobile-link flex items-center gap-3 text-muted hover:text-white hover:bg-white/5 px-4 py-3 rounded-xl transition-all text-sm"><i class="fas fa-comments w-4 text-accent/60 text-xs"></i>Testimonios</a></li>
-      <li><a href="#ubicacion"    class="mobile-link flex items-center gap-3 text-muted hover:text-white hover:bg-white/5 px-4 py-3 rounded-xl transition-all text-sm"><i class="fas fa-map-marker-alt w-4 text-accent/60 text-xs"></i>Ubicación</a></li>
+      <li><a href="#servicios"    class="mobile-link flex items-center gap-3 text-muted hover:text-white hover:bg-white/5 px-4 py-3 rounded-xl transition-all text-sm"><i class="fas fa-dumbbell w-4 text-accent/60 text-xs"></i>Servicios</a></li>
+      <li><a href="#proyectos"    class="mobile-link flex items-center gap-3 text-muted hover:text-white hover:bg-white/5 px-4 py-3 rounded-xl transition-all text-sm"><i class="fas fa-layer-group w-4 text-accent/60 text-xs"></i>Proyectos</a></li>
       <li><a href="#contacto"     class="mobile-link flex items-center gap-3 text-muted hover:text-white hover:bg-white/5 px-4 py-3 rounded-xl transition-all text-sm"><i class="fas fa-phone w-4 text-accent/60 text-xs"></i>Contacto</a></li>
     </ul>
     <button data-cal-link="box-nexo-iq4l0s" data-cal-namespace="box-nexo" data-cal-config='{"layout":"month_view"}'
@@ -373,144 +450,83 @@
 <main>
 
 <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ HERO ━━━ -->
-<section id="inicio" class="hero-section relative overflow-hidden">
-  <div class="swiper heroSwiper w-full h-full">
-    <div class="swiper-wrapper">
-
-      <!-- Slide 1 — solo imagen + CTA -->
-      <div class="swiper-slide relative">
-        <img src="assets/images/PORTADA/PORTADA1.webp" alt="Boxing Training"
-          class="absolute inset-0 w-full h-full object-cover object-center" />
-        <div class="absolute inset-0 bg-gradient-to-t from-bg via-bg/20 to-black/30"></div>
-        <div class="relative h-full flex items-end pb-14 sm:pb-20 md:pb-28">
-          <div class="max-w-7xl mx-auto px-5 sm:px-8 w-full">
-            <button data-cal-link="box-nexo-iq4l0s" data-cal-namespace="box-nexo" data-cal-config='{"layout":"month_view"}'
-              class="btn btn-gold px-7 py-3.5 text-sm">
-              Reserva tu clase&nbsp;<i class="fas fa-arrow-right text-xs"></i>
-            </button>
-          </div>
-        </div>
+<section id="inicio" class="hero-section relative overflow-hidden pt-24 pb-24 sm:pt-28 sm:pb-28 lg:pt-36 lg:pb-24">
+  <img src="assets/images/PORTADA/PORTADA2.webp" alt="Entrenamiento en Box Nexo Deportes"
+    class="hero-bg-img absolute inset-0 w-full h-full object-cover object-center" />
+  <div class="hero-overlay absolute inset-0"></div>
+  <div class="hero-grid max-w-7xl mx-auto px-5 sm:px-8 relative z-10 grid lg:grid-cols-[1.2fr_0.8fr] gap-6 lg:gap-10 items-center text-center lg:text-left">
+    <div class="order-2 lg:order-1" data-aos="fade-up">
+      <p class="label">Box · Funcional · Cross-Training</p>
+      <h1 class="font-display font-black text-4xl sm:text-5xl md:text-6xl xl:text-7xl text-white leading-tight mb-4">
+        Entrena más fuerte,<br><span class="text-gold-gradient">recupérate mejor</span>
+      </h1>
+      <p class="text-white/80 text-base sm:text-lg md:text-xl max-w-2xl mx-auto lg:mx-0 mb-7">
+        Transformamos rendimiento en resultados reales con programas de boxeo, open box y entrenamiento personalizado en San Bernardo.
+      </p>
+      <div class="flex flex-wrap gap-3 justify-center lg:justify-start">
+        <a href="#proyectos" class="btn btn-gold px-7 py-3.5 text-sm">
+          Ver Proyectos&nbsp;<i class="fas fa-arrow-right text-xs"></i>
+        </a>
+        <button data-cal-link="box-nexo-iq4l0s" data-cal-namespace="box-nexo" data-cal-config='{"layout":"month_view"}'
+          class="btn btn-outline px-7 py-3.5 text-sm">
+          <i class="fas fa-calendar-alt text-xs"></i>Agenda Ya
+        </button>
       </div>
-
-      <!-- Slide 2 — Headline -->
-      <div class="swiper-slide relative">
-        <img src="assets/images/PORTADA/PORTADA2.webp" alt="Training"
-          class="absolute inset-0 w-full h-full object-cover object-center" />
-        <div class="absolute inset-0 bg-gradient-to-t from-bg via-bg/25 to-black/35"></div>
-        <div class="relative h-full flex items-end pb-14 sm:pb-20 md:pb-28">
-          <div class="max-w-7xl mx-auto px-5 sm:px-8 w-full">
-            <div class="max-w-xl">
-              <p class="label">Box · Funcional · Cross-Training</p>
-              <h1 class="font-display font-black text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white leading-tight mb-3 sm:mb-4 text-gold-gradient">
-                Box Nexo<br>Deportes
-              </h1>
-              <p class="text-white/70 text-base sm:text-base md:text-lg mb-5 sm:mb-7 font-light">Entrena más fuerte, recupérate mejor.</p>
-              <button data-cal-link="box-nexo-iq4l0s" data-cal-namespace="box-nexo" data-cal-config='{"layout":"month_view"}'
-                class="btn btn-gold px-7 py-3.5 text-sm">
-                Agenda Ya&nbsp;<i class="fas fa-arrow-right text-xs"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Slide 3 — Comunidad -->
-      <div class="swiper-slide relative">
-        <img src="assets/images/PORTADA/PORTADA3.webp" alt="Group Training"
-          class="absolute inset-0 w-full h-full object-cover object-top" />
-        <div class="absolute inset-0 bg-gradient-to-t from-bg via-bg/25 to-black/35"></div>
-        <div class="relative h-full flex items-end pb-14 sm:pb-20 md:pb-28">
-          <div class="max-w-7xl mx-auto px-5 sm:px-8 w-full">
-            <div class="max-w-xl">
-              <p class="label">San Bernardo, Chile</p>
-              <h1 class="font-display font-black text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white leading-tight mb-3 sm:mb-4">
-                Transforma<br><span class="text-gold-gradient">Tu Vida</span>
-              </h1>
-              <p class="text-white/70 text-base sm:text-base md:text-lg mb-5 sm:mb-7 font-light">Una comunidad comprometida con tu éxito.</p>
-              <button data-cal-link="box-nexo-iq4l0s" data-cal-namespace="box-nexo" data-cal-config='{"layout":"month_view"}'
-                class="btn btn-gold px-7 py-3.5 text-sm">
-                Comienza Hoy&nbsp;<i class="fas fa-arrow-right text-xs"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
     </div>
-    <div class="swiper-pagination !bottom-7 !left-5 sm:!left-8 text-left" style="text-align:left"></div>
+
+    <div class="hero-logo-stage order-1 lg:order-2" data-aos="zoom-in" data-aos-delay="120">
+      <div class="hero-logo-orbit w-[76%] h-[76%]"></div>
+      <div class="hero-logo-orbit is-two w-[96%] h-[96%]"></div>
+      <div class="hero-logo-core">
+        <img src="assets/images/logo.jpg" alt="Logo Box Nexo Deportes" />
+      </div>
+      <span class="hero-logo-dot"></span>
+      <span class="hero-logo-dot is-delay"></span>
+    </div>
   </div>
 </section>
 
 
-<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ VIDEO + INVITACIÓN ━━━ -->
-<section id="video-invitacion" class="py-14 sm:py-20 lg:py-32 relative">
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ PROYECTOS ━━━ -->
+<section id="proyectos" class="py-14 sm:py-20 lg:py-32 relative">
   <div class="divider absolute top-0 inset-x-0"></div>
   <div class="max-w-7xl mx-auto px-5 sm:px-8">
-    <div class="grid lg:grid-cols-[1fr_1.4fr] gap-8 lg:gap-16 items-center">
+    <div class="text-center mb-10 md:mb-16" data-aos="fade-up">
+      <p class="label">Resultados</p>
+      <h2 class="font-display font-bold text-3xl sm:text-4xl md:text-5xl text-white">Proyectos y Experiencias Reales</h2>
+      <p class="text-muted mt-3 max-w-2xl mx-auto text-sm sm:text-base">Contenido visual real de nuestro gimnasio, clases y comunidad en acción.</p>
+    </div>
 
-      <!-- Video — phone/reel frame -->
-      <div class="order-2 lg:order-1 flex justify-center" data-aos="fade-right">
-        <div class="phone-frame">
-          <!-- Notch -->
+    <div class="grid lg:grid-cols-2 gap-6 lg:gap-8 items-stretch">
+      <article class="card overflow-hidden" data-aos="fade-right">
+        <div class="aspect-video relative">
+          <img src="assets/images/PORTADA/PORTADA3.webp" alt="Comunidad entrenando en Box Nexo"
+            class="absolute inset-0 w-full h-full object-cover" />
+          <div class="absolute inset-0 bg-gradient-to-t from-bg/70 to-transparent"></div>
+        </div>
+        <div class="p-6">
+          <h3 class="font-display font-bold text-2xl text-white mb-2">Comunidad Nexo</h3>
+          <p class="text-muted text-sm">Un espacio profesional con energía de equipo, foco técnico y progreso constante.</p>
+        </div>
+      </article>
+
+      <article class="card overflow-hidden" data-aos="fade-left">
+        <div class="phone-frame mx-auto my-6">
           <div class="phone-notch"></div>
-          <!-- Screen -->
           <div class="phone-screen">
             <iframe id="vimeo-video"
-              src="https://player.vimeo.com/video/1153682064?autoplay=1&muted=0&controls=0&badge=0&autopause=1&loop=1&byline=0&portrait=0&title=0&background=0"
+              src="https://player.vimeo.com/video/1153682064?autoplay=1&muted=1&controls=0&badge=0&autopause=1&loop=1&byline=0&portrait=0&title=0&background=0"
               allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
-              referrerpolicy="strict-origin-when-cross-origin" title="VIDEONEXO">
+              referrerpolicy="strict-origin-when-cross-origin" title="Video Box Nexo Deportes">
             </iframe>
           </div>
-          <!-- Home bar -->
           <div class="phone-bar"></div>
         </div>
-      </div>
-
-      <!-- Texto -->
-      <div class="order-1 lg:order-2" data-aos="fade-left">
-        <p class="label">Únete a Nosotros</p>
-        <h2 class="font-display font-bold text-3xl sm:text-4xl md:text-5xl text-white mb-5 leading-tight">
-          No solo entrenas tu cuerpo,<br>
-          <span class="text-gold-gradient">transformas tu vida</span>
-        </h2>
-        <p class="text-muted text-sm sm:text-base md:text-lg leading-relaxed mb-6 md:mb-8">
-          Somos más que un gimnasio — somos una comunidad comprometida con tu progreso, donde cada sesión te acerca más a la mejor versión de ti mismo.
-        </p>
-        <ul class="space-y-5 mb-10">
-          <li class="flex items-start gap-4">
-            <span class="w-7 h-7 rounded-full bg-accent/15 flex items-center justify-center shrink-0 mt-0.5">
-              <i class="fas fa-check text-accent" style="font-size:0.6rem"></i>
-            </span>
-            <div>
-              <p class="font-semibold text-white text-sm">Entrenamiento Profesional</p>
-              <p class="text-muted text-sm mt-0.5">Instructores certificados que guían cada paso de tu transformación.</p>
-            </div>
-          </li>
-          <li class="flex items-start gap-4">
-            <span class="w-7 h-7 rounded-full bg-accent/15 flex items-center justify-center shrink-0 mt-0.5">
-              <i class="fas fa-check text-accent" style="font-size:0.6rem"></i>
-            </span>
-            <div>
-              <p class="font-semibold text-white text-sm">Ambiente Motivador</p>
-              <p class="text-muted text-sm mt-0.5">Un espacio donde cada persona es parte de una familia que se apoya.</p>
-            </div>
-          </li>
-          <li class="flex items-start gap-4">
-            <span class="w-7 h-7 rounded-full bg-accent/15 flex items-center justify-center shrink-0 mt-0.5">
-              <i class="fas fa-check text-accent" style="font-size:0.6rem"></i>
-            </span>
-            <div>
-              <p class="font-semibold text-white text-sm">Resultados Garantizados</p>
-              <p class="text-muted text-sm mt-0.5">Programas diseñados para alcanzar tus metas sin importar tu nivel.</p>
-            </div>
-          </li>
-        </ul>
-        <button data-cal-link="box-nexo-iq4l0s" data-cal-namespace="box-nexo" data-cal-config='{"layout":"month_view"}'
-          class="btn btn-gold px-7 py-4 text-sm">
-          <i class="fas fa-calendar-alt text-xs"></i>Comienza tu Transformación
-        </button>
-      </div>
-
+        <div class="px-6 pb-6 text-center">
+          <h3 class="font-display font-bold text-2xl text-white mb-2">Reel de Entrenamiento</h3>
+          <p class="text-muted text-sm">Mira en vivo la experiencia de entrenamiento y el nivel técnico de nuestras clases.</p>
+        </div>
+      </article>
     </div>
   </div>
 </section>
@@ -527,62 +543,36 @@
       <p class="text-muted mt-3 max-w-md mx-auto text-sm">Elige la modalidad que mejor se adapte a tus objetivos.</p>
     </div>
 
-    <div class="swiper serviciosSwiper">
-      <div class="swiper-wrapper pb-12">
-
-        <div class="swiper-slide h-auto">
-          <div class="card p-5 sm:p-8 h-full flex flex-col">
-            <div class="w-11 h-11 rounded-xl bg-accent/10 flex items-center justify-center mb-5">
-              <i class="fas fa-door-open text-accent"></i>
-            </div>
-            <h3 class="font-display font-bold text-lg text-white mb-2">Open Box</h3>
-            <p class="text-muted text-sm mb-6 flex-grow-0">Gimnasio abierto sin restricciones para entrenar a tu ritmo.</p>
-            <ul class="space-y-2.5 mb-8 flex-grow text-sm text-white/75">
-              <li class="flex items-center gap-2.5"><i class="fas fa-check text-accent text-xs shrink-0"></i>Acceso libre al espacio</li>
-              <li class="flex items-center gap-2.5"><i class="fas fa-check text-accent text-xs shrink-0"></i>Ambiente sin restricciones</li>
-              <li class="flex items-center gap-2.5"><i class="fas fa-check text-accent text-xs shrink-0"></i>Ideal para entrenar libremente</li>
-            </ul>
-            <button data-cal-link="box-nexo-iq4l0s" data-cal-namespace="box-nexo" data-cal-config='{"layout":"month_view"}'
-              class="btn btn-gold w-full py-3 text-sm">Más información</button>
-          </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+      <div class="card p-5 sm:p-8 h-full flex flex-col" data-aos="fade-up">
+        <div class="w-11 h-11 rounded-xl bg-accent/10 flex items-center justify-center mb-5">
+          <i class="fas fa-door-open text-accent"></i>
         </div>
-
-        <div class="swiper-slide h-auto">
-          <div class="card p-5 sm:p-8 h-full flex flex-col" style="border-color:rgba(201,168,76,.18)">
-            <div class="w-11 h-11 rounded-xl bg-accent/10 flex items-center justify-center mb-5">
-              <i class="fas fa-hand-rock text-accent"></i>
-            </div>
-            <h3 class="font-display font-bold text-lg text-white mb-2">Clases de Boxeo</h3>
-            <p class="text-muted text-sm mb-6 flex-grow-0">Aprende técnica real de boxeo con instructores certificados.</p>
-            <ul class="space-y-2.5 mb-8 flex-grow text-sm text-white/75">
-              <li class="flex items-center gap-2.5"><i class="fas fa-check text-accent text-xs shrink-0"></i>Clases grupales y personales</li>
-              <li class="flex items-center gap-2.5"><i class="fas fa-check text-accent text-xs shrink-0"></i>Mejora técnica y resistencia</li>
-              <li class="flex items-center gap-2.5"><i class="fas fa-check text-accent text-xs shrink-0"></i>Horarios flexibles</li>
-            </ul>
-            <a href="https://wa.me/56991040157?text=Hola%2C%20quiero%20más%20información%20sobre%20clases%20de%20boxeo" target="_blank" rel="noopener noreferrer"
-              class="btn btn-gold w-full py-3 text-sm">Más información</a>
-          </div>
-        </div>
-
-        <div class="swiper-slide h-auto">
-          <div class="card p-5 sm:p-8 h-full flex flex-col">
-            <div class="w-11 h-11 rounded-xl bg-accent/10 flex items-center justify-center mb-5">
-              <i class="fas fa-user-check text-accent"></i>
-            </div>
-            <h3 class="font-display font-bold text-lg text-white mb-2">Personalizado</h3>
-            <p class="text-muted text-sm mb-6 flex-grow-0">Plan de entrenamiento diseñado exclusivamente para ti.</p>
-            <ul class="space-y-2.5 mb-8 flex-grow text-sm text-white/75">
-              <li class="flex items-center gap-2.5"><i class="fas fa-check text-accent text-xs shrink-0"></i>Planes totalmente a medida</li>
-              <li class="flex items-center gap-2.5"><i class="fas fa-check text-accent text-xs shrink-0"></i>Entrenamiento 1 a 1</li>
-              <li class="flex items-center gap-2.5"><i class="fas fa-check text-accent text-xs shrink-0"></i>Flexibilidad de horarios</li>
-            </ul>
-            <a href="https://wa.me/56991040157?text=Hola%2C%20quiero%20más%20información%20sobre%20entrenamiento%20personalizado" target="_blank" rel="noopener noreferrer"
-              class="btn btn-gold w-full py-3 text-sm">Más información</a>
-          </div>
-        </div>
-
+        <h3 class="font-display font-bold text-lg text-white mb-2">Open Box</h3>
+        <p class="text-muted text-sm mb-6 flex-grow">Gimnasio abierto sin restricciones para entrenar a tu ritmo y mejorar cada semana.</p>
+        <button data-cal-link="box-nexo-iq4l0s" data-cal-namespace="box-nexo" data-cal-config='{"layout":"month_view"}'
+          class="btn btn-gold w-full py-3 text-sm">Más información</button>
       </div>
-      <div class="swiper-pagination"></div>
+
+      <div class="card p-5 sm:p-8 h-full flex flex-col" style="border-color:rgba(201,168,76,.18)" data-aos="fade-up" data-aos-delay="100">
+        <div class="w-11 h-11 rounded-xl bg-accent/10 flex items-center justify-center mb-5">
+          <i class="fas fa-hand-rock text-accent"></i>
+        </div>
+        <h3 class="font-display font-bold text-lg text-white mb-2">Clases de Boxeo</h3>
+        <p class="text-muted text-sm mb-6 flex-grow">Aprende técnica real de boxeo con instructores certificados, enfoque y progresión constante.</p>
+        <a href="https://wa.me/56991040157?text=Hola%2C%20quiero%20más%20información%20sobre%20clases%20de%20boxeo" target="_blank" rel="noopener noreferrer"
+          class="btn btn-gold w-full py-3 text-sm">Más información</a>
+      </div>
+
+      <div class="card p-5 sm:p-8 h-full flex flex-col" data-aos="fade-up" data-aos-delay="200">
+        <div class="w-11 h-11 rounded-xl bg-accent/10 flex items-center justify-center mb-5">
+          <i class="fas fa-user-check text-accent"></i>
+        </div>
+        <h3 class="font-display font-bold text-lg text-white mb-2">Personalizado</h3>
+        <p class="text-muted text-sm mb-6 flex-grow">Plan de entrenamiento diseñado exclusivamente para tus objetivos y condición actual.</p>
+        <a href="https://wa.me/56991040157?text=Hola%2C%20quiero%20más%20información%20sobre%20entrenamiento%20personalizado" target="_blank" rel="noopener noreferrer"
+          class="btn btn-gold w-full py-3 text-sm">Más información</a>
+      </div>
     </div>
 
   </div>
@@ -649,7 +639,7 @@
             </div>
             <div class="swiper-slide flex justify-center px-1">
               <div class="rounded-2xl overflow-hidden w-full ring-1 ring-white/5 hover:ring-accent/20 transition-all duration-300 shadow-2xl">
-                <img src="assets/images/profe2.webp" alt="Entrenadora" class="w-full h-auto object-cover" />
+                <img src="assets/images/PORTADA/PORTADA1.webp" alt="Entrenadora" class="w-full h-auto object-cover" />
               </div>
             </div>
             <div class="swiper-slide flex justify-center px-1">
@@ -1084,14 +1074,6 @@
     });
   }
 
-  // ── Swiper: Hero
-  new Swiper('.heroSwiper', {
-    loop: true, effect: 'fade', speed: 900,
-    fadeEffect: { crossFade: true },
-    autoplay: { delay: 5500, disableOnInteraction: false },
-    pagination: { el: '.heroSwiper .swiper-pagination', clickable: true },
-  });
-
   // ── Swiper: Trainers
   new Swiper('.trainersSwiper', {
     slidesPerView: 1, spaceBetween: 24, loop: true,
@@ -1105,14 +1087,6 @@
     pagination: { el: '.testimoniosSwiper .swiper-pagination', clickable: true },
     navigation: { nextEl: '.testimoniosSwiper .swiper-button-next', prevEl: '.testimoniosSwiper .swiper-button-prev' },
     autoplay: { delay: 5000, disableOnInteraction: false },
-    breakpoints: { 768: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } },
-  });
-
-  // ── Swiper: Services
-  new Swiper('.serviciosSwiper', {
-    slidesPerView: 1, spaceBetween: 20, loop: true,
-    pagination: { el: '.serviciosSwiper .swiper-pagination', clickable: true },
-    autoplay: { delay: 4000, disableOnInteraction: false },
     breakpoints: { 768: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } },
   });
 
